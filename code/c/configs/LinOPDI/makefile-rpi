@@ -37,13 +37,10 @@ CONIOINCPATH = ../../libraries/conio
 POCOINCPATH = ../../libraries/POCO/Util/include ../../libraries/POCO/Foundation/include ../../libraries/POCO/Net/include
 
 # POCO library path
-# for 32 bit systems
-# POCOLIBPATH = ../../libraries/POCO/lib/Linux/x86_64
-# for 64 bit systems
-POCOLIBPATH = ../../libraries/POCO/lib/Linux/i686
+POCOLIBPATH = ../../libraries/POCO/lib/Linux/ARM
 
 # POCO libraries
-POCOLIBS = -lPocoUtil -lPocoNet -lPocoFoundation 
+POCOLIBS = -lPocoUtil -lPocoNet -lPocoFoundation
 
 # libctb serial communication library
 LIBCTB = ../../libraries/libctb
@@ -55,7 +52,7 @@ SRC += $(LIBCTB)/src/linux/timer.cpp $(LIBCTB)/src/portscan.cpp $(LIBCTB)/src/se
 LIBS = -lpthread -lrt
 
 # The compiler to be used.
-CC = g++
+CC = arm-linux-gnueabihf-g++
 
 # List any extra directories to look for include files here.
 # Each directory must be seperated by a space.

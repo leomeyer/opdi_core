@@ -26,22 +26,7 @@
 
 #include <stdio.h>
 #include <time.h>
-
-#ifdef WIN32
-#include <winsock2.h>
-#include <Windows.h>
-#include <WinBase.h>
-#endif
-
-#ifdef linux
-#include <stdlib.h>
 #include <string.h>
-#include <sys/time.h>
-#include <unistd.h>
-#include <sys/param.h>
-#include <sys/socket.h>
-#include <errno.h>
-#endif
 
 #include "opdi_platformtypes.h"
 #include "opdi_config.h"

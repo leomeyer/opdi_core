@@ -44,12 +44,14 @@ If you want to cross-compile for the Raspberry Pi, follow these steps:
 1. Install a cross-compiler toolchain on your compile system and make sure that it works. For example: https://github.com/raspberrypi/tools
 Note: Currently it is not recommended to use the popular crosstools-ng for this because of problems downloading library dependencies (eglibc.org SVN server is unreliable).
 
+Cross-compiled Raspberry Pi binaries should link statically against POCO. This avoids the need to compile and install the POCO library binaries on the Raspberry.
+
 2. Create a build configuration for POCO:
 > cd build/config
 > cp ARM-Linux RaspberryPi
 Edit the file RaspberryPi:
-In general settings, set the LINKMODE variable to BOTH (to create .a files for static linking):
-LINKMODE		?= BOTH
+In general settings, set the LINKMODE variable to STATIC (to create .a files for static linking):
+LINKMODE		?= STATIC
 In general settings, remove the lines starting with "STLPORT" and "OPENSSL"
 In general settings, change the tool (Note: this assumes that you are using the RaspberryPi cross compiler from Github mentioned above):
 TOOL = arm-linux-gnueabihf 
@@ -65,8 +67,6 @@ Save and return to POCO root:
 
 4. Build:
 > make -s
-
-Cross-compiled Raspberry Pi binaries should link statically against POCO. This avoids the need to compile and install the POCO library binaries on the Raspberry.
 
 If you need to build POCO on Raspberry Pi, make sure that the libssl-dev library is installed:
 > sudo apt-get install libssl-dev
