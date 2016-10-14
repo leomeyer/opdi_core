@@ -85,7 +85,7 @@ void SelectPort::setPosition(uint16_t position)
 
 uint16_t SelectPort::getMaxPosition()
 {
-	return this->positionLabels.size() - 1;
+	return (uint16_t)this->positionLabels.size() - 1;
 }
 
 uint16_t SelectPort::getPosition()

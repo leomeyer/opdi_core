@@ -416,7 +416,7 @@ int listen_com(LPCTSTR lpPortName, DWORD dwBaudRate, BYTE bStopBits, BYTE bParit
 	DWORD bytesRead;
 
     while (true) {
-		printf("Listening for a serial connection on COM port %s\n", lpPortName);
+		printf("Listening for a serial connection on COM port %s\n", (char *)lpPortName);
 
 		while (true) {
 			// try to read a byte
@@ -488,7 +488,7 @@ int _tmain(int argc, _TCHAR* argv[])
 					exit(1);
 				}
             } else {
-				printf("Unrecognized argument: %s\n", argv[i]);
+				printf("Unrecognized argument: %s\n", (char *)argv[i]);
 				exit(1);
 			}
         }
