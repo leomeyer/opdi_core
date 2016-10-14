@@ -8,13 +8,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.protocol;
+package org.openhat.opdi.protocol;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IProtocol;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IProtocol;
 
 /** This class is a protocol factory that selects the proper protocol for a device.
  * It supports registering protocols that are not implemented in the library itself.

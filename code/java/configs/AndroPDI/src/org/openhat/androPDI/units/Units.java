@@ -17,8 +17,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.openhat.androPDI.utils.ResourceFactory;
-import org.openhat.units.UnitFormat;
-import org.openhat.utils.Strings;
+import org.openhat.opdi.units.UnitFormat;
+import org.openhat.opdi.utils.Strings;
 
 import android.content.Context;
 

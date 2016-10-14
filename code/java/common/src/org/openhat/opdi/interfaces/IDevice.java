@@ -8,12 +8,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.interfaces;
+package org.openhat.opdi.interfaces;
 
 import java.util.Queue;
 
-import org.openhat.devices.DeviceInfo;
-import org.openhat.protocol.Message;
+import org.openhat.opdi.devices.DeviceInfo;
+import org.openhat.opdi.protocol.Message;
 
 /** This interface describes a remote device.
  * 

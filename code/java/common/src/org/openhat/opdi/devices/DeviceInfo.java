@@ -8,11 +8,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.devices;
+package org.openhat.opdi.devices;
 
 import java.util.HashMap;
 
-import org.openhat.utils.Strings;
+import org.openhat.opdi.utils.Strings;
 
 public class DeviceInfo {
 	

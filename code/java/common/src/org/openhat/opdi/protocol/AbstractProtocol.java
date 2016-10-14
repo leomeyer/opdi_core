@@ -8,16 +8,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.protocol;
+package org.openhat.opdi.protocol;
 
 import java.util.Queue;
 import java.util.concurrent.TimeoutException;
 
-import org.openhat.devices.DeviceException;
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IProtocol;
-import org.openhat.utils.ResourceFactory;
-import org.openhat.utils.Strings;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IProtocol;
+import org.openhat.opdi.utils.ResourceFactory;
+import org.openhat.opdi.utils.Strings;
 
 
 /** This class implements generic functions of OPDI communication protocols.

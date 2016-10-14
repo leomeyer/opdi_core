@@ -8,14 +8,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.ports;
+package org.openhat.opdi.ports;
 
 import java.util.concurrent.TimeoutException;
 
-import org.openhat.devices.DeviceException;
-import org.openhat.interfaces.IBasicProtocol;
-import org.openhat.protocol.DisconnectedException;
-import org.openhat.protocol.ProtocolException;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.interfaces.IBasicProtocol;
+import org.openhat.opdi.protocol.DisconnectedException;
+import org.openhat.opdi.protocol.ProtocolException;
 
 
 /** This class serves as a factory for basic port objects.

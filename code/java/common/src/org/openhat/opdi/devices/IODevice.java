@@ -8,7 +8,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.devices;
+package org.openhat.opdi.devices;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,18 +21,18 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeoutException;
 
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IDeviceListener;
-import org.openhat.interfaces.IProtocol;
-import org.openhat.protocol.AbstractProtocol;
-import org.openhat.protocol.AbstractProtocol.IAbortable;
-import org.openhat.protocol.DisconnectedException;
-import org.openhat.protocol.Message;
-import org.openhat.protocol.MessageException;
-import org.openhat.protocol.ProtocolException;
-import org.openhat.protocol.ProtocolFactory;
-import org.openhat.utils.ResourceFactory;
-import org.openhat.utils.Strings;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDeviceListener;
+import org.openhat.opdi.interfaces.IProtocol;
+import org.openhat.opdi.protocol.AbstractProtocol;
+import org.openhat.opdi.protocol.AbstractProtocol.IAbortable;
+import org.openhat.opdi.protocol.DisconnectedException;
+import org.openhat.opdi.protocol.Message;
+import org.openhat.opdi.protocol.MessageException;
+import org.openhat.opdi.protocol.ProtocolException;
+import org.openhat.opdi.protocol.ProtocolFactory;
+import org.openhat.opdi.utils.ResourceFactory;
+import org.openhat.opdi.utils.Strings;
 
 
 /** Defines a queued device that communicates via input and output streams.

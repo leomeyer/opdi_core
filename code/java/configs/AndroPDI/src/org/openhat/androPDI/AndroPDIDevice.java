@@ -13,8 +13,8 @@ package org.openhat.androPDI;
 import java.lang.ref.WeakReference;
 
 import org.openhat.androPDI.DeviceManager.IDeviceStatusListener;
-import org.openhat.devices.DeviceInfo;
-import org.openhat.devices.IODevice;
+import org.openhat.opdi.devices.DeviceInfo;
+import org.openhat.opdi.devices.IODevice;
 
 public abstract class AndroPDIDevice extends IODevice {
 

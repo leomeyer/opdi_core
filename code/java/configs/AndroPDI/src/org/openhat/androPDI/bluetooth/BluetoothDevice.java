@@ -22,7 +22,7 @@ import org.openhat.androPDI.AndroPDI;
 import org.openhat.androPDI.AndroPDIDevice;
 import org.openhat.androPDI.R;
 import org.openhat.androPDI.utils.ResourceFactory;
-import org.openhat.utils.Strings;
+import org.openhat.opdi.utils.Strings;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothSocket;

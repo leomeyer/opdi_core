@@ -8,18 +8,18 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.interfaces;
+package org.openhat.opdi.interfaces;
 
 import java.util.concurrent.TimeoutException;
 
-import org.openhat.devices.DeviceException;
-import org.openhat.ports.Port;
-import org.openhat.protocol.DisconnectedException;
-import org.openhat.protocol.Message;
-import org.openhat.protocol.PortAccessDeniedException;
-import org.openhat.protocol.PortErrorException;
-import org.openhat.protocol.ProtocolException;
-import org.openhat.protocol.AbstractProtocol.IAbortable;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.protocol.DisconnectedException;
+import org.openhat.opdi.protocol.Message;
+import org.openhat.opdi.protocol.PortAccessDeniedException;
+import org.openhat.opdi.protocol.PortErrorException;
+import org.openhat.opdi.protocol.ProtocolException;
+import org.openhat.opdi.protocol.AbstractProtocol.IAbortable;
 
 public interface IProtocol {
 

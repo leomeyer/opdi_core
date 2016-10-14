@@ -12,11 +12,11 @@ package org.openhat.androPDI.portdetails;
 
 import org.openhat.androPDI.DeviceManager;
 import org.openhat.androPDI.AndroPDI;
-import org.openhat.interfaces.IBasicProtocol;
-import org.openhat.interfaces.IDeviceListener;
-import org.openhat.interfaces.IDevice;
-import org.openhat.ports.Port;
-import org.openhat.ports.StreamingPort;
+import org.openhat.opdi.interfaces.IBasicProtocol;
+import org.openhat.opdi.interfaces.IDeviceListener;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.ports.StreamingPort;
 import org.openhat.androPDI.R;
 
 import android.app.Activity;

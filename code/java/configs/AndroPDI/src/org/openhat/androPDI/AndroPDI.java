@@ -30,8 +30,8 @@ import org.openhat.androPDI.tcpip.AddTCPIPDevice;
 import org.openhat.androPDI.tcpip.EditTCPIPDevice;
 import org.openhat.androPDI.tcpip.TCPIPDevice;
 import org.openhat.androPDI.utils.ResourceFactory;
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IDevice.DeviceStatus;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -143,7 +143,7 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
         registerReceiver(screenReceiver, filter);        
 
         // use localized resource factory
-        org.openhat.utils.ResourceFactory.instance = new org.openhat.androPDI.utils.ResourceFactory(this);
+        org.openhat.opdi.utils.ResourceFactory.instance = new org.openhat.androPDI.utils.ResourceFactory(this);
         
         deviceManager = DeviceManager.getInstance();
         

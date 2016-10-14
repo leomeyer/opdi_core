@@ -10,7 +10,7 @@
 
 package org.openhat.androPDI.portdetails;
 
-import org.openhat.ports.StreamingPort;
+import org.openhat.opdi.ports.StreamingPort;
 
 import android.os.Handler;
 import android.view.Menu;

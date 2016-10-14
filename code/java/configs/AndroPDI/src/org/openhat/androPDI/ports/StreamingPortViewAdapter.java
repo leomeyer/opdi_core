@@ -13,14 +13,14 @@ package org.openhat.androPDI.ports;
 import java.util.concurrent.TimeoutException;
 
 import org.openhat.androPDI.R;
-import org.openhat.devices.DeviceException;
-import org.openhat.drivers.Text_Driver;
-import org.openhat.ports.Port;
-import org.openhat.ports.StreamingPort;
-import org.openhat.ports.StreamingPort.IStreamingPortListener;
-import org.openhat.protocol.DisconnectedException;
-import org.openhat.protocol.PortAccessDeniedException;
-import org.openhat.protocol.ProtocolException;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.drivers.Text_Driver;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.ports.StreamingPort;
+import org.openhat.opdi.ports.StreamingPort.IStreamingPortListener;
+import org.openhat.opdi.protocol.DisconnectedException;
+import org.openhat.opdi.protocol.PortAccessDeniedException;
+import org.openhat.opdi.protocol.ProtocolException;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

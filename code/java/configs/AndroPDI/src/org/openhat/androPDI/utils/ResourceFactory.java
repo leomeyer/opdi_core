@@ -13,7 +13,7 @@ package org.openhat.androPDI.utils;
 import android.content.Context;
 
 
-public class ResourceFactory extends org.openhat.utils.ResourceFactory {
+public class ResourceFactory extends org.openhat.opdi.utils.ResourceFactory {
 
 	Context context;
 	private static ResourceFactory instance;

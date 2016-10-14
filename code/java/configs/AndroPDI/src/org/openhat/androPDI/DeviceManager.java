@@ -17,9 +17,9 @@ import java.util.List;
 
 import org.openhat.androPDI.model.Settings;
 import org.openhat.androPDI.utils.ResourceFactory;
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IDevice.DeviceStatus;
-import org.openhat.interfaces.IDeviceListener;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
+import org.openhat.opdi.interfaces.IDeviceListener;
 import org.openhat.androPDI.R;
 
 import android.os.Environment;
@@ -54,7 +54,7 @@ public class DeviceManager implements IDeviceListener {
 		void receivedError(AndroPDIDevice device, String text);
 	}
 	
-    protected static final String SETTINGS_FILENAME = "/androPDI.xml";
+    protected static final String SETTINGS_FILENAME = "/org.openhat.androPDI.xml";
     
 	protected static DeviceManager instance;
 

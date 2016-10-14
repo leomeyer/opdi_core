@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.openhat.androPDI.AndroPDI;
 import org.openhat.androPDI.AndroPDIDevice;
-import org.openhat.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDevice;
 
 import android.util.Log;
 

@@ -8,7 +8,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.devices;
+package org.openhat.opdi.devices;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -28,13 +28,13 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IDeviceListener;
-import org.openhat.interfaces.IProtocol;
-import org.openhat.protocol.AbstractProtocol.IAbortable;
-import org.openhat.protocol.Message;
-import org.openhat.protocol.MessageException;
-import org.openhat.utils.ResourceFactory;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDeviceListener;
+import org.openhat.opdi.interfaces.IProtocol;
+import org.openhat.opdi.protocol.AbstractProtocol.IAbortable;
+import org.openhat.opdi.protocol.Message;
+import org.openhat.opdi.protocol.MessageException;
+import org.openhat.opdi.utils.ResourceFactory;
 
 /** This class defines the functions of a device that communicates via messages that are put into
  * input and output queues. It provides an IBasicProtocol object that is connected to these queues.

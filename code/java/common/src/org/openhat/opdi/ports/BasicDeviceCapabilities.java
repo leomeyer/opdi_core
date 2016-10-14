@@ -8,7 +8,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.ports;
+package org.openhat.opdi.ports;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeoutException;
 
-import org.openhat.devices.DeviceException;
-import org.openhat.interfaces.IDeviceCapabilities;
-import org.openhat.protocol.BasicProtocol;
-import org.openhat.protocol.DisconnectedException;
-import org.openhat.protocol.PortAccessDeniedException;
-import org.openhat.protocol.ProtocolException;
-import org.openhat.utils.Strings;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.interfaces.IDeviceCapabilities;
+import org.openhat.opdi.protocol.BasicProtocol;
+import org.openhat.opdi.protocol.DisconnectedException;
+import org.openhat.opdi.protocol.PortAccessDeniedException;
+import org.openhat.opdi.protocol.ProtocolException;
+import org.openhat.opdi.utils.Strings;
 
 
 /** This class describes the capabilities of an OPDI device. It contains convenience methods to access ports.

@@ -10,9 +10,9 @@
 
 package org.openhat.androPDI.portdetails;
 
-import org.openhat.drivers.BMP085_Driver;
-import org.openhat.drivers.CHR6dm_Driver;
-import org.openhat.drivers.NMEAGen_Driver;
+import org.openhat.opdi.drivers.BMP085_Driver;
+import org.openhat.opdi.drivers.CHR6dm_Driver;
+import org.openhat.opdi.drivers.NMEAGen_Driver;
 
 /** A factory that creates view controllers for streaming port drivers.
  * 

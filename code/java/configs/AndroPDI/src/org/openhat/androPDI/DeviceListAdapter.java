@@ -12,8 +12,8 @@ package org.openhat.androPDI;
 
 import java.util.List;
 
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IDevice.DeviceStatus;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
 import org.openhat.androPDI.R;
 
 import android.content.Context;

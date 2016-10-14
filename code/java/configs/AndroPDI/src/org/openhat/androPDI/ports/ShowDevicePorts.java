@@ -21,19 +21,19 @@ import org.openhat.androPDI.DeviceManager;
 import org.openhat.androPDI.R;
 import org.openhat.androPDI.gui.LoggingActivity;
 import org.openhat.androPDI.portdetails.ShowPortDetails;
-import org.openhat.devices.DeviceException;
-import org.openhat.interfaces.IBasicProtocol;
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IDeviceCapabilities;
-import org.openhat.interfaces.IDeviceListener;
-import org.openhat.interfaces.IProtocol;
-import org.openhat.ports.Port;
-import org.openhat.ports.Port.PortType;
-import org.openhat.ports.PortGroup;
-import org.openhat.ports.StreamingPort;
-import org.openhat.protocol.DisconnectedException;
-import org.openhat.protocol.PortAccessDeniedException;
-import org.openhat.protocol.ProtocolException;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.interfaces.IBasicProtocol;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDeviceCapabilities;
+import org.openhat.opdi.interfaces.IDeviceListener;
+import org.openhat.opdi.interfaces.IProtocol;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.ports.Port.PortType;
+import org.openhat.opdi.ports.PortGroup;
+import org.openhat.opdi.ports.StreamingPort;
+import org.openhat.opdi.protocol.DisconnectedException;
+import org.openhat.opdi.protocol.PortAccessDeniedException;
+import org.openhat.opdi.protocol.ProtocolException;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -122,9 +122,9 @@ public class ShowDevicePorts extends LoggingActivity implements IDeviceListener 
                                            R.layout.port_group_select_row,
                                            null);
             TextView tvText1 = (TextView)convertView.findViewById(R.id.text1);
-            TextView tvText2 = (TextView)convertView.findViewById(R.id.text2);
             tvText1.setText(getItem(position).getLabel());
-            tvText2.setText(getItem(position).getID());
+            TextView tvText2 = (TextView)convertView.findViewById(R.id.text2);
+            tvText2.setText("" /*getItem(position).getID()*/);
             return convertView;
         }
     }	

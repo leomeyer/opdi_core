@@ -8,7 +8,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.protocol;
+package org.openhat.opdi.protocol;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -18,20 +18,20 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.TimeoutException;
 
-import org.openhat.devices.DeviceException;
-import org.openhat.interfaces.IBasicProtocol;
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IDeviceCapabilities;
-import org.openhat.ports.AnalogPort;
-import org.openhat.ports.AnalogPort.Resolution;
-import org.openhat.ports.BasicDeviceCapabilities;
-import org.openhat.ports.DialPort;
-import org.openhat.ports.DigitalPort;
-import org.openhat.ports.Port;
-import org.openhat.ports.PortFactory;
-import org.openhat.ports.SelectPort;
-import org.openhat.ports.StreamingPort;
-import org.openhat.utils.Strings;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.interfaces.IBasicProtocol;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDeviceCapabilities;
+import org.openhat.opdi.ports.AnalogPort;
+import org.openhat.opdi.ports.AnalogPort.Resolution;
+import org.openhat.opdi.ports.BasicDeviceCapabilities;
+import org.openhat.opdi.ports.DialPort;
+import org.openhat.opdi.ports.DigitalPort;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.ports.PortFactory;
+import org.openhat.opdi.ports.SelectPort;
+import org.openhat.opdi.ports.StreamingPort;
+import org.openhat.opdi.utils.Strings;
 
 
 /** This class implements the basic protocol for data exchange with a slave device.

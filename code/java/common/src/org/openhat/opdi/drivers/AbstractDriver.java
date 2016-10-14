@@ -8,11 +8,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.drivers;
+package org.openhat.opdi.drivers;
 
 import java.util.Date;
 
-import org.openhat.interfaces.IDriver;
+import org.openhat.opdi.interfaces.IDriver;
 
 /** Implements generic functions for drivers.
  * 

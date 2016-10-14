@@ -12,9 +12,9 @@ package org.openhat.androPDI.portdetails;
 
 import org.openhat.androPDI.AndroPDI;
 import org.openhat.androPDI.gui.Panel;
-import org.openhat.drivers.BMP085_Driver;
-import org.openhat.interfaces.IDriver;
-import org.openhat.ports.StreamingPort;
+import org.openhat.opdi.drivers.BMP085_Driver;
+import org.openhat.opdi.interfaces.IDriver;
+import org.openhat.opdi.ports.StreamingPort;
 import org.openhat.androPDI.R;
 
 import android.graphics.Canvas;

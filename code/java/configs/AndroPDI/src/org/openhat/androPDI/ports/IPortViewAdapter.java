@@ -10,7 +10,7 @@
 
 package org.openhat.androPDI.ports;
 
-import org.openhat.ports.Port;
+import org.openhat.opdi.ports.Port;
 
 import android.content.Context;
 import android.view.ContextMenu;

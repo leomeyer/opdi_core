@@ -8,11 +8,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.drivers;
+package org.openhat.opdi.drivers;
 
-import org.openhat.ports.StreamingPort;
-import org.openhat.ports.StreamingPort.IStreamingPortListener;
-import org.openhat.protocol.DisconnectedException;
+import org.openhat.opdi.ports.StreamingPort;
+import org.openhat.opdi.ports.StreamingPort.IStreamingPortListener;
+import org.openhat.opdi.protocol.DisconnectedException;
 
 /** Driver for Attitude and Heading Reference System (AHRS) CHR-6dm
  * 

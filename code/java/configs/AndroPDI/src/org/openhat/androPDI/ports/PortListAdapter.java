@@ -14,12 +14,12 @@ import java.util.List;
 
 import org.openhat.androPDI.R;
 import org.openhat.androPDI.units.Units;
-import org.openhat.ports.AnalogPort;
-import org.openhat.ports.DialPort;
-import org.openhat.ports.DigitalPort;
-import org.openhat.ports.Port;
-import org.openhat.ports.SelectPort;
-import org.openhat.ports.StreamingPort;
+import org.openhat.opdi.ports.AnalogPort;
+import org.openhat.opdi.ports.DialPort;
+import org.openhat.opdi.ports.DigitalPort;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.ports.SelectPort;
+import org.openhat.opdi.ports.StreamingPort;
 
 import android.content.Context;
 import android.graphics.Color;

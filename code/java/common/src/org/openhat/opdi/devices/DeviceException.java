@@ -8,7 +8,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.devices;
+package org.openhat.opdi.devices;
 
 /** This class is used to indicate an error on the device while executing a protocol request or otherwise.
  * 

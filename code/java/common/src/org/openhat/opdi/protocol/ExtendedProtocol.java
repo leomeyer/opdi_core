@@ -8,7 +8,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.protocol;
+package org.openhat.opdi.protocol;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,19 +17,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
-import org.openhat.devices.DeviceException;
-import org.openhat.devices.DeviceInfo;
-import org.openhat.interfaces.IDevice;
-import org.openhat.interfaces.IDeviceCapabilities;
-import org.openhat.ports.AnalogPort;
-import org.openhat.ports.BasicDeviceCapabilities;
-import org.openhat.ports.DialPort;
-import org.openhat.ports.DigitalPort;
-import org.openhat.ports.ExtendedDeviceCapabilities;
-import org.openhat.ports.Port;
-import org.openhat.ports.PortGroup;
-import org.openhat.ports.SelectPort;
-import org.openhat.utils.Strings;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.devices.DeviceInfo;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDeviceCapabilities;
+import org.openhat.opdi.ports.AnalogPort;
+import org.openhat.opdi.ports.BasicDeviceCapabilities;
+import org.openhat.opdi.ports.DialPort;
+import org.openhat.opdi.ports.DigitalPort;
+import org.openhat.opdi.ports.ExtendedDeviceCapabilities;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.ports.PortGroup;
+import org.openhat.opdi.ports.SelectPort;
+import org.openhat.opdi.utils.Strings;
 
 public class ExtendedProtocol extends BasicProtocol {
 

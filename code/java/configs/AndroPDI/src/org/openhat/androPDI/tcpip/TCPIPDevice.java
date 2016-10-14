@@ -23,7 +23,7 @@ import java.util.Set;
 import org.openhat.androPDI.AndroPDI;
 import org.openhat.androPDI.AndroPDIDevice;
 import org.openhat.androPDI.utils.ResourceFactory;
-import org.openhat.utils.Strings;
+import org.openhat.opdi.utils.Strings;
 import org.openhat.androPDI.R;
 
 import android.net.ConnectivityManager;

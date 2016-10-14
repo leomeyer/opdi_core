@@ -8,9 +8,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-package org.openhat.interfaces;
+package org.openhat.opdi.interfaces;
 
-import org.openhat.ports.StreamingPort;
+import org.openhat.opdi.ports.StreamingPort;
 
 /** Specifies the functions of a device driver based on a streaming port.
  * 
