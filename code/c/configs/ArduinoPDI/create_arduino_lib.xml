@@ -1,0 +1,66 @@
+<project name="ArduinOPDI_Lib" default="dist" basedir=".">
+    <description>
+        Creates a library zip file for importing into the Arduino IDE.
+    </description>
+    
+  <!-- set global properties for this build -->
+  <loadproperties srcFile="create_arduino_lib.properties"/>
+  <property name="dest" location="Release/arduino_lib"/>
+  
+<target name="dist" depends="clean" description="generate the distribution" >
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dest}"/>
+
+    <!-- Copy all necessary files -->
+    <copy todir="${dest}">
+		<fileset dir="../../common">
+			<include name="*.h"/>
+		    <exclude name="opdi_rijndael.h"/>
+			<include name="*.c"/>
+		</fileset>
+		<!-- 
+		<fileset dir="../../common/cppwrapper">
+			<include name="*.h"/>
+			<include name="*.cpp"/>
+		</fileset>
+		-->
+		<fileset dir="../../platforms">
+			<include name="*.h"/>
+		</fileset>
+		<fileset dir="../../platforms/avr">
+			<include name="*.h"/>
+			<include name="*.c"/>
+		</fileset>
+		<fileset dir=".">
+			<include name="ArduinOPDI.h"/>
+			<include name="memory.h"/>
+			<include name="ArduinOPDI.cpp"/>
+			<include name="OPDI.h"/>
+			<include name="OPDI.cpp"/>
+		</fileset>
+		<fileset dir="lib/${target}">
+			<include name="*.h"/>
+		</fileset>
+	</copy>
+
+    <!-- Create example -->
+    <mkdir dir="${dest}/examples/ArduinOPDI"/>
+    <copy todir="${dest}/examples/ArduinOPDI">
+		<fileset dir=".">
+		    <include name="main.cpp"/>
+		</fileset>
+    	<globmapper from="main.cpp" to="ArduinOPDI.ino"/>		
+	</copy>
+		   
+   	<!-- Zip the files for import in the Arduino IDE -->
+   	<zip basedir="${dest}" destfile="OPDI_${target}.zip" update="true">
+   	    
+   	</zip>
+</target>
+
+<target name="clean" description="clean up" >
+	<delete dir="${dest}"/>
+   	<delete file="OPDI_${target}.zip"/>
+</target>
+  
+</project>

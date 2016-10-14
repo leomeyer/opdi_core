@@ -1,0 +1,30 @@
+//    This file is part of an OPDI reference implementation.
+//    see: Open Protocol for Device Interaction
+//
+//    Copyright (C) 2011-2016 Leo Meyer (leo@leomeyer.de)
+//    All rights reserved.
+
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#ifndef __PORTFACTORY_H
+#define __PORTFACTORY_H
+
+#include "opdi_protocol_constants.h"
+
+#include "opdi_OPDIPort.h"
+
+/** This class serves as a factory for basic port objects.
+ * 
+ * @author Leo
+ *
+ */
+class PortFactory {
+	
+public:
+	static OPDIPort* createPort(IBasicProtocol& protocol, std::vector<std::string> parts);
+
+};
+
+#endif

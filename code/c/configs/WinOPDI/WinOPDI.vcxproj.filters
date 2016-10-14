@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien\common">
+      <UniqueIdentifier>{a4d55251-6207-4bda-9ad2-7f8a7e74e2d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\common\master">
+      <UniqueIdentifier>{cbc67927-d88f-463d-bc94-04d2415ebd28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\common">
+      <UniqueIdentifier>{ffd15fc0-7ec5-440f-8dbc-a7d5cfa29c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\common\master">
+      <UniqueIdentifier>{a6e151b9-2eb2-4671-9510-4ea6e33429fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\platform">
+      <UniqueIdentifier>{037268e6-8d98-4b91-8e78-4997bcfe7ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\platform">
+      <UniqueIdentifier>{c326be24-64aa-474e-9f77-e7449e36bdc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\libraries">
+      <UniqueIdentifier>{e9e0eaf7-709a-400b-b39c-283d2796c511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\libraries\libctb">
+      <UniqueIdentifier>{b1bb82d2-54b4-41af-a1c4-7a5205d51897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\libraries">
+      <UniqueIdentifier>{426df05d-f1ff-4d2f-98b3-10dafb741f69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\libraries\libctb">
+      <UniqueIdentifier>{341c6c86-88d8-41e1-b608-4296154c4dc5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="opdi_configspecs.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\test.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_BasicDeviceCapabilities.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_IBasicProtocol.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_IDevice.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\opdi_config.h">
+      <Filter>Headerdateien\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\opdi_constants.h">
+      <Filter>Headerdateien\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\opdi_protocol.h">
+      <Filter>Headerdateien\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\opdi_protocol_constants.h">
+      <Filter>Headerdateien\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\opdi_rijndael.h">
+      <Filter>Headerdateien\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\opdi_slave_protocol.h">
+      <Filter>Headerdateien\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\opdi_strings.h">
+      <Filter>Headerdateien\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\opdi_platformfuncs.h">
+      <Filter>Headerdateien\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\platforms\win32\opdi_platformtypes.h">
+      <Filter>Headerdateien\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_TCPIPDevice.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_IODevice.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_MessageQueueDevice.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_AbstractProtocol.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_ProtocolFactory.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_BasicProtocol.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_StringTools.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_PortFactory.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_DigitalPort.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\master.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_main_io.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\test\slave.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_OPDIPort.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_OPDIMessage.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\opdi_message.h">
+      <Filter>Headerdateien\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\opdi_port.h">
+      <Filter>Headerdateien\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_SelectPort.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\common\master\opdi_SerialDevice.h">
+      <Filter>Headerdateien\common\master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\ctb.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\fifo.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\getopt.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\gpib.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\iobase.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\kbhit.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\portscan.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\serport.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\serportx.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\timer.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\win32\getopt.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\win32\gpib-32.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\win32\serport.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libraries\libctb\include\ctb-0.16\win32\timer.h">
+      <Filter>Headerdateien\libraries\libctb</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinOPDI.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\test.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\opdi_aes.cpp">
+      <Filter>Quelldateien\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\opdi_protocol.c">
+      <Filter>Quelldateien\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\opdi_rijndael.cpp">
+      <Filter>Quelldateien\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\opdi_slave_protocol.c">
+      <Filter>Quelldateien\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\opdi_strings.c">
+      <Filter>Quelldateien\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\platforms\win32\opdi_platformfuncs.c">
+      <Filter>Quelldateien\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_BasicProtocol.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_TCPIPDevice.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_IODevice.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_MessageQueueDevice.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_AbstractProtocol.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_ProtocolFactory.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_StringTools.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_BasicDeviceCapabilities.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_PortFactory.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_DigitalPort.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\test\master.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_main_io.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\opdi_port.c">
+      <Filter>Quelldateien\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\opdi_message.c">
+      <Filter>Quelldateien\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_OPDIPort.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_OPDIMessage.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_SelectPort.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\common\master\opdi_SerialDevice.cpp">
+      <Filter>Quelldateien\common\master</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\libctb\src\fifo.cpp">
+      <Filter>Quelldateien\libraries\libctb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\libctb\src\iobase.cpp">
+      <Filter>Quelldateien\libraries\libctb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\libctb\src\kbhit.cpp">
+      <Filter>Quelldateien\libraries\libctb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\libctb\src\portscan.cpp">
+      <Filter>Quelldateien\libraries\libctb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\libctb\src\serportx.cpp">
+      <Filter>Quelldateien\libraries\libctb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\libctb\src\win32\getopt.cpp">
+      <Filter>Quelldateien\libraries\libctb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\libctb\src\win32\serport.cpp">
+      <Filter>Quelldateien\libraries\libctb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\libraries\libctb\src\win32\timer.cpp">
+      <Filter>Quelldateien\libraries\libctb</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

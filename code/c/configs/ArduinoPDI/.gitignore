@@ -1,0 +1,4 @@
+/Release
+/create_arduino_lib.properties
+*.a
+/dep
