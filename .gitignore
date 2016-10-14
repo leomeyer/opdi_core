@@ -1,1 +1,15 @@
+*.suo
+*.log
+*.exe
+*.ilk
+*.lastbuildstate
+*.obj
+*.pdb
+*.tlog
+*.unsuccessfulbuild
+*.idb
+*.opendb
+*.db
+*.sdf
+*.user
 *.apk
