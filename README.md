@@ -45,11 +45,9 @@ as follows:
 					RaspOPDI			- test implementation for Raspberry Pi
 					test				- common test code
 					WinOPDI				- test implementation for Windows
-					opdid				- root folder for the OPDID home automation server
-						opdid			- OPDID main executable folder
-						plugins			- plugin extensions for OPDID
-						doc				- OPDID documentation
-				libraries				- support libraries for configs (mainly for OPDID)
+				libraries				- support libraries for configs
 				platforms				- platform specific implementations
 		doc								- OPDI documentation
+
+OPDI is used by the OpenHAT automation server.
 
