@@ -79,7 +79,7 @@
 #define PWM_MAX		1024
 
 
-uint16_t pwm_table[256] PROGMEM = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3,		
+const uint16_t pwm_table[256] PROGMEM = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3,		
 								3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 9, 9, 10, 11, 11, 12,		
 								13, 14, 15, 16, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26,		
 								27, 28, 30, 31, 32, 34, 35, 36, 38, 39, 41, 42, 44, 46,		
@@ -216,59 +216,9 @@ static struct opdi_Port redPort =
 { 
 	.id = "APR", 
 	.name = "Red",
-	.type = OPDI_PORTTYPE_ANALOG,
-	.caps = OPDI_PORTDIRCAP_OUTPUT
-};
-
-static struct opdi_Port greenPort = 
-{ 
-	.id ="APG", 
-	.name = "Green",
-	.type = OPDI_PORTTYPE_ANALOG,
-	.caps = OPDI_PORTDIRCAP_OUTPUT
-};
-
-static struct opdi_Port bluePort = 
-{ 
-	.id = "APB", 
-	.name = "Blue",
-	.type = OPDI_PORTTYPE_ANALOG,
-	.caps = OPDI_PORTDIRCAP_OUTPUT
-};
-
-static struct opdi_Port whitePort = 
-{
-	.id = "APW", 
-	.name = "White",
-	.type = OPDI_PORTTYPE_ANALOG,
-	.caps = OPDI_PORTDIRCAP_OUTPUT	
-};
-
-static struct opdi_Port oscSpeedPort = 
-{
-	.id = "APOS", 
-	.name = "Osc. Speed",
- 	.type = OPDI_PORTTYPE_ANALOG,
-	.caps = OPDI_PORTDIRCAP_OUTPUT
-};
-
-static struct opdi_Port oscBrightnessPort = 
-{
-	.id = "ABRI", 
-	.name = "Brightness",
- 	.type = OPDI_PORTTYPE_ANALOG,
-	.caps = OPDI_PORTDIRCAP_OUTPUT
-};
-
-uint8_t choose_language(const char *languages) {
-	// supports German?
-	if (strcmp("de_DE", languages) == 0) {
-		// set German texts
-		modePort.name = "Modus";
-		redPort.name = "Rot";
-		greenPort.name = "Grün";
+	.typeï¿½n";
 		bluePort.name  = "Blau";
-		whitePort.name  = "Weiß";
+		whitePort.name  = "Weiï¿½";
 		oscSpeedPort.name = "Geschwindigkeit";
 		oscBrightnessPort.name = "Helligkeit";
 		
