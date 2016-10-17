@@ -28,3 +28,6 @@
 /MANIFEST
 /NEWS
 /README
+config.build
+config.make
+
