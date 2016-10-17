@@ -1,26 +1,3 @@
-// Copyright (c) 2016, Leo Meyer, leo@leomeyer.de
-// All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are met:
-// 
-// 1. Redistributions of source code must retain the above copyright notice, this
-//    list of conditions and the following disclaimer.
-// 2. Redistributions in binary form must reproduce the above copyright notice,
-//    this list of conditions and the following disclaimer in the documentation
-//    and/or other materials provided with the distribution.
-// 
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-// ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-// ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
 //--------------------------------------------------------------------------------------
 // Chromashade - ATmega168
 //
@@ -28,6 +5,8 @@
 //
 // ATTENTION! This configuration is almost the limit for the Atmega168 (stack overflow!)
 // Careful when adding new variables or ports!
+// 
+// Code License: GNU GPL
 //--------------------------------------------------------------------------------------
 // Leo Meyer, leomeyer@gmx.de, 2011-2014
 
@@ -79,7 +58,7 @@
 #define PWM_MAX		1024
 
 
-const uint16_t pwm_table[256] PROGMEM = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3,		
+uint16_t pwm_table[256] PROGMEM = {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3,		
 								3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 9, 9, 10, 11, 11, 12,		
 								13, 14, 15, 16, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26,		
 								27, 28, 30, 31, 32, 34, 35, 36, 38, 39, 41, 42, 44, 46,		
@@ -216,9 +195,59 @@ static struct opdi_Port redPort =
 { 
 	.id = "APR", 
 	.name = "Red",
-	.type�n";
+	.type = OPDI_PORTTYPE_ANALOG,
+	.caps = OPDI_PORTDIRCAP_OUTPUT
+};
+
+static struct opdi_Port greenPort = 
+{ 
+	.id ="APG", 
+	.name = "Green",
+	.type = OPDI_PORTTYPE_ANALOG,
+	.caps = OPDI_PORTDIRCAP_OUTPUT
+};
+
+static struct opdi_Port bluePort = 
+{ 
+	.id = "APB", 
+	.name = "Blue",
+	.type = OPDI_PORTTYPE_ANALOG,
+	.caps = OPDI_PORTDIRCAP_OUTPUT
+};
+
+static struct opdi_Port whitePort = 
+{
+	.id = "APW", 
+	.name = "White",
+	.type = OPDI_PORTTYPE_ANALOG,
+	.caps = OPDI_PORTDIRCAP_OUTPUT	
+};
+
+static struct opdi_Port oscSpeedPort = 
+{
+	.id = "APOS", 
+	.name = "Osc. Speed",
+ 	.type = OPDI_PORTTYPE_ANALOG,
+	.caps = OPDI_PORTDIRCAP_OUTPUT
+};
+
+static struct opdi_Port oscBrightnessPort = 
+{
+	.id = "ABRI", 
+	.name = "Brightness",
+ 	.type = OPDI_PORTTYPE_ANALOG,
+	.caps = OPDI_PORTDIRCAP_OUTPUT
+};
+
+uint8_t choose_language(const char *languages) {
+	// supports German?
+	if (strcmp("de_DE", languages) == 0) {
+		// set German texts
+		modePort.name = "Modus";
+		redPort.name = "Rot";
+		greenPort.name = "Grün";
 		bluePort.name  = "Blau";
-		whitePort.name  = "Wei�";
+		whitePort.name  = "Weiß";
 		oscSpeedPort.name = "Geschwindigkeit";
 		oscBrightnessPort.name = "Helligkeit";
 		
