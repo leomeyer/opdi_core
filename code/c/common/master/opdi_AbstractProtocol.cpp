@@ -14,6 +14,8 @@
  * @author Leo
  *
  */
+#include <typeinfo>
+
 #include "Poco/NumberParser.h"
 
 #include "opdi_AbstractProtocol.h"
