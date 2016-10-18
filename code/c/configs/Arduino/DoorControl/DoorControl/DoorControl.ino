@@ -31,7 +31,7 @@
  * - OPDI slave implementation
  *
  * Install the provided libraries by copying them to your Arduino libraries folder.
- * Copy the OPDI files to this folder (you can use the provided batch file for this)
+ * Copy the OPDI files to this folder (you can use the provided script file for this)
  * and restart the Arduino IDE, then compile.
  */
 
