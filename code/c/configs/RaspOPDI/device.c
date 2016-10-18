@@ -40,6 +40,7 @@
 #include <errno.h>
 
 #include "opdi_platformtypes.h"
+#include "opdi_config.h"
 #include "opdi_configspecs.h"
 #include "opdi_constants.h"
 #include "opdi_port.h"
@@ -59,17 +60,17 @@ const char *opdi_config_name;
 
 char opdi_master_name[OPDI_MASTER_NAME_LENGTH];
 const char *opdi_encoding = "";
-const char *opdi_encryption_method = "AES";
+char opdi_encryption_method[] = "AES";
 const char *opdi_supported_protocols = "BP";
 const char *opdi_username = "admin";
 const char *opdi_password = "admin";
 
 uint16_t opdi_device_flags = OPDI_FLAG_AUTHENTICATION_REQUIRED;
 
-uint16_t opdi_encryption_blocksize = OPDI_ENCRYPTION_BLOCKSIZE;
+const uint16_t opdi_encryption_blocksize = OPDI_ENCRYPTION_BLOCKSIZE;
 uint8_t opdi_encryption_buffer[OPDI_ENCRYPTION_BLOCKSIZE];
 uint8_t opdi_encryption_buffer_2[OPDI_ENCRYPTION_BLOCKSIZE];
-const char *opdi_encryption_key = "0123456789012345";
+char opdi_encryption_key[] = "0123456789012345";
 
 /// Ports
 
@@ -290,13 +291,13 @@ uint8_t opdi_get_digital_port_state(opdi_Port *port, char mode[], char line[]) {
 	} else
 	if (!strcmp(port->id, gertboardLED1.id)) {
 		b = GPIO_IN0;
-		mode[0] = OPDI_DIGITAL_MODE_OUTPUT[0];
+		mode[0] = '0' + OPDI_DIGITAL_MODE_OUTPUT;
 		// LED bit set?
 		line[0] = (b & GB_L1) == GB_L1 ? '1' : '0';
 	} else
 	if (!strcmp(port->id, gertboardLED2.id)) {
 		b = GPIO_IN0;
-		mode[0] = OPDI_DIGITAL_MODE_OUTPUT[0];
+		mode[0] = '0' + OPDI_DIGITAL_MODE_OUTPUT;
 		// LED bit set?
 		line[0] = (b & GB_L2) == GB_L2 ? '1' : '0';
 #endif	
@@ -404,7 +405,7 @@ uint8_t opdi_set_select_port_position(opdi_Port *port, uint16_t position) {
 	return OPDI_STATUS_OK;
 }
 
-uint8_t opdi_get_dial_port_state(opdi_Port *port, int32_t *position) {
+uint8_t opdi_get_dial_port_state(opdi_Port *port, int64_t *position) {
 	if (!strcmp(port->id, dialPort.id)) {
 		*position = dialvalue;
 	} else
@@ -414,7 +415,7 @@ uint8_t opdi_get_dial_port_state(opdi_Port *port, int32_t *position) {
 	return OPDI_STATUS_OK;
 }
 
-uint8_t opdi_set_dial_port_position(opdi_Port *port, int32_t position) {
+uint8_t opdi_set_dial_port_position(opdi_Port *port, int64_t position) {
 	return OPDI_STATUS_OK;
 }
 
@@ -564,7 +565,7 @@ int HandleSerialConnection(char firstByte, int fd) {
 	return result;
 }
 
-uint8_t opdi_debug_msg(const uint8_t *str, uint8_t direction) {
+uint8_t opdi_debug_msg(const char *str, uint8_t direction) {
 	if (direction == OPDI_DIR_INCOMING)
 		printf(">");
 	else
@@ -572,6 +573,34 @@ uint8_t opdi_debug_msg(const uint8_t *str, uint8_t direction) {
 	printf("%s\n", str);
 	return OPDI_STATUS_OK;
 }
+
+uint8_t opdi_slave_callback(OPDIFunctionCode opdiFunctionCode, char *buffer, size_t data) {
+
+	switch (opdiFunctionCode) {
+	case OPDI_FUNCTION_GET_CONFIG_NAME: strncpy(buffer, "RaspOPDI Test Slave", data); return OPDI_STATUS_OK;
+	case OPDI_FUNCTION_SET_MASTER_NAME: strncpy(opdi_master_name, buffer, data); return OPDI_STATUS_OK;
+	case OPDI_FUNCTION_GET_SUPPORTED_PROTOCOLS: strncpy(buffer, "BP", data); return OPDI_STATUS_OK;
+	case OPDI_FUNCTION_GET_ENCODING: strncpy(buffer, "ISO8859-1", data); return OPDI_STATUS_OK;
+	case OPDI_FUNCTION_SET_LANGUAGES: return opdi_choose_language(buffer);
+	case OPDI_FUNCTION_GET_EXTENDED_DEVICEINFO:
+		strncpy(buffer, "", data); 
+		return OPDI_STATUS_OK;
+	case OPDI_FUNCTION_GET_EXTENDED_PORTINFO: {
+		strncpy(buffer, "", data);
+		return OPDI_STATUS_OK;
+	}
+	case OPDI_FUNCTION_GET_EXTENDED_PORTSTATE: {
+		strncpy(buffer, "", data);
+		return OPDI_STATUS_OK;
+	}
+#ifndef OPDI_NO_AUTHENTICATION
+	case OPDI_FUNCTION_SET_USERNAME: if (strcmp(opdi_username, buffer)) return OPDI_AUTHENTICATION_FAILED; else return OPDI_STATUS_OK;
+	case OPDI_FUNCTION_SET_PASSWORD: if (strcmp(opdi_password, buffer)) return OPDI_AUTHENTICATION_FAILED; else return OPDI_STATUS_OK;
+#endif
+	default: return OPDI_FUNCTION_UNKNOWN;
+	}
+}
+
 
 #ifdef __cplusplus
 }

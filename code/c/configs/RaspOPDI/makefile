@@ -43,7 +43,7 @@ CINCS =
 # Compiler flags.
 CFLAGS = $(CDEFS) $(CINCS)
 CFLAGS += $(patsubst %,-I%,$(EXTRAINCDIRS))
-CFLAGS += -fpermissive
+CFLAGS += -fpermissive -std=c++11
 
 # Additional Libraries
 LIBS = -lrt
