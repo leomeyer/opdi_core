@@ -40,7 +40,7 @@ The repository structure is as follows:
 				platforms				- platform specific implementations
 		doc								- OPDI documentation
 
-OPDI is used by the [OpenHAT automation server](https://github.com/leomeyer/OpenHAT)as its primary communications protocol.
+OPDI is used by the [OpenHAT automation server](https://github.com/leomeyer/OpenHAT) as its primary communications protocol.
 
 ### Key concepts ###
 
