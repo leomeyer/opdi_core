@@ -17,6 +17,7 @@
 #include <cstdlib>
 #include <algorithm>    // std::sort
 #include <string.h>
+#include <unordered_set>
 
 #include "opdi_constants.h"
 #include "opdi_protocol.h"
@@ -421,6 +422,116 @@ void OPDI::persist(opdi::Port*  /*port*/) {
 	throw Poco::NotImplementedException("This implementation does not support port state persistance");
 }
 
+void OPDI::findPortIDs(const std::string & spec, std::vector<std::string>& results) {
+	/*
+	Returns a list of currently registered port IDs that match the given specifications.
+	Specifications are a space - separated list of the following possibilities :
+		PortID (must match exactly)
+		id = <PortID - Regex>
+		group = <Group - Regex>
+		tag = <Tag-Regex> (tags are split at spaces, one tag must match)
+		A specification can be inverted by prepending !(e.g. !Port1 excludes Port1 should it be included elsewhere).
+	*/
+
+	std::unordered_set<std::string> toAdd;
+	std::unordered_set<std::string> toRemove;
+
+	// split spec at spaces
+	std::stringstream ss(spec);
+	std::string item;
+	while (std::getline(ss, item, ' ')) {
+		if (item.length() == 0)
+			continue;
+		if (item == "*") {
+			// add all ports
+			auto ite = this->getPorts().end();
+			for (auto it = this->getPorts().begin(); it != ite; ++it)
+				toAdd.insert((*it)->ID());
+		}
+		else {
+			bool inverted = (item[0] == '!');
+			if (inverted)
+				item = item.substr(1);
+			if (item.length() == 0)
+				throw Poco::InvalidArgumentException("Port ID specification error: '!' must be followed by something");
+			// select correct set
+			std::unordered_set<std::string>& resultSet = (inverted ? toRemove : toAdd);
+			if (item.find("id=") == 0) {
+				std::string rSpec = item.substr(3);
+				if (rSpec.length() == 0)
+					throw Poco::InvalidArgumentException("Port ID specification error: 'id=' must be followed by something");
+				// construct a regex
+				try {
+					Poco::RegularExpression regex(rSpec);
+					// go through all ports, check their IDs
+					auto ite = this->getPorts().end();
+					for (auto it = this->getPorts().begin(); it != ite; ++it)
+						if (regex.match((*it)->ID()))
+							resultSet.insert((*it)->ID());
+				}
+				catch (Poco::Exception& e) {
+					throw Poco::InvalidArgumentException("Port ID specification error: Regex '" + rSpec + "': " + e.message());
+				}
+			}
+			else
+			if (item.find("group=") == 0) {
+				std::string rSpec = item.substr(6);
+				if (rSpec.length() == 0)
+					throw Poco::InvalidArgumentException("Port ID specification error: 'group=' must be followed by something");
+				// construct a regex
+				try {
+					Poco::RegularExpression regex(rSpec);
+					// go through all ports, check their groups
+					auto ite = this->getPorts().end();
+					for (auto it = this->getPorts().begin(); it != ite; ++it)
+						if (regex.match((*it)->group))
+							resultSet.insert((*it)->ID());
+				}
+				catch (Poco::Exception& e) {
+					throw Poco::InvalidArgumentException("Port ID specification error: Regex '" + rSpec + "': " + e.message());
+				}
+			}
+			else
+			if (item.find("tag=") == 0) {
+				std::string rSpec = item.substr(4);
+				if (rSpec.length() == 0)
+					throw Poco::InvalidArgumentException("Port ID specification error: 'tag=' must be followed by something");
+				// construct a regex
+				try {
+					Poco::RegularExpression regex(rSpec);
+					// go through all ports, check their tags
+					auto ite = this->getPorts().end();
+					for (auto it = this->getPorts().begin(); it != ite; ++it) {
+						std::stringstream sst((*it)->tags);
+						std::string tag;
+						while (std::getline(sst, tag, ' '))
+							if (regex.match(tag)) {
+								resultSet.insert((*it)->ID());
+								// at least one match is enough
+								break;
+							}
+					}
+				}
+				catch (Poco::Exception& e) {
+					throw Poco::InvalidArgumentException("Port ID specification error: Regex '" + rSpec + "': " + e.message());
+				}
+			}
+			else
+				// add as port ID
+				resultSet.insert(item);
+		}
+	}	// while
+
+	auto iter = toRemove.cend();
+	for (auto itr = toRemove.cbegin(); itr != iter; ++itr)
+		toAdd.erase(*itr);
+
+	results.clear();
+	auto ite = toAdd.end();
+	for (auto it = toAdd.begin(); it != ite; ++it)
+		results.push_back((*it));
+}
+
 opdi::Port* OPDI::findPort(const std::string& configPort, const std::string& setting, const std::string& portID, bool required) {
 	// locate port by ID
 	opdi::Port* port = this->findPortByID(portID.c_str());
@@ -434,22 +545,14 @@ opdi::Port* OPDI::findPort(const std::string& configPort, const std::string& set
 	return port;
 }
 
-void OPDI::findPorts(const std::string& configPort, const std::string& setting, const std::string& portIDs, opdi::PortList &portList) {
-	// split list at blanks
-	std::stringstream ss(portIDs);
-	std::string item;
-	while (std::getline(ss, item, ' ')) {
-		if (item == "*") {
-			// add all ports
-			portList = this->getPorts();
-		}
-		else
-			// ignore empty items
-			if (!item.empty()) {
-				opdi::Port* port = this->findPort(configPort, setting, item, true);
-				if (port != nullptr)
-					portList.push_back(port);
-			}
+void OPDI::findPorts(const std::string& configPort, const std::string& setting, const std::string& portSpec, opdi::PortList &portList) {
+	std::vector<std::string> portIDs;
+	this->findPortIDs(portSpec, portIDs);
+	auto ite = portIDs.cend();
+	for (auto it = portIDs.cbegin(); it != ite; ++it) {
+		opdi::Port* port = this->findPort(configPort, setting, (*it), true);
+		if (port != nullptr)
+			portList.push_back(port);
 	}
 }
 
@@ -615,7 +718,5 @@ double OPDI::getPortValue(opdi::Port* port) const {
 
 	return value;
 }
-
-
 
 }		// namespace opdi

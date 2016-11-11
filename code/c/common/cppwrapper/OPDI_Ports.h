@@ -245,8 +245,8 @@ public:
 	// used to provide display ordering on ports
 	int orderID;
 
-	// The tag is additional information that is not used anywhere
-	std::string tag;
+	// a list of space-separated keywords
+	std::string tags;
 
 	// Lists of digital ports that are to be set to High if a change occurs
 	// The lists are to be set from external code but handled internally (this->handleStateChange).

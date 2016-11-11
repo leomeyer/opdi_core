@@ -191,6 +191,18 @@ public:
 	/** Makes the port state persistent if the implementation supports it. */
 	virtual void persist(opdi::Port* port);
 
+	/** Returns a list of currently registered port IDs that match the given specifications. 
+	*   Specifications are a space-separated list of the following possibilities:
+	*   - * (all ports)
+	*   - PortID (must match exactly)
+	*   - id=<PortID-Regex>
+	*   - group=<Group-Regex>
+	*   - tag=<Tag-Regex> (tags are split at spaces, one tag must match)
+	*   A specification, except *, can be inverted by prepending ! (e. g. !Port1 excludes Port1 should it be included elsewhere).
+	*   Port IDs are included only once even if they match more than one specification part.
+	*/
+	virtual void findPortIDs(const std::string& spec, std::vector<std::string>& results);
+
 	virtual opdi::Port* findPort(const std::string& configPort, const std::string& setting, const std::string& portID, bool required);
 
 	virtual void findPorts(const std::string& configPort, const std::string& setting, const std::string& portIDs, opdi::PortList& portList);
