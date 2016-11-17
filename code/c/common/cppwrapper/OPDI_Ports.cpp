@@ -567,10 +567,9 @@ const char* PortGroup::getParent(void) {
 
 #ifndef OPDI_NO_DIGITAL_PORTS
 
-DigitalPort::DigitalPort(const char* id) : Port(id, OPDI_PORTTYPE_DIGITAL) {
+DigitalPort::DigitalPort(const char* id) : Port(id, id, OPDI_PORTTYPE_DIGITAL, OPDI_PORTDIRCAP_BIDI, 0, nullptr) {
 	this->mode = 0;
 	this->line = 0;
-	this->setDirCaps(OPDI_PORTDIRCAP_BIDI);
 }
 
 DigitalPort::DigitalPort(const char* id, const char* label, const char* dircaps, const int32_t flags) :
@@ -579,7 +578,6 @@ DigitalPort::DigitalPort(const char* id, const char* label, const char* dircaps,
 
 	this->mode = 0;
 	this->line = 0;
-	this->setDirCaps(dircaps);
 }
 
 DigitalPort::~DigitalPort() {
@@ -707,7 +705,7 @@ bool DigitalPort::hasError(void) const {
 
 #ifndef OPDI_NO_ANALOG_PORTS
 
-AnalogPort::AnalogPort(const char* id) : Port(id, OPDI_PORTTYPE_ANALOG) {
+AnalogPort::AnalogPort(const char* id) : Port(id, id, OPDI_PORTTYPE_ANALOG, OPDI_PORTDIRCAP_BIDI, 0, nullptr) {
 	this->mode = 0;
 	this->value = 0;
 	this->reference = 0;
