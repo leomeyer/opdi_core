@@ -56,14 +56,14 @@ Port::Port(const char* id, const char* type) {
 	this->logVerbosity = LogVerbosity::UNKNOWN;
 
 	this->setID(id);
+	this->setLabel(id);
 	this->type[0] = type[0];
 	this->type[1] = '\0';
 }
 
-Port::Port(const char* id, const char* label, const char* type, const char* dircaps, int32_t flags, void* ptr) : Port(id, type) {
+Port::Port(const char* id, const char* type, const char* dircaps, int32_t flags, void* ptr) : Port(id, type) {
 	this->flags = flags;
 	this->ptr = ptr;
-	this->setLabel(label);
 	this->setDirCaps(dircaps);
 }
 
@@ -567,14 +567,14 @@ const char* PortGroup::getParent(void) {
 
 #ifndef OPDI_NO_DIGITAL_PORTS
 
-DigitalPort::DigitalPort(const char* id) : Port(id, id, OPDI_PORTTYPE_DIGITAL, OPDI_PORTDIRCAP_BIDI, 0, nullptr) {
+DigitalPort::DigitalPort(const char* id) : Port(id, OPDI_PORTTYPE_DIGITAL, OPDI_PORTDIRCAP_BIDI, 0, nullptr) {
 	this->mode = 0;
 	this->line = 0;
 }
 
-DigitalPort::DigitalPort(const char* id, const char* label, const char* dircaps, const int32_t flags) :
+DigitalPort::DigitalPort(const char* id, const char* dircaps, const int32_t flags) :
 	// call base constructor; mask unsupported flags (?)
-	Port(id, label, OPDI_PORTTYPE_DIGITAL, dircaps, flags, nullptr) { // & (OPDI_DIGITAL_PORT_HAS_PULLUP | OPDI_DIGITAL_PORT_PULLUP_ALWAYS) & (OPDI_DIGITAL_PORT_HAS_PULLDN | OPDI_DIGITAL_PORT_PULLDN_ALWAYS))
+	Port(id, OPDI_PORTTYPE_DIGITAL, dircaps, flags, nullptr) { // & (OPDI_DIGITAL_PORT_HAS_PULLUP | OPDI_DIGITAL_PORT_PULLUP_ALWAYS) & (OPDI_DIGITAL_PORT_HAS_PULLDN | OPDI_DIGITAL_PORT_PULLDN_ALWAYS))
 
 	this->mode = 0;
 	this->line = 0;
@@ -705,16 +705,14 @@ bool DigitalPort::hasError(void) const {
 
 #ifndef OPDI_NO_ANALOG_PORTS
 
-AnalogPort::AnalogPort(const char* id) : Port(id, id, OPDI_PORTTYPE_ANALOG, OPDI_PORTDIRCAP_BIDI, 0, nullptr) {
+AnalogPort::AnalogPort(const char* id) : Port(id, OPDI_PORTTYPE_ANALOG, OPDI_PORTDIRCAP_BIDI, 0, nullptr) {
 	this->mode = 0;
 	this->value = 0;
 	this->reference = 0;
 	this->resolution = 0;
 }
 
-AnalogPort::AnalogPort(const char* id, const char* label, const char* dircaps, const int32_t flags) :
-	// call base constructor
-	Port(id, label, OPDI_PORTTYPE_ANALOG, dircaps, flags, nullptr) {
+AnalogPort::AnalogPort(const char* id, const char* dircaps, const int32_t flags) : Port(id, OPDI_PORTTYPE_ANALOG, dircaps, flags, nullptr) {
 
 	this->mode = 0;
 	this->value = 0;
@@ -844,14 +842,14 @@ bool AnalogPort::hasError(void) const {
 
 #ifndef OPDI_NO_SELECT_PORTS
 
-SelectPort::SelectPort(const char* id) : Port(id, nullptr, OPDI_PORTTYPE_SELECT, OPDI_PORTDIRCAP_OUTPUT, 0, nullptr) {
+SelectPort::SelectPort(const char* id) : Port(id, OPDI_PORTTYPE_SELECT, OPDI_PORTDIRCAP_OUTPUT, 0, nullptr) {
 	this->count = 0;
 	this->items = nullptr;
 	this->position = 0;
 }
 
-SelectPort::SelectPort(const char* id, const char* label, const char** items)
-	: Port(id, label, OPDI_PORTTYPE_SELECT, OPDI_PORTDIRCAP_OUTPUT, 0, nullptr) {
+SelectPort::SelectPort(const char* id, const char** items)
+	: Port(id, OPDI_PORTTYPE_SELECT, OPDI_PORTDIRCAP_OUTPUT, 0, nullptr) {
 	this->setItems(items);
 	this->position = 0;
 }
@@ -953,15 +951,15 @@ bool SelectPort::hasError(void) const {
 
 #ifndef OPDI_NO_DIAL_PORTS
 
-DialPort::DialPort(const char* id) : Port(id, nullptr, OPDI_PORTTYPE_DIAL, OPDI_PORTDIRCAP_OUTPUT, 0, nullptr) {
+DialPort::DialPort(const char* id) : Port(id, OPDI_PORTTYPE_DIAL, OPDI_PORTDIRCAP_OUTPUT, 0, nullptr) {
 	this->minValue = 0;
 	this->maxValue = 0;
 	this->step = 0;
 	this->position = 0;
 }
 
-DialPort::DialPort(const char* id, const char* label, int64_t minValue, int64_t maxValue, uint64_t step)
-	: Port(id, label, OPDI_PORTTYPE_DIAL, OPDI_PORTDIRCAP_OUTPUT, 0, nullptr) {
+DialPort::DialPort(const char* id, int64_t minValue, int64_t maxValue, uint64_t step)
+	: Port(id, OPDI_PORTTYPE_DIAL, OPDI_PORTDIRCAP_OUTPUT, 0, nullptr) {
 	if (minValue >= maxValue) {
 		throw Poco::DataException("Dial port minValue must be < maxValue");
 	}

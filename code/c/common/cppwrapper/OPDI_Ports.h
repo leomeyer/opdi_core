@@ -83,7 +83,7 @@ protected:
 	Port(const char* id, const char* type);
 
 	// protected constructor: This class can't be instantiated directly
-	Port(const char* id, const char* label, const char* type, const char* dircaps, int32_t flags, void* ptr);
+	Port(const char* id, const char* type, const char* dircaps, int32_t flags, void* ptr);
 
 	char* id;
 	char* label;
@@ -419,7 +419,7 @@ public:
 
 	// Initialize a digital port. Specify one of the OPDI_PORTDIRCAPS_* values for dircaps.
 	// Specify one or more of the OPDI_DIGITAL_PORT_* values for flags, or'ed together, to specify pullup/pulldown resistors.
-	DigitalPort(const char* id, const char* label, const char*  dircaps, const int32_t flags);
+	DigitalPort(const char* id, const char*  dircaps, const int32_t flags);
 
 	virtual ~DigitalPort();
 
@@ -461,7 +461,7 @@ protected:
 public:
 	explicit AnalogPort(const char* id);
 
-	AnalogPort(const char* id, const char* label, const char*  dircaps, const int32_t flags);
+	AnalogPort(const char* id, const char*  dircaps, const int32_t flags);
 
 	virtual ~AnalogPort();
 
@@ -511,7 +511,7 @@ public:
 	// Initialize a select port. The direction of a select port is output only.
 	// You have to specify a list of items that are the labels of the different select positions. The last element must be NULL.
 	// The items are copied into the privately managed data structure of this class.
-	SelectPort(const char* id, const char* label, const char** items);
+	SelectPort(const char* id, const char** items);
 
 	virtual ~SelectPort();
 
@@ -548,7 +548,7 @@ public:
 
 	// Initialize a dial port. The direction of a dial port is output only.
 	// You have to specify boundary values and a step size.
-	DialPort(const char* id, const char* label, int64_t minValue, int64_t maxValue, uint64_t step);
+	DialPort(const char* id, int64_t minValue, int64_t maxValue, uint64_t step);
 	virtual ~DialPort();
 
 	virtual int64_t getMin(void);
