@@ -137,7 +137,7 @@ uint8_t opdi_string_to_bytes(char* string, uint8_t *dest, uint16_t pos, uint16_t
 }
 
 uint8_t opdi_is_space(char c) {
-	return isspace(c);
+	return isspace(c) == 0 ? 0 : 1;
 }
 
 int8_t opdi_string_cmp(const char *s1, const char *s2) {
