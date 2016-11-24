@@ -55,10 +55,10 @@ SRC += $(LIBCTB)/src/linux/timer.cpp $(LIBCTB)/src/portscan.cpp $(LIBCTB)/src/se
 LIBS = -lpthread -lrt
 
 # The compiler to be used.
-CC = g++
+CC ?= g++
 
 # List any extra directories to look for include files here.
-# Each directory must be seperated by a space.
+# Each directory must be separated by a space.
 EXTRAINCDIRS = $(CPATH) $(MPATH) $(PPATHBASE) $(PPATH) $(POCOINCPATH) $(CONIOINCPATH) $(LIBCTBINC) .
 
 # Place -I options here
