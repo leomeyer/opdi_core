@@ -2,4 +2,4 @@ language: cpp
 before_install:
 - sudo apt-get update -qq
 - sudo apt-get install -qq arduino-core
-script: makeall.sh
+script: ./makeall.sh
