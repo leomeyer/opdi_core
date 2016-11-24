@@ -6,6 +6,9 @@ compiler:
   - gcc
 
 install:
+- pushd code/c/libraries/POCO
+- ./build_poco.sh
+- popd
 - export CXX="g++-4.8" CC="gcc-4.8"
 
 addons:
