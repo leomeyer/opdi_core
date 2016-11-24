@@ -11,6 +11,4 @@ tar xzf poco-1.7.6.tar.gz --strip-components=1
 make -s
 
 # install
-make -s install
-
-
+sudo make -s install
