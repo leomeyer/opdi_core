@@ -18,12 +18,6 @@
 		    <exclude name="opdi_rijndael.h"/>
 			<include name="*.c"/>
 		</fileset>
-		<!-- 
-		<fileset dir="../../common/cppwrapper">
-			<include name="*.h"/>
-			<include name="*.cpp"/>
-		</fileset>
-		-->
 		<fileset dir="../../platforms">
 			<include name="*.h"/>
 		</fileset>
