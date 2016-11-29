@@ -1,5 +1,5 @@
 The POCO libraries are required to build the OPDI test configs WinOPDI, LinOPDI and RaspOPDI.
-OpenHAT also uses this library within the opdid_core submodule.
+OpenHAT also uses this library within the opdi_core submodule.
 
 Download the POCO C++ libraries from pocoproject.org and extract them into this folder, omitting the versioned top folder.
 Build them to make the library files available to the configs.
