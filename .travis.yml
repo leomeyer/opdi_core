@@ -21,3 +21,9 @@ addons:
     - arduino-core
 
 script: ./makeall.sh
+
+notifications:
+  email:
+    recipients:
+      - leo@leomeyer.de
+
