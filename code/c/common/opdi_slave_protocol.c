@@ -519,7 +519,7 @@ static uint8_t set_select_port_position(channel_t channel, opdi_Port *port, cons
 static uint8_t get_dial_port_state(opdi_Port *port) {
 	uint8_t result;
 	int64_t pos;
-	char position[BUFSIZE_32BIT];
+	char position[BUFSIZE_64BIT];
 
 	if (strcmp(port->type, OPDI_PORTTYPE_DIAL)) {
 		return OPDI_WRONG_PORT_TYPE;
