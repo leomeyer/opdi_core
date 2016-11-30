@@ -1,5 +1,5 @@
 The POCO libraries are required to build the OPDI test configs WinOPDI, LinOPDI and RaspOPDI.
-OpenHAT also uses this library within the opdid_core submodule.
+OpenHAT also uses this library within the opdi_core submodule.
 
 Download the POCO C++ libraries from pocoproject.org and extract them into this folder, omitting the versioned top folder.
 Build them to make the library files available to the configs.
@@ -46,7 +46,7 @@ Note: Currently it is not recommended to use the popular crosstools-ng for this 
 
 Cross-compiled Raspberry Pi binaries should link statically against POCO. This avoids the need to compile and install the POCO library binaries on the Raspberry.
 
-2. Create a build configuration for POCO:
+2. Create a build configuration for POCO (or use the provided config file):
 > cd build/config
 > cp ARM-Linux RaspberryPi
 Edit the file RaspberryPi:
@@ -55,9 +55,9 @@ LINKMODE		?= STATIC
 In general settings, remove the lines starting with "STLPORT" and "OPENSSL"
 In general settings, change the tool (Note: this assumes that you are using the RaspberryPi cross compiler from Github mentioned above):
 TOOL = arm-linux-gnueabihf 
-In System Specific Flags, remove the following flags:
+In System Specific Flags, remove the following entries:
 -I$(STLPORT_INCLUDE) -I$(OPENSSL_INCLUDE)
-In System Specific Libraries, remove the following libraries:
+In System Specific Libraries, remove the following entries:
 -L$(STLPORT_LIB) -L$(OPENSSL_LIB) -lstlport_arm-linux-gcc
 Save and return to POCO root:
 > cd ../..
@@ -81,5 +81,4 @@ Install the libraries:
 Reload LD cache:
 > sudo ldconfig
 
-Test 2
 
