@@ -19,3 +19,4 @@ ArduinOPDI.h
 OPDI.cpp
 OPDI.h
 libraries/
+build-uno/
