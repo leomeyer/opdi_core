@@ -12,3 +12,4 @@ make -s
 
 # install
 sudo make -s install
+sudo ldconfig
