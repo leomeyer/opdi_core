@@ -13,3 +13,12 @@
 *.sdf
 *.user
 *.apk
+*.lst
+*.o
+*.d
+*.eep
+*.elf
+*.hex
+*.lss
+*.map
+*.sym
