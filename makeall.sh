@@ -19,6 +19,4 @@ make -C code/c/configs/Poladisc clean
 make -C code/c/configs/Poladisc
 
 make -C code/c/configs/LinOPDI clean
-make -C code/c/configs/LinOPDI
-
-
+make -C code/c/configs/LinOPDI CC=$CC

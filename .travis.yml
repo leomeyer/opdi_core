@@ -4,13 +4,7 @@ language: cpp
 
 compiler:
   - gcc
-
-install:
-- pushd code/c/libraries/POCO
-- ./build_poco.sh
-- popd
-- export CXX="g++-4.9" CC="gcc-4.9"
-
+  
 addons:
   apt:
     sources:
@@ -19,6 +13,12 @@ addons:
     - gcc-4.9
     - g++-4.9
     - arduino-core
+
+install:
+- pushd code/c/libraries/POCO
+- ./build_poco.sh
+- popd
+- export CXX="g++-4.9" CC="gcc-4.9"
 
 script: ./makeall.sh
 
