@@ -55,7 +55,7 @@ SRC += $(LIBCTB)/src/linux/timer.cpp $(LIBCTB)/src/portscan.cpp $(LIBCTB)/src/se
 LIBS = -lpthread -lrt
 
 # The compiler to be used.
-CC = g++
+CC ?= g++
 
 # List any extra directories to look for include files here.
 # Each directory must be separated by a space.
@@ -76,7 +76,12 @@ OBJECTS = $(SRC)
 all: $(SRC) $(TARGET)
 
 $(TARGET): $(OBJECTS)
+# fix make invoke with empty parameter CC= passed in
+ifeq "$(CC)" ""
+	g++ $(CFLAGS) $(OBJECTS) -o $@ $(POCOLIBS) $(LIBS)
+else
 	$(CC) $(CFLAGS) $(OBJECTS) -o $@ $(POCOLIBS) $(LIBS)
+endif
 
 .cpp.o:
 	@echo
@@ -90,5 +95,5 @@ clean:
 	rm -f $(PPATH)/*.o
 	rm -f $(CPATH)/*.o
 	rm -f $(MPATH)/*.o
-	rm $(TARGET)
+	rm -f $(TARGET)
 
