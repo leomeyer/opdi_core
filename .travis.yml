@@ -15,7 +15,7 @@ addons:
     - arduino-core
 
 install:
-- cp -r code/c/libraries/POCO_patches code/c/libraries/POCO
+- cp -r code/c/libraries/POCO_patches/* code/c/libraries/POCO/
 - pushd code/c/libraries/POCO
 - ./build_poco.sh
 - popd
