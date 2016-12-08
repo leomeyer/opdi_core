@@ -1,8 +1,11 @@
 The POCO libraries are required to build the OPDI test configs WinOPDI, LinOPDI and RaspOPDI.
 OpenHAT also uses this library within the opdi_core submodule.
 
-Download the POCO C++ libraries from pocoproject.org and extract them into this folder, omitting the versioned top folder.
-Build them to make the library files available to the configs.
+The POCO libraries will automatically be cloned as a Git submodule into the POCO folder.
+Alternatively, download the POCO C++ libraries from pocoproject.org and extract them into this folder, omitting the versioned top folder.
+
+Copy the contents of this folder over to the POCO folder.
+Build POCO to make the library files available to the configs.
 
 See the README file for advanced instructions.
 
@@ -25,6 +28,11 @@ If you want to use the DLLs remove the POCO_STATIC compiler directive from the p
 
 On Linux, do the following:
 
+Invoke
+> ./build_poco.sh
+to make and install the dynamic libraries.
+
+Making and installing manually:
 > ./configure --no-tests --no-samples
 Then, compile POCO:
 > make -s
@@ -41,12 +49,17 @@ The Linux configs should link the POCO libraries dynamically. This avoids proble
 
 If you want to cross-compile for the Raspberry Pi, follow these steps:
 
-1. Install a cross-compiler toolchain on your compile system and make sure that it works. For example: https://github.com/raspberrypi/tools
+Install a cross-compiler toolchain on your compile system and make sure that it works. For example: https://github.com/raspberrypi/tools
 Note: Currently it is not recommended to use the popular crosstools-ng for this because of problems downloading library dependencies (eglibc.org SVN server is unreliable).
+
+Invoke
+> ./build_poco_rpi.sh
+to create the static libraries for Raspberry Pi cross-compiling.
 
 Cross-compiled Raspberry Pi binaries should link statically against POCO. This avoids the need to compile and install the POCO library binaries on the Raspberry.
 
-2. Create a build configuration for POCO (or use the provided config file):
+Manual process:
+ Create a build configuration for POCO (or use the provided config file):
 > cd build/config
 > cp ARM-Linux RaspberryPi
 Edit the file RaspberryPi:
