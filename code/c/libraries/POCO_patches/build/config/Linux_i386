@@ -10,7 +10,7 @@
 #
 # General Settings
 #
-LINKMODE ?= SHARED
+LINKMODE ?= BOTH
 
 #
 # Define Tools
@@ -68,4 +68,5 @@ SYSFLAGS = -D_XOPEN_SOURCE=500 -D_REENTRANT -D_THREAD_SAFE -D_FILE_OFFSET_BITS=6
 #
 # System Specific Libraries
 #
+# add -m32 flag here because it doesn't seem to get passed to ld when only specified in LINKFLAGS above!
 SYSLIBS  = -m32 -lpthread -ldl -lrt
