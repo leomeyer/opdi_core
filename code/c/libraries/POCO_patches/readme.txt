@@ -33,7 +33,7 @@ Invoke
 to make and install the dynamic libraries.
 
 Making and installing manually:
-> ./configure --no-tests --no-samples
+> ./configure --no-tests --no-samples --minimal
 Then, compile POCO:
 > make -s
 For multiprocessor machines:
@@ -76,16 +76,14 @@ Save and return to POCO root:
 > cd ../..
 
 3. Configure POCO to use the new build configuration:
-> ./configure --config=RaspberryPi --no-samples --no-tests --omit=CppUnit,CppUnit/WinTestRunner,Crypto,NetSSL_OpenSSL,Data,Data/SQLite,Data/ODBCData/MySQL,MongoDB,PageCompiler,PageCompiler/File2Page
+> ./configure --config=RaspberryPi --no-samples --no-tests --minimal
 
 4. Build:
 > make -s
 
 If you need to build POCO on Raspberry Pi, make sure that the libssl-dev library is installed:
 > sudo apt-get install libssl-dev
-
-Compile without ODBC and MySQL support:
-> ./configure --no-tests --no-samples --omit=Data/ODBC,Data/MySQL
+> ./configure --no-tests --no-samples  --minimal
 Then, compile POCO:
 > make -s
 Compiling can take quite a long time. Check for errors; install missing libraries if necessary.
