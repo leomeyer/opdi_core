@@ -15,11 +15,11 @@ addons:
     - arduino-core
 
 install:
+- export CXX="g++-7" CC="gcc-7"
 - cp -r code/c/libraries/POCO_patches/* code/c/libraries/POCO/
 - pushd code/c/libraries/POCO
 - ./build_poco.sh
 - popd
-- export CXX="g++-7" CC="gcc-7"
 
 script: ./makeall.sh
 
