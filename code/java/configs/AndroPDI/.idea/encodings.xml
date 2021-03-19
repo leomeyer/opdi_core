@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/org/openhat/androPDI/bluetooth/BluetoothDevice.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/org/openhat/androPDI/portdetails/BMP085_ViewController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/org/openhat/androPDI/portdetails/CHR6dm_ViewController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/org/openhat/androPDI/portdetails/NMEAGen_ViewController.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
