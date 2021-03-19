@@ -10,8 +10,8 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-4.9
-    - g++-4.9
+    - gcc-7
+    - g++-7
     - arduino-core
 
 install:
@@ -19,7 +19,7 @@ install:
 - pushd code/c/libraries/POCO
 - ./build_poco.sh
 - popd
-- export CXX="g++-4.9" CC="gcc-4.9"
+- export CXX="g++-7" CC="gcc-7"
 
 script: ./makeall.sh
 
