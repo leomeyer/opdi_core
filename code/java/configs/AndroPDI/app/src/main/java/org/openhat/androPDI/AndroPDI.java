@@ -110,7 +110,6 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 	
 	public static AndroPDI instance;
 	
-    protected DeviceManager deviceManager;
     private Handler handler = new Handler();
     
 //    private WakeLock wakeLock; 		// the WakeLock is acquired while devices are connected
@@ -133,20 +132,17 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+		instance = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
-        instance = this;
-        
+
         // detect when the screen is turned off
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
         registerReceiver(screenReceiver, filter);        
 
         // use localized resource factory
-        org.openhat.opdi.utils.ResourceFactory.instance = new org.openhat.androPDI.utils.ResourceFactory(this);
-        
-        deviceManager = DeviceManager.getInstance();
-        
+        org.openhat.opdi.utils.ResourceFactory.instance = new ResourceFactory(this);
+
         // register for connected devices: this instance is now the listener
         deviceManager.registerListener(this);
         

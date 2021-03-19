@@ -60,19 +60,19 @@ public class NMEAGen_ViewController implements IViewController {
     
     private String formatPos(double pos) {
     	switch (posFormat) {
-    	case DEGREES: return String.format("%.6f°", pos);
+    	case DEGREES: return String.format("%.6fÂ°", pos);
     	case DEGREES_MIN: {
   	      // Convert to Degree Minutes Representation
   	      double LatDeg = Math.floor(pos);
   	      double LatMin = (pos - LatDeg) * 60;
-  	      return String.format("%.0f° %.4f'", LatDeg, LatMin);
+  	      return String.format("%.0fÂ° %.4f'", LatDeg, LatMin);
     	}
     	case DEGREES_MIN_SEC: {
   	      // Convert to Degree Minutes Seconds Representation
   	      double LatDeg = Math.floor(pos);
   	      double LatMin = Math.floor((pos - LatDeg) * 60);
 	      double LatSec = ((((pos - LatDeg) - (LatMin / 60)) * 60 * 60) * 100) / 100;
-  	      return String.format("%.0f° %.0f' %.2f''", LatDeg, LatMin, LatSec);
+  	      return String.format("%.0fÂ° %.0f' %.2f''", LatDeg, LatMin, LatSec);
     	}
     	default: return String.format("%.6f", pos);
     	}

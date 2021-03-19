@@ -29,7 +29,6 @@ public abstract class AndroPDIDevice extends IODevice {
 	WeakReference<IDeviceStatusListener> deviceListener;
 	
 	public AndroPDIDevice() {
-		
 		// create temporary ID
 		id = "dev" + (idCounter++);
 	}

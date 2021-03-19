@@ -22,6 +22,8 @@ import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
 import org.openhat.opdi.interfaces.IDeviceListener;
 import org.openhat.androPDI.R;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.os.Environment;
 
 /** This class manages a list of devices.
@@ -108,7 +110,8 @@ public class DeviceManager implements IDeviceListener {
 	}
 	
     private static String getSettingsFilename() {
-    	return Environment.getExternalStorageDirectory().getAbsolutePath() + SETTINGS_FILENAME;    	
+    	// return Environment.getExternalStorageDirectory().getAbsolutePath() + SETTINGS_FILENAME;
+		return AndroPDI.instance.getApplicationInfo().dataDir + SETTINGS_FILENAME;
     }
 
 	public static DeviceManager getInstance() {

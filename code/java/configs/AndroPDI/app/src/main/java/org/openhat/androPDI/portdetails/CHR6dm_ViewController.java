@@ -51,9 +51,9 @@ public class CHR6dm_ViewController implements IViewController {
     private float calibRoll;
     
     private String formatAngle(double angle) {
-    	String str = String.format("%.1f°", angle);
+    	String str = String.format("%.1fÂ°", angle);
     	// correct odd negative zero problem
-    	if (str.equals("-0,0°")) return "0,0°";
+    	if (str.equals("-0,0Â°")) return "0,0Â°";
     	return str;
     }
 

@@ -3,5 +3,5 @@
 	url = https://github.com/pocoproject/poco.git
 	ignore = dirty
 [submodule "code/java/configs/AndroPDI/assets/opdi_assets"]
-	path = code/java/configs/AndroPDI/assets/opdi_assets
+	path = code/java/configs/AndroPDI_broken/assets/opdi_assets
 	url = https://github.com/leomeyer/opdi_assets.git

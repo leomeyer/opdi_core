@@ -30,7 +30,7 @@ public abstract class LoggingActivity extends Activity {
 	protected ScrollView svLog;
 	protected TextView tvLog;
     
-	DeviceManager deviceManager;
+	protected DeviceManager deviceManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -2,22 +2,20 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000044"
     android:paddingLeft="5dp"
-    android:paddingRight="5dp" >
+    android:paddingRight="5dp">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center" >
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            android:src="@drawable/tcpip" >
-        </ImageView>
+            android:src="@drawable/tcpip"></ImageView>
 
         <TextView
             android:id="@+id/textView"
@@ -25,25 +23,26 @@
             android:layout_width="match_parent"
             android:layout_height="30dip"
             android:gravity="center|bottom"
-            android:text="@string/add_tcpip_device2"
-            android:textColor="#FFFFFF" >
-        </TextView>
+            android:text="@string/edit_tcpip_device"
+            android:textColor="#FFFFFF"></TextView>
     </LinearLayout>
 
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/tcpip_name" />
 
         <EditText
             android:id="@+id/etDeviceName"
             android:layout_weight="6"
             android:ems="10"
-            android:inputType="text" >
+            android:inputType="text">
 
             <requestFocus />
         </EditText>
@@ -52,16 +51,15 @@
     <TableRow>
 
         <TextView
-            android:text="@string/tcpip_host_ip"
-            android:width="80dp" />
+            android:width="80dp"
+            android:text="@string/tcpip_host_ip" />
 
         <EditText
             android:id="@+id/etDeviceAddress"
             android:layout_weight="6"
+            android:width="160dp"
             android:inputType="text"
-            android:maxLines="1"
-            android:width="160dp" >
-        </EditText>
+            android:maxLines="1"></EditText>
     </TableRow>
 
     <TableRow>
@@ -70,16 +68,14 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tcpip_port" >
-        </TextView>
+            android:text="@string/tcpip_port"></TextView>
 
         <EditText
             android:id="@+id/etDevicePort"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="6"
-            android:inputType="numberDecimal" >
-        </EditText>
+            android:inputType="numberDecimal"></EditText>
     </TableRow>
 
     <TableRow>
@@ -92,8 +88,8 @@
         <EditText
             android:id="@+id/etPSK"
             android:layout_weight="6"
-            android:inputType="text" >
-        </EditText>
+            android:inputType="text"
+            android:maxLines="1"></EditText>
     </TableRow>
 
     <LinearLayout
@@ -101,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:gravity="center" >
+        android:gravity="center">
 
         <Button
             android:id="@+id/btnCancel"
@@ -110,12 +106,11 @@
             android:text="@string/cancel" />
 
         <Button
-            android:id="@+id/btnAddDevice"
+            android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/add_device_button" >
-        </Button>
+            android:text="@string/save_button"></Button>
     </LinearLayout>
 
 </TableLayout>

@@ -147,7 +147,7 @@ public class BMP085_ViewController implements IViewController {
 							panelPres.setBackgroundColor(Color.LTGRAY);
 							
 							// add values
-							tvTemp.setText("" + driver.getTemperature() + " °C");
+							tvTemp.setText("" + driver.getTemperature() + " Â°C");
 							tvPres.setText("" + driver.getPressure() + " hPa");
 						}
 						if (thermometer == null) {
@@ -158,7 +158,7 @@ public class BMP085_ViewController implements IViewController {
 								public void drawOn(Canvas canvas) {
 									// draw thermometer inside (color gradient)
 									// save clipping region							
-									canvas.save(Canvas.CLIP_SAVE_FLAG);
+									canvas.save();
 								    canvas.clipPath(thermometer);
 
 								    Paint p = new Paint();
@@ -171,14 +171,16 @@ public class BMP085_ViewController implements IViewController {
 								    
 								    // draw colored background
 								    // height scale temperature
-								    // top is 100 °C
-								    // bottom is -100 °C
+								    // top is 100 Â°C
+								    // bottom is -100 Â°C
 								    float temp = driver.getTemperature();
 								    if (temp > 100) temp = 100;
 								    if (temp < -100) temp = -100;
 								    float top = (float) ((bounds.bottom - bounds.top) / 2 - ((bounds.bottom - bounds.top) / 200.0 * temp));
 								    // linear gradient from red to blue
-								    int topcolor = Color.rgb(128 + (int)(128.0 / 100 * temp), 0, 128 - (int)(128.0 / 100 * temp));
+								    int topcolor = Color.rgb(128 + (int)(128.0 / 100 * temp),
+											0,
+											128 - (int)(127.0 / 100 * temp));
 								    p.setShader(new LinearGradient(
 								    		hx, bounds.top + top, hx, bounds.bottom, topcolor, Color.BLUE, TileMode.MIRROR));
 								    // clip
@@ -204,7 +206,7 @@ public class BMP085_ViewController implements IViewController {
 									    Paint p = new Paint();
 
 										// save clipping region							
-										canvas.save(Canvas.CLIP_SAVE_FLAG);
+										canvas.save();
 									    canvas.clipPath(barometer);
 
 									    RectF bounds = new RectF();

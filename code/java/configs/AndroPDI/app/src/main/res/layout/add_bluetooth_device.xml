@@ -2,22 +2,20 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#000044"
     android:paddingLeft="5dp"
-    android:paddingRight="5dp" >
+    android:paddingRight="5dp">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center" >
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            android:src="@drawable/bluetooth64" >
-        </ImageView>
+            android:src="@drawable/bluetooth64"></ImageView>
 
         <TextView
             android:id="@+id/textView"
@@ -26,8 +24,7 @@
             android:layout_height="30dip"
             android:gravity="center|bottom"
             android:text="@string/add_bluetooth_device2"
-            android:textColor="#FFFFFF" >
-        </TextView>
+            android:textColor="#FFFFFF"></TextView>
     </LinearLayout>
 
     <TableRow>
@@ -40,7 +37,7 @@
         <EditText
             android:id="@+id/etDeviceName"
             android:layout_weight="6"
-            android:inputType="text" >
+            android:inputType="text">
 
             <requestFocus />
         </EditText>
@@ -56,8 +53,7 @@
             android:id="@+id/etDeviceAddress"
             android:layout_weight="6"
             android:inputType="textCapCharacters"
-            android:maxLines="1" >
-        </EditText>
+            android:maxLines="1"></EditText>
     </TableRow>
 
     <TableRow>
@@ -71,8 +67,7 @@
         <EditText
             android:id="@+id/etPSK"
             android:layout_weight="6"
-            android:inputType="text" >
-        </EditText>
+            android:inputType="text"></EditText>
     </TableRow>
 
     <TableRow>
@@ -88,8 +83,7 @@
             android:id="@+id/etDevicePIN"
             android:layout_weight="6"
             android:ems="10"
-            android:inputType="number" >
-        </EditText>
+            android:inputType="number"></EditText>
     </TableRow>
 
     <TableRow>
@@ -108,21 +102,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:gravity="center" >
+        android:gravity="center">
 
         <Button
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cancel" >
-        </Button>
+            android:text="@string/cancel"></Button>
 
         <Button
             android:id="@+id/btnAddDevice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_device_button" >
-        </Button>
+            android:text="@string/add_device_button"></Button>
     </LinearLayout>
 
     <Button
