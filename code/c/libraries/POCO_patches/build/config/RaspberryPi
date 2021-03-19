@@ -40,10 +40,10 @@ SHAREDLIBLINKEXT = .so
 #
 # Compiler and Linker Flags
 #
-CFLAGS          = -Isrc -I /home/leo/rpi/rootfs/usr/include
+CFLAGS          = -Isrc
 CFLAGS32        =
 CFLAGS64        =
-CXXFLAGS        = -I /home/leo/rpi/rootfs/usr/include -I /home/leo/rpi/rootfs/usr/include/arm-linux-gnueabihf/openssl
+CXXFLAGS        =
 CXXFLAGS32      =
 CXXFLAGS64      =
 LINKFLAGS       =
