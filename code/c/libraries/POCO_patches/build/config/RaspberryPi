@@ -40,10 +40,10 @@ SHAREDLIBLINKEXT = .so
 #
 # Compiler and Linker Flags
 #
-CFLAGS          = -Isrc -std=gnu99
+CFLAGS          = -Isrc -I /home/leo/rpi/rootfs/usr/include
 CFLAGS32        =
 CFLAGS64        =
-CXXFLAGS        =
+CXXFLAGS        = -I /home/leo/rpi/rootfs/usr/include -I /home/leo/rpi/rootfs/usr/include/arm-linux-gnueabihf/openssl
 CXXFLAGS32      =
 CXXFLAGS64      =
 LINKFLAGS       =
@@ -65,7 +65,7 @@ RELEASEOPT_LINK = -O2
 #
 # System Specific Flags
 #
-SYSFLAGS = -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -D_REENTRANT -D_THREAD_SAFE -DPOCO_NO_FPENVIRONMENT
+SYSFLAGS = -D_XOPEN_SOURCE=500 -D_DEFAULT_SOURCE -D_REENTRANT -D_THREAD_SAFE -DPOCO_NO_FPENVIRONMENT
 
 #
 # System Specific Libraries
