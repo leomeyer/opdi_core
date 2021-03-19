@@ -92,12 +92,12 @@ uint8_t opdi_str_to_int64(const char *str, int64_t *result) {
 }
 
 uint8_t opdi_uint8_to_str(uint8_t value, char* msgBuf) {
-	snprintf(msgBuf, 3, "%u", value);
+	snprintf(msgBuf, 4, "%u", value);
 	return strlen(msgBuf);
 }
 
 uint8_t opdi_uint16_to_str(uint16_t value, char* msgBuf) {
-	snprintf(msgBuf, 5, "%u", value);
+	snprintf(msgBuf, 6, "%u", value);
 	return strlen(msgBuf);
 }
 
