@@ -70,6 +70,7 @@ public abstract class Port {
 	// extended properties
 	protected String unit;
 	protected UnitFormat unitFormat = UnitFormat.DEFAULT;
+	protected String colorScheme;
 	
 	protected PortGroup group;
 	
