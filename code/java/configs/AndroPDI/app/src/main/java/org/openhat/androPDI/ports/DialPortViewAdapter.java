@@ -69,6 +69,7 @@ class DialPortViewAdapter implements IPortViewAdapter {
 	long maxValue;
 	long step;
     boolean stateError;
+    boolean inaccurate;
     
 	protected DialPortViewAdapter(ShowDevicePorts showDevicePorts) {
 		super();
@@ -149,6 +150,7 @@ class DialPortViewAdapter implements IPortViewAdapter {
         minValue = dPort.getMinimum();
         step = dPort.getStep();
         stateError = dPort.hasError();
+        inaccurate = dPort.getExtendedState("inaccurate", "false").equals("true");
     }
 	
 	@Override
@@ -244,6 +246,10 @@ class DialPortViewAdapter implements IPortViewAdapter {
 				else
 					tvCur.setTextColor(Color.rgb(0, 200, 0));
 			}
+			if (inaccurate)
+				tvCur.setBackgroundColor(Color.DKGRAY);
+			else
+				tvCur.setBackgroundColor(Color.TRANSPARENT);
 		}
 
 		if (sbSeek != null) sbSeek.setOnSeekBarChangeListener(null);

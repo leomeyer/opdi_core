@@ -10,8 +10,12 @@
 
 package org.openhat.androPDI;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.HashSet;
@@ -33,6 +37,7 @@ import org.openhat.androPDI.utils.ResourceFactory;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -42,7 +47,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -308,7 +315,11 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.manage_devices_menu, menu);
 		inflater.inflate(R.menu.options_menu, menu);
-		
+
+		MenuItem item;
+		item = menu.findItem(R.id.menuitem_import_settings);
+		item.setEnabled(deviceManager.canImportSettings());
+
 		return true;
 	}
 	
@@ -402,12 +413,62 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 		case R.id.menuitem_help:
 			showHelp();
 			return true;
+		case R.id.menuitem_export_settings:
+			exportSettings();
+			return true;
+		case R.id.menuitem_import_settings:
+			importSettings();
+			return true;
 		case R.id.menuitem_quit:
 			quitApplication();
 			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}
+	}
+	private static final int WRITE_REQUEST_CODE = 101;
+	private static final int READ_REQUEST_CODE = 102;
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+		switch (requestCode) {
+			case WRITE_REQUEST_CODE:
+				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					try {
+						DeviceManager.getInstance().exportSettings(this);
+					} catch (IOException e) {
+						Toast.makeText(this, "Error exporting settings: " + e.getMessage(), Toast.LENGTH_LONG).show();
+					}
+				}
+				else{
+					//Denied.
+				}
+				break;
+			case READ_REQUEST_CODE:
+				if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					try {
+						DeviceManager.getInstance().importSettings(this);
+						deviceAdapter = new DeviceListAdapter(this, android.R.layout.simple_list_item_1, deviceManager.getDevices());
+						lvDevices.setAdapter(deviceAdapter);
+					} catch (IOException e) {
+						Toast.makeText(this, "Error importing settings: "+ e.getMessage(), Toast.LENGTH_LONG).show();
+					}
+				}
+				else{
+					//Denied.
+				}
+				break;
+		}
+	}
+
+	private void importSettings() {
+		String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+		requestPermissions(permissions, READ_REQUEST_CODE);
+	}
+
+	private void exportSettings() {
+		String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+		requestPermissions(permissions, WRITE_REQUEST_CODE);
 	}
 
 	private void quitApplication() {
@@ -978,5 +1039,4 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 	public void receivedError(AndroPDIDevice device, String text) {
 		notifyDevicesChanged(MessageFormat.format(ResourceFactory.getInstance().getString(R.string.device_error), device.getDeviceName(), text), true);
 	}
-	
 }
