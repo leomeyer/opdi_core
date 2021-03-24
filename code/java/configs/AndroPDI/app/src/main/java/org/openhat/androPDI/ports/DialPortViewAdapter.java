@@ -246,10 +246,10 @@ class DialPortViewAdapter implements IPortViewAdapter {
 				else
 					tvCur.setTextColor(Color.rgb(0, 200, 0));
 			}
-			if (inaccurate)
-				tvCur.setBackgroundColor(Color.DKGRAY);
-			else
-				tvCur.setBackgroundColor(Color.TRANSPARENT);
+			if (inaccurate) {
+				int col = tvCur.getCurrentTextColor();
+				tvCur.setTextColor(Color.argb(127, Color.red(col), Color.green(col), Color.blue(col)));
+			}
 		}
 
 		if (sbSeek != null) sbSeek.setOnSeekBarChangeListener(null);
