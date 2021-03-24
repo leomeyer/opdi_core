@@ -32,15 +32,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:background="@drawable/background"
-                android:scrollbarAlwaysDrawVerticalTrack="true" >
+                android:scrollbarAlwaysDrawVerticalTrack="true">
 
                 <TextView
                     android:id="@+id/tvLog"
+                    style="@style/ListSubFont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scrollbars="vertical"
-                    android:textAppearance="?android:attr/textAppearanceSmallInverse"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
             </ScrollView>
 
