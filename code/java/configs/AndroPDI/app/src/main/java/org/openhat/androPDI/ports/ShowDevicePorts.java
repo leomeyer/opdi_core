@@ -35,6 +35,7 @@ import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.ProtocolException;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +43,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -447,7 +449,7 @@ public class ShowDevicePorts extends LoggingActivity implements IDeviceListener 
      */
 	public synchronized boolean addPortAction(PortAction portAction) {
 		queue.offer(portAction);
-		
+		Log.d("androPDI", "addPortAction: " + portAction);
 		return true;
 	}
 

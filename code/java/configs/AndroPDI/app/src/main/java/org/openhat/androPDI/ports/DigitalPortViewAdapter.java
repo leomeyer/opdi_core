@@ -60,7 +60,6 @@ class DigitalPortViewAdapter implements IPortViewAdapter {
 	DigitalPort.PortMode mode;
 
 	protected DigitalPortViewAdapter(ShowDevicePorts showDevicePorts) {
-		super();
 		this.showDevicePorts = showDevicePorts;
 	}
 
@@ -117,6 +116,12 @@ class DigitalPortViewAdapter implements IPortViewAdapter {
 	}
 	
 	protected void queryState() throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException{
+		line = DigitalPort.PortLine.UNKNOWN;
+		mode = DigitalPort.PortMode.UNKNOWN;
+		stateError = dPort.hasError();
+		if (stateError)
+			return;
+
         // attempt to retrieve the values
         try {
             line = dPort.getLine();
@@ -127,7 +132,7 @@ class DigitalPortViewAdapter implements IPortViewAdapter {
 		}
         stateError = dPort.hasError();
         if (stateError) {
-        	this.showMessage("Error: " + dPort.getErrorMessage());
+        	// this.showMessage("Error: " + dPort.getErrorMessage());
         }
 	}
 	
