@@ -462,12 +462,12 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 	}
 
 	private void importSettings() {
-		String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+		String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 		requestPermissions(permissions, READ_REQUEST_CODE);
 	}
 
 	private void exportSettings() {
-		String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+		String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
 		requestPermissions(permissions, WRITE_REQUEST_CODE);
 	}
 
