@@ -31,8 +31,9 @@ extern "C" {
 #define OPDI_PORTTYPE_DIGITAL	"0"
 #define OPDI_PORTTYPE_ANALOG	"1"
 #define OPDI_PORTTYPE_SELECT	"2"
-#define OPDI_PORTTYPE_DIAL		"3"
+#define OPDI_PORTTYPE_DIAL	"3"
 #define OPDI_PORTTYPE_STREAMING	"4"
+#define OPDI_PORTTYPE_CUSTOM	"5"
 
 /** Port direction constants. 
 */
@@ -137,6 +138,12 @@ typedef struct opdi_DialPortInfo {
 	int64_t max;		// maximum value
 	int64_t step;		// step width
 } opdi_DialPortInfo;
+
+/** Info structure for custom ports.
+*/
+typedef struct opdi_CustomPortInfo {
+	char *custom;			// pointer to custom value
+} opdi_CustomPortInfo;
 
 /** Receiving function for streaming ports.
 */

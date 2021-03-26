@@ -36,33 +36,38 @@
 
 // protocol message identifiers
 #define OPDI_getDeviceCaps  			"gDC"
-#define OPDI_getPortInfo  				"gPI"
+#define OPDI_getPortInfo  			"gPI"
 
-#define OPDI_analogPort  				"AP"
+#define OPDI_analogPort  			"AP"
 #define OPDI_analogPortState  			"AS"
 #define OPDI_getAnalogPortState  		"gAS"
 #define OPDI_setAnalogPortValue  		"sAV"
 #define OPDI_setAnalogPortMode  		"sAM"
-#define OPDI_setAnalogPortResolution	"sAR"
+#define OPDI_setAnalogPortResolution            "sAR"
 #define OPDI_setAnalogPortReference		"sARF"
 
-#define OPDI_digitalPort  				"DP"
+#define OPDI_digitalPort  			"DP"
 #define OPDI_digitalPortState  			"DS"
 #define OPDI_getDigitalPortState  		"gDS"
 #define OPDI_setDigitalPortLine  		"sDL"
 #define OPDI_setDigitalPortMode  		"sDM"
 
-#define OPDI_selectPort  				"SLP"
+#define OPDI_selectPort  			"SLP"
 #define OPDI_getSelectPortLabel  		"gSL"
 #define OPDI_selectPortLabel  			"SL"
 #define OPDI_selectPortState  			"SS"
 #define OPDI_getSelectPortState  		"gSS"
 #define OPDI_setSelectPortPosition		"sSP"
 
-#define OPDI_dialPort  					"DL"
+#define OPDI_dialPort  				"DL"
 #define OPDI_dialPortState  			"DLS"
 #define OPDI_getDialPortState  			"gDLS"
 #define OPDI_setDialPortPosition  		"sDLP"
+
+#define OPDI_customPort  			"CP"
+#define OPDI_customPortState  			"CPS"
+#define OPDI_getCustomPortState  		"gCPS"
+#define OPDI_setCustomPortState  		"sCPS"
 
 #define OPDI_streamingPort  			"SP"
 #define OPDI_bindStreamingPort  		"bSP"
