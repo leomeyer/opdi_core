@@ -115,6 +115,9 @@ class SelectPortViewAdapter implements IPortViewAdapter {
 	}
 	
 	protected void queryState() throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException {
+		if (sPort.hasError())
+			return;
+
 		try {
 			position = sPort.getPosition();
 		} catch (PortAccessDeniedException e) {

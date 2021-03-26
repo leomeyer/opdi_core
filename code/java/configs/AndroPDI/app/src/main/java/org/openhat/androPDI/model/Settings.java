@@ -33,17 +33,21 @@ public class Settings {
 	private List<Device> devices = new ArrayList<Device>();
 	
 	/** Try to load settings from the specified filename. */
-	public static Settings load(String filename) {
+	public static Settings load(String filename, boolean ignoreErrors) throws IOException {
 		try {
 			FileInputStream fis = new FileInputStream(filename);
 			XStream xstream = new XStream(new DomDriver());
 			// return the deserialized settings
 			return (Settings)xstream.fromXML(fis);
 		} catch (FileNotFoundException e) {
+			if (!ignoreErrors)
+				throw e;
 			// the file is not there - don't read the settings
 			return new Settings();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			// error opening the file
+			if (!ignoreErrors)
+				throw e;
 			Log.e(AndroPDI.MASTER_NAME, "Error opening settings file: " + filename, e);
 			return new Settings();
 		}

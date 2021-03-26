@@ -259,6 +259,10 @@ public abstract class Port {
 		return unit;
 	}
 
+	public String getColorScheme() {
+		return colorScheme;
+	}
+
 	public UnitFormat getUnitFormat() {
 		return unitFormat;
 	}
@@ -270,9 +274,12 @@ public abstract class Port {
 	public void setExtendedPortInfo(String info) {
 		// extract detailed information from extended info
 		extendedInfoProperties = Strings.getProperties(info);
-		
+
 		if (extendedInfoProperties.containsKey("unit")) {
 			unit = extendedInfoProperties.get("unit");
+		}
+		if (extendedInfoProperties.containsKey("colorScheme")) {
+			colorScheme = extendedInfoProperties.get("colorScheme");
 		}
 	}
 	

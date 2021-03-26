@@ -17,6 +17,7 @@ import org.openhat.androPDI.R;
 import org.openhat.androPDI.ports.editors.DialPortDateTimeEditor;
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.ports.DialPort;
+import org.openhat.opdi.ports.DigitalPort;
 import org.openhat.opdi.ports.Port;
 import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
@@ -68,6 +69,7 @@ class DialPortViewAdapter implements IPortViewAdapter {
 	long maxValue;
 	long step;
     boolean stateError;
+    boolean inaccurate;
     
 	protected DialPortViewAdapter(ShowDevicePorts showDevicePorts) {
 		super();
@@ -131,8 +133,14 @@ class DialPortViewAdapter implements IPortViewAdapter {
 		openMenu();
 	}
 
-	protected void queryState() throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException { 
-        try {
+	protected void queryState() throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException {
+		position = dPort.getMinimum();
+		positionValid = false;
+		stateError = dPort.hasError();
+		if (stateError)
+			return;
+
+		try {
 			position = dPort.getPosition();
 			positionValid = true;
 		} catch (PortAccessDeniedException e) {
@@ -142,6 +150,7 @@ class DialPortViewAdapter implements IPortViewAdapter {
         minValue = dPort.getMinimum();
         step = dPort.getStep();
         stateError = dPort.hasError();
+        inaccurate = dPort.getExtendedState("inaccurate", "false").equals("true");
     }
 	
 	@Override
@@ -231,6 +240,16 @@ class DialPortViewAdapter implements IPortViewAdapter {
 				tvCur.setTextColor(Color.BLACK);
 			else
 				tvCur.setTextColor(Color.LTGRAY);
+			if ("posNeg".equals(dPort.getColorScheme())) {
+				if (position < 0)
+					tvCur.setTextColor(Color.RED);
+				else
+					tvCur.setTextColor(Color.rgb(0, 200, 0));
+			}
+			if (inaccurate) {
+				int col = tvCur.getCurrentTextColor();
+				tvCur.setTextColor(Color.argb(127, Color.red(col), Color.green(col), Color.blue(col)));
+			}
 		}
 
 		if (sbSeek != null) sbSeek.setOnSeekBarChangeListener(null);

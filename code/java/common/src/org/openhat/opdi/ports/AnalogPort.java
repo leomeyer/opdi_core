@@ -34,6 +34,7 @@ public class AnalogPort extends Port {
 	
 	/** The mode an analog port may be in. */
 	public enum PortMode {
+		UNKNOWN,
 		/** The port is in input mode. */
 		INPUT,
 		/** The port is in output mode. */
@@ -42,6 +43,7 @@ public class AnalogPort extends Port {
 		
 	/** Defines the resolution of an analog port. */
 	public enum Resolution {
+		UNKNOWN,
 		BITS_8,
 		BITS_9,
 		BITS_10,
@@ -51,6 +53,7 @@ public class AnalogPort extends Port {
 	
 	/** Defines the reference voltage source of an analog port. */
 	public enum Reference {
+		UNKNOWN,
 		INTERNAL,
 		EXTERNAL
 	}

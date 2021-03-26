@@ -190,6 +190,15 @@ class AnalogPortViewAdapter implements IPortViewAdapter {
 	}
 
 	protected void queryState() throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException {
+		value = 0;
+		maxValue = 0;
+		mode = AnalogPort.PortMode.UNKNOWN;
+		resolution = AnalogPort.Resolution.UNKNOWN;
+		reference = AnalogPort.Reference.UNKNOWN;
+		stateError = aPort.hasError();
+		if (stateError)
+			return;
+
         // attempt to retrieve the values
         try {
 			value = aPort.getValue();
