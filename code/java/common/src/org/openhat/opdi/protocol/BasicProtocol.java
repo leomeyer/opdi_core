@@ -25,6 +25,7 @@ import org.openhat.opdi.interfaces.IDeviceCapabilities;
 import org.openhat.opdi.ports.AnalogPort;
 import org.openhat.opdi.ports.AnalogPort.Resolution;
 import org.openhat.opdi.ports.BasicDeviceCapabilities;
+import org.openhat.opdi.ports.CustomPort;
 import org.openhat.opdi.ports.DialPort;
 import org.openhat.opdi.ports.DigitalPort;
 import org.openhat.opdi.ports.Port;
@@ -32,7 +33,6 @@ import org.openhat.opdi.ports.PortFactory;
 import org.openhat.opdi.ports.SelectPort;
 import org.openhat.opdi.ports.StreamingPort;
 import org.openhat.opdi.utils.Strings;
-
 
 /** This class implements the basic protocol for data exchange with a slave device.
  * The protocol is setup when a device is connected. It ends when the device becomes
@@ -117,6 +117,10 @@ public class BasicProtocol extends AbstractProtocol implements IBasicProtocol {
 	public static final String GET_DIAL_PORT_STATE = "gDLS";
 	public static final String DIAL_PORT_STATE  = "DLS";
 	public static final String SET_DIAL_PORT_POSITION  = "sDLP";
+
+	public static final String GET_CUSTOM_PORT_STATE = "gCPS";
+	public static final String CUSTOM_PORT_STATE  = "CPS";
+	public static final String SET_CUSTOM_PORT_STATE  = "sCPS";
 
 	public static final String BIND_STREAMING_PORT  = "bSP";
 	public static final String UNBIND_STREAMING_PORT  = "uSP";
@@ -347,14 +351,18 @@ public class BasicProtocol extends AbstractProtocol implements IBasicProtocol {
 		return parsePortInfo(message);
 	}
 
+	protected Port createPort(String[] parts) throws InterruptedException, ProtocolException, TimeoutException, DisconnectedException, DeviceException {
+		// let the factory create the port
+		return PortFactory.createPort(this, parts);
+	}
+
 	protected Port parsePortInfo(Message message) throws ProtocolException,
 			TimeoutException, InterruptedException, DisconnectedException,
 			DeviceException {
-		// check the port magic
 		String[] parts = Strings.split(message.getPayload(), SEPARATOR);
 
 		// let the factory create the port
-		return PortFactory.createPort(this, parts);
+		return createPort(parts);
 	}
 
 	protected void expectDigitalPortState(DigitalPort port, int channel) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException {
@@ -611,6 +619,54 @@ public class BasicProtocol extends AbstractProtocol implements IBasicProtocol {
 		send(new Message(channel, Strings.join(SEPARATOR, SET_DIAL_PORT_POSITION, port.getID(), pos)));
 		
 		expectDialPortPosition(port, channel);
+	}
+
+	protected void expectCustomPortValue(CustomPort port, int channel) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException {
+		Message m = expect(channel, DEFAULT_TIMEOUT);
+
+		parseCustomPortValue(port, m);
+	}
+
+	protected void parseCustomPortValue(CustomPort port, Message m)
+			throws ProtocolException {
+		final int PREFIX = 0;
+		final int ID = 1;
+		final int VALUE = 2;
+		final int PARTS_COUNT = 3;
+
+		String[] parts = Strings.split(m.getPayload(), SEPARATOR);
+		if (parts.length != PARTS_COUNT)
+			throw new ProtocolException("invalid number of message parts");
+		if (!parts[PREFIX].equals(CUSTOM_PORT_STATE))
+			throw new ProtocolException("unexpected reply, expected: " + DIAL_PORT_STATE);
+		if (!parts[ID].equals(port.getID()))
+			throw new ProtocolException("wrong port ID");
+
+		port.setPortValue(this, parts[VALUE]);
+	}
+
+	@Override
+	public int getValue(CustomPort port) throws TimeoutException,
+			InterruptedException, DisconnectedException, DeviceException,
+			ProtocolException, PortAccessDeniedException, PortErrorException {
+		// send request
+		int channel = getSynchronousChannel(port.isRefreshing());
+		send(new Message(channel, Strings.join(SEPARATOR, GET_CUSTOM_PORT_STATE, port.getID())));
+
+		expectCustomPortValue(port, channel);
+
+		return channel;
+	}
+
+	@Override
+	public void setValue(CustomPort port, String value)
+			throws TimeoutException, InterruptedException,
+			DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException {
+		// send request
+		int channel = getSynchronousChannel(false);
+		send(new Message(channel, Strings.join(SEPARATOR, SET_DIAL_PORT_POSITION, port.getID(), value)));
+
+		expectCustomPortValue(port, channel);
 	}
 
 	@Override

@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.openhat.androPDI.model.Settings;
 import org.openhat.androPDI.utils.ResourceFactory;
+import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
 import org.openhat.opdi.interfaces.IDeviceListener;
@@ -192,11 +193,11 @@ public class DeviceManager implements IDeviceListener {
 		}
 	}
 
-	public void connectAllDevices(IDeviceStatusListener deviceListener) {
+	public void connectAllDevices(IDeviceStatusListener deviceListener, IBasicProtocol.CustomPortResolver customPortResolver) {
 		for (AndroPDIDevice device : devices) {
 			if (device == null) continue;
 			if (device.getStatus() != DeviceStatus.CONNECTED)
-				this.connect(device, deviceListener);
+				this.connect(device, deviceListener, customPortResolver);
 		}
 	}
 
@@ -333,10 +334,10 @@ public class DeviceManager implements IDeviceListener {
 		device.getListener().receivedError(device, text);
 	}
 
-	public synchronized void connect(AndroPDIDevice device, IDeviceStatusListener deviceListener) {
+	public synchronized void connect(AndroPDIDevice device, IDeviceStatusListener deviceListener, IBasicProtocol.CustomPortResolver customPortResolver) {
 		// remember the listener for this device
 		device.setListener(deviceListener);
-		device.connect(this);
+		device.connect(this, customPortResolver);
 	}
 
 	public synchronized void registerListener(IDeviceStatusListener deviceListener) {

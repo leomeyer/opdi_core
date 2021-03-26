@@ -495,7 +495,7 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 	}
 
 	private synchronized void connectAllDevices() {
-		deviceManager.connectAllDevices(this);
+		deviceManager.connectAllDevices(this, null);
 	}
 
 	private void abortConnectSelectedDevice() {
@@ -569,7 +569,7 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 		if (!selectedDevice.prepare())
 			return;
 		
-		deviceManager.connect(selectedDevice, this);
+		deviceManager.connect(selectedDevice, this, null);
 	}
 	
 	private void editSelectedDevice() {

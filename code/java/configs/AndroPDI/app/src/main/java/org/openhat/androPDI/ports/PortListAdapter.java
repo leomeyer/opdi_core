@@ -15,6 +15,7 @@ import java.util.List;
 import org.openhat.androPDI.R;
 import org.openhat.androPDI.units.Units;
 import org.openhat.opdi.ports.AnalogPort;
+import org.openhat.opdi.ports.CustomPort;
 import org.openhat.opdi.ports.DialPort;
 import org.openhat.opdi.ports.DigitalPort;
 import org.openhat.opdi.ports.Port;
@@ -104,8 +105,14 @@ class PortListAdapter extends ArrayAdapter<Port> {
             } 
             else if (port instanceof StreamingPort) {
             	adapter = new StreamingPortViewAdapter(showDevicePorts);
-            } 
-            
+            }
+            else if (port instanceof CustomViewPort) {
+            	adapter = ((CustomViewPort)port).getViewAdapter(showDevicePorts);
+			}
+			else if (port instanceof CustomPort) {
+				adapter = new CustomPortViewAdapter(showDevicePorts);
+			}
+
             // register adapter with the port
             port.setViewAdapter(adapter);
             
@@ -122,11 +129,11 @@ class PortListAdapter extends ArrayAdapter<Port> {
             	// no matching adapter found - create a simple default view
 	            if (result == null) {
 	                LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	                result = vi.inflate(R.layout.default_port_row, parent);
+	                result = vi.inflate(R.layout.default_port_row, null);
 	            }
 	            
-	            TextView tt = (TextView) result.findViewById(R.id.toptext);
-	            TextView bt = (TextView) result.findViewById(R.id.bottomtext);
+	            TextView tt = result.findViewById(R.id.toptext);
+	            TextView bt = result.findViewById(R.id.bottomtext);
 	            if (tt != null) {
 	            	tt.setText(port.getName());
 	            }

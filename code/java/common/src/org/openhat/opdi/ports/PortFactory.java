@@ -35,6 +35,8 @@ public class PortFactory {
 			return new SelectPort(protocol, parts);
 		else if (parts[0].equals(DialPort.MAGIC))
 			return new DialPort(protocol, parts);
+		else if (parts[0].equals(CustomPort.MAGIC))
+			return new CustomPort(protocol, parts);
 		else if (parts[0].equals(StreamingPort.MAGIC))
 			return new StreamingPort(protocol, parts);
 		else

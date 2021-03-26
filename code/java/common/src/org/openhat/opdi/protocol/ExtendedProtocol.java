@@ -23,6 +23,7 @@ import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IDeviceCapabilities;
 import org.openhat.opdi.ports.AnalogPort;
 import org.openhat.opdi.ports.BasicDeviceCapabilities;
+import org.openhat.opdi.ports.CustomPort;
 import org.openhat.opdi.ports.DialPort;
 import org.openhat.opdi.ports.DigitalPort;
 import org.openhat.opdi.ports.ExtendedDeviceCapabilities;
@@ -53,11 +54,17 @@ public class ExtendedProtocol extends BasicProtocol {
 	public static final String GET_ALL_SELECT_PORT_LABELS = "gASL";
 
 	protected Map<String, PortGroup> groupCache = new HashMap<String, PortGroup>();
-	
+	protected CustomPortResolver customPortResolver;
+
 	public ExtendedProtocol(IDevice device) {
 		super(device);
 	}
-	
+
+	public ExtendedProtocol(IDevice device, CustomPortResolver customPortResolver) {
+		super(device);
+		this.customPortResolver = customPortResolver;
+	}
+
 	@Override
 	public String getMagic() {
 		return MAGIC;
@@ -80,9 +87,16 @@ public class ExtendedProtocol extends BasicProtocol {
 		parseExtendedPortInfo(port, channel, message);
 	}
 
-	protected void parseExtendedPortInfo(Port port, int channel, Message message)
-			throws ProtocolException, TimeoutException, InterruptedException,
-			DisconnectedException, DeviceException {
+	/** Can replace the port with a custom port if the extended port info specifies it.
+	 *
+	 * @param port
+	 * @param channel
+	 * @param message
+	 * @return
+	 * @throws ProtocolException
+	 */
+	protected Port parseExtendedPortInfo(Port port, int channel, Message message)
+			throws ProtocolException {
 		final int PREFIX = 0;
 		final int PORT_ID = 1;
 		final int INFO = 2;
@@ -98,6 +112,11 @@ public class ExtendedProtocol extends BasicProtocol {
 		// info is optional
 		if (parts.length > INFO)
 			port.setExtendedPortInfo(parts[INFO]);
+
+		if (customPortResolver != null && port instanceof CustomPort)
+			return customPortResolver.resolve((CustomPort)port);
+		else
+			return port;
 	}
 
 	@Override
@@ -373,7 +392,7 @@ public class ExtendedProtocol extends BasicProtocol {
 				Port port = parsePortInfo(message);
 				// the second message is the extended port info
 				message = expect(channel, DEFAULT_TIMEOUT, ExpectationMode.IGNORE_REFRESHES);
-				parseExtendedPortInfo(port, channel, message);
+				port = parseExtendedPortInfo(port, channel, message);
 				
 				counter++;
 				

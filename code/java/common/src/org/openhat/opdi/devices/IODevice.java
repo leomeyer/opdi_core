@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeoutException;
 
+import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IDeviceListener;
 import org.openhat.opdi.interfaces.IProtocol;
@@ -144,7 +145,7 @@ public abstract class IODevice extends MessageQueueDevice {
 	}
 	
 	@Override
-	public void connect(IDeviceListener listener) {
+	public void connect(IDeviceListener listener, IBasicProtocol.CustomPortResolver customPortResolver) {
 		if (isConnected()) return;
 		// connection attempt in progress?
 		if (isConnecting()) {
@@ -237,7 +238,7 @@ public abstract class IODevice extends MessageQueueDevice {
 			public void receivedError(IDevice device, String text) {
 				outerListener.receivedError(device, text);
 			}
-		});
+		}, customPortResolver);
 		connThread.start();
 	}
 	
@@ -336,8 +337,7 @@ public abstract class IODevice extends MessageQueueDevice {
 	 * 
 	 * @return
 	 * @throws TimeoutException 
-	 * @throws AbortedException 
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 * @throws IOException 
 	 * @throws ProtocolException 
 	 * @throws DisconnectedException 
@@ -346,7 +346,7 @@ public abstract class IODevice extends MessageQueueDevice {
 	 * @throws AuthenticationException 
 	 * @throws MessageException 
 	 */
-	protected IProtocol handshake(ICredentialsCallback credCallback) throws IOException, InterruptedException, TimeoutException, ProtocolException, DisconnectedException, DeviceException, CancelledException, AuthenticationException, MessageException {
+	protected IProtocol handshake(ICredentialsCallback credCallback, IBasicProtocol.CustomPortResolver customPortResolver) throws IOException, InterruptedException, TimeoutException, ProtocolException, DisconnectedException, DeviceException, CancelledException, AuthenticationException, MessageException {
 
 		String supportedEncryptions = (this.tryToUseEncryption() ? Strings.join(',', Encryption.AES.toString()) : "");
 		// send handshake message
@@ -441,7 +441,7 @@ public abstract class IODevice extends MessageQueueDevice {
 		IProtocol prot = null;		
 		// try each protocol indicator (preferred protocols should come first)
 		for (String proto: protos) {
-			IProtocol protocol = ProtocolFactory.getProtocol(this, proto);
+			IProtocol protocol = ProtocolFactory.getProtocol(this, proto, customPortResolver);
 			if (protocol != null) {
 				prot = protocol;
 				break;
@@ -577,12 +577,14 @@ public abstract class IODevice extends MessageQueueDevice {
      * used for this device.
      */
 	class ConnectThread extends Thread {
-		
+
 		IDeviceListener csListener;
+		IBasicProtocol.CustomPortResolver customPortResolver;
 		boolean aborted;
         boolean done;
 		
-		ConnectThread(IDeviceListener csListener) {
+		ConnectThread(IDeviceListener csListener, IBasicProtocol.CustomPortResolver customPortResolver) {
+			this.customPortResolver = customPortResolver;
 			this.csListener = csListener;
 		}
 		
@@ -601,13 +603,8 @@ public abstract class IODevice extends MessageQueueDevice {
 					}
 					
 					// get the protocol
-					protocol = handshake(new ICredentialsCallback() {
-						// wrap the listener into an ICredentialsCallback
-						@Override
-						public boolean getCredentials(String[] namePassword, Boolean[] save) {
-							return csListener.getCredentials(IODevice.this, namePassword, save);
-						}
-					});
+					// wrap the listener into an ICredentialsCallback
+					protocol = handshake((namePassword, save) -> csListener.getCredentials(IODevice.this, namePassword, save), customPortResolver);
 					
 					if (protocol == null)
 						throw new DisagreementException();
