@@ -11,6 +11,7 @@
 
 // Common string functions
 
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "opdi_constants.h"
@@ -60,6 +61,7 @@ uint8_t strings_split(const char *str, char separator, const char **parts, uint8
 		}
 		sPos++;
 	}
+	dPtr[dPos] = '\0';
 
 	if (trim)
 		// trim the ends of each part
