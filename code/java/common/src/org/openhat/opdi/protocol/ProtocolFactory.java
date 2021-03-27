@@ -13,6 +13,7 @@ package org.openhat.opdi.protocol;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 
+import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IProtocol;
 
@@ -49,7 +50,7 @@ public final class ProtocolFactory {
 		}
 	}
 	
-	public static IProtocol getProtocol(IDevice device, String magic) {
+	public static IProtocol getProtocol(IDevice device, String magic, IBasicProtocol.CustomPortResolver customPortResolver) {
 		
 		Class<? extends IProtocol> clazz = null;
 		synchronized(registeredProtocols) {
@@ -58,12 +59,21 @@ public final class ProtocolFactory {
 		if (clazz != null) {
 			// matching class found; get constructor
 			try {
-				Constructor<? extends IProtocol> cons = clazz.getConstructor(IDevice.class);
-				if (cons == null)
-					throw new IllegalArgumentException("Constructor with parameter IDevice not found");
-				
-				// instantiate it
-				return cons.newInstance(device);
+				if (customPortResolver != null) {
+					Constructor<? extends IProtocol> cons = clazz.getConstructor(IDevice.class, IBasicProtocol.CustomPortResolver.class);
+					if (cons == null)
+						throw new IllegalArgumentException("Constructor with parameters IDevice and CustomPortResolver not found");
+
+					// instantiate it
+					return cons.newInstance(device, customPortResolver);
+				} else {
+					Constructor<? extends IProtocol> cons = clazz.getConstructor(IDevice.class);
+					if (cons == null)
+						throw new IllegalArgumentException("Constructor with parameter IDevice not found");
+
+					// instantiate it
+					return cons.newInstance(device);
+				}
 			} catch (Exception e) {
 				throw new IllegalArgumentException("Class " + clazz.getName() + " can't be used as protocol implementation", e);
 			}

@@ -92,7 +92,7 @@ public interface IDevice {
 	 *  Has no effect if the device is already connected.
 	 * @param csListener
 	 */
-	public void connect(IDeviceListener csListener);
+	public void connect(IDeviceListener csListener, IBasicProtocol.CustomPortResolver customPortResolver);
 	
 	/** Abort a connection attempt.
 	 * If no connection attempt is running, this has no effect.

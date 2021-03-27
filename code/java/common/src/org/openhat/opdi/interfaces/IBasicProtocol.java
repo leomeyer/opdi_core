@@ -15,6 +15,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.ports.AnalogPort;
+import org.openhat.opdi.ports.CustomPort;
 import org.openhat.opdi.ports.DialPort;
 import org.openhat.opdi.ports.DigitalPort;
 import org.openhat.opdi.ports.SelectPort;
@@ -32,7 +33,13 @@ import org.openhat.opdi.protocol.ProtocolException;
  *
  */
 public interface IBasicProtocol {
-	
+
+	/** Can be used to replace a generic CustomPort with a specific implementation.
+	 */
+	public interface CustomPortResolver {
+		public CustomPort resolve(CustomPort port);
+	}
+
 	/** Initiates the protocol. This may include starting a ping thread.
 	 * 
 	 */
@@ -80,8 +87,7 @@ public interface IBasicProtocol {
 	 * @throws DeviceException
 	 * @throws ProtocolException
 	 * @throws PortErrorException 
-	 * @throws PortAccessDeniedException 
-	 * @throws AbortedException
+	 * @throws PortAccessDeniedException
 	 */
 	public void setPortMode(DigitalPort digitalPort, DigitalPort.PortMode mode) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException;;
 
@@ -96,8 +102,7 @@ public interface IBasicProtocol {
 	 * @throws DeviceException
 	 * @throws ProtocolException
 	 * @throws PortErrorException 
-	 * @throws PortAccessDeniedException 
-	 * @throws AbortedException
+	 * @throws PortAccessDeniedException
 	 */
 	public void setPortLine(DigitalPort digitalPort, DigitalPort.PortLine line) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException;;
 	
@@ -111,8 +116,7 @@ public interface IBasicProtocol {
 	 * @throws DeviceException
 	 * @throws ProtocolException
 	 * @throws PortErrorException 
-	 * @throws PortAccessDeniedException 
-	 * @throws AbortedException
+	 * @throws PortAccessDeniedException
 	 */
 	public int getPortState(DigitalPort digitalPort) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException;;
 
@@ -126,8 +130,7 @@ public interface IBasicProtocol {
 	 * @throws DeviceException
 	 * @throws ProtocolException
 	 * @throws PortErrorException 
-	 * @throws PortAccessDeniedException 
-	 * @throws AbortedException
+	 * @throws PortAccessDeniedException
 	 */
 	public int getPortState(AnalogPort analogPort) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException;;
 
@@ -142,8 +145,7 @@ public interface IBasicProtocol {
 	 * @throws DeviceException
 	 * @throws ProtocolException
 	 * @throws PortErrorException 
-	 * @throws PortAccessDeniedException 
-	 * @throws AbortedException
+	 * @throws PortAccessDeniedException
 	 */
 	public void setPortMode(AnalogPort analogPort, AnalogPort.PortMode mode) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException;;
 
@@ -159,8 +161,7 @@ public interface IBasicProtocol {
 	 * @throws DeviceException
 	 * @throws ProtocolException
 	 * @throws PortErrorException 
-	 * @throws PortAccessDeniedException 
-	 * @throws AbortedException
+	 * @throws PortAccessDeniedException
 	 */
 	public void setPortValue(AnalogPort analogPort, int value) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException;;
 
@@ -175,8 +176,7 @@ public interface IBasicProtocol {
 	 * @throws DeviceException
 	 * @throws ProtocolException
 	 * @throws PortErrorException 
-	 * @throws PortAccessDeniedException 
-	 * @throws AbortedException
+	 * @throws PortAccessDeniedException
 	 */
 	public void setPortResolution(AnalogPort analogPort, AnalogPort.Resolution resolution) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException;
 
@@ -191,8 +191,7 @@ public interface IBasicProtocol {
 	 * @throws DeviceException
 	 * @throws ProtocolException
 	 * @throws PortErrorException 
-	 * @throws PortAccessDeniedException 
-	 * @throws AbortedException
+	 * @throws PortAccessDeniedException
 	 */
 	public void setPortReference(AnalogPort analogPort, AnalogPort.Reference reference) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException;
 
@@ -238,7 +237,6 @@ public interface IBasicProtocol {
 	public int getPosition(SelectPort selectPort) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException;
 
 	/** Sets the current position setting of a select port to the given value.
-	 * Returns the current setting.
 	 * @param selectPort
 	 * @return
 	 * @throws TimeoutException
@@ -268,7 +266,6 @@ public interface IBasicProtocol {
 			ProtocolException, PortAccessDeniedException, PortErrorException;
 	
 	/** Sets the current position setting of a dial port to the given value.
-	 * Returns the current setting.
 	 * @param port
 	 * @param pos
 	 * @return
@@ -281,6 +278,38 @@ public interface IBasicProtocol {
 	 * @throws PortAccessDeniedException 
 	 */
 	public void setPosition(DialPort port, long pos) throws TimeoutException,
+			InterruptedException, DisconnectedException, DeviceException,
+			ProtocolException, PortAccessDeniedException, PortErrorException;
+
+	/**
+	 * Gets the current value of a custom port.
+	 * @param port
+	 * @return
+	 * @throws TimeoutException
+	 * @throws InterruptedException
+	 * @throws DisconnectedException
+	 * @throws DeviceException
+	 * @throws ProtocolException
+	 * @throws PortAccessDeniedException
+	 * @throws PortErrorException
+	 */
+	public int getValue(CustomPort port) throws TimeoutException,
+			InterruptedException, DisconnectedException, DeviceException,
+			ProtocolException, PortAccessDeniedException, PortErrorException;
+
+	/** Sets the current value of a custom port.
+	 *
+	 * @param port
+	 * @param value
+	 * @throws TimeoutException
+	 * @throws InterruptedException
+	 * @throws DisconnectedException
+	 * @throws DeviceException
+	 * @throws ProtocolException
+	 * @throws PortAccessDeniedException
+	 * @throws PortErrorException
+	 */
+	public void setValue(CustomPort port, String value) throws TimeoutException,
 			InterruptedException, DisconnectedException, DeviceException,
 			ProtocolException, PortAccessDeniedException, PortErrorException;
 	

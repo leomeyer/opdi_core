@@ -39,6 +39,10 @@ public abstract class Port {
 		ANALOG,
 		/** A select port. */
 		SELECT,
+		/** A Dial port. */
+		DIAL,
+		/** A custom port. */
+		CUSTOM,
 		/** A USART. */
 		STREAMING,
 		/** Another port type. */
