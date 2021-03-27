@@ -664,7 +664,7 @@ public class BasicProtocol extends AbstractProtocol implements IBasicProtocol {
 			DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException {
 		// send request
 		int channel = getSynchronousChannel(false);
-		send(new Message(channel, Strings.join(SEPARATOR, SET_DIAL_PORT_POSITION, port.getID(), value)));
+		send(new Message(channel, Strings.join(SEPARATOR, SET_CUSTOM_PORT_STATE, port.getID(), value)));
 
 		expectCustomPortValue(port, channel);
 	}

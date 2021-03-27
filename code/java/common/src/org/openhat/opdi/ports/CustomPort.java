@@ -10,6 +10,7 @@
 
 package org.openhat.opdi.ports;
 
+import org.openhat.androPDI.ports.ColoredLampPort;
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.protocol.BasicProtocol;
@@ -35,6 +36,10 @@ public class CustomPort extends Port {
 
 	protected String value;
 	protected boolean valueUnknown = true;
+
+	protected CustomPort(Port other) {
+		super(other);
+	}
 
 	protected CustomPort(String id, String name) {
 		super(null, id, name, PortType.CUSTOM, PortDirCaps.BIDIRECTIONAL);
@@ -116,5 +121,13 @@ public class CustomPort extends Port {
 	@Override	
 	public boolean isReadonly() {
 		return (flags & PORTFLAG_READONLY) == PORTFLAG_READONLY;
+	}
+
+	@Override
+	public void transferPropertiesFrom(Port other) {
+		if (!(other instanceof CustomPort))
+			throw new IllegalArgumentException("Can only transfer properties from another CustomPort, other was: " + other.getClass().toString());
+		super.transferPropertiesFrom(other);
+		this.value = ((CustomPort)other).value;
 	}
 }

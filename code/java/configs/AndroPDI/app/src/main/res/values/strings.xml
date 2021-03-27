@@ -230,5 +230,7 @@
     
     <string name="energy_WhPerTime">energy_Wh_in_kWh_per_time=0</string>
     <string name="energy_Wh_in_kWh_per_time">layout=dial_port_row_noslider;icon=powermeter;label=Electric energy rate;formatString=%.3f kWh;denominator=1000</string>
-    
+    <string name="coloredlamp_toggle">Toggle</string>
+    <string name="coloredlamp_selectcolor">Select color</string>
+
 </resources>

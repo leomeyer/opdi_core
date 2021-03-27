@@ -41,6 +41,7 @@ dependencies {
     implementation 'joda-time:joda-time:2.10.10'
     implementation files('libs\\zxingjar-1.1.jar')
     implementation 'com.thoughtworks.xstream:xstream:1.4.16'
+    implementation 'com.rarepebble:colorpicker:3.0.1'
 
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

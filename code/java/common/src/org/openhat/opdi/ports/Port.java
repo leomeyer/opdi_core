@@ -30,7 +30,7 @@ import org.openhat.opdi.utils.Strings;
  *
  */
 public abstract class Port {
-	
+
 	/** Defines different types of ports. */
 	public enum PortType {
 		/** A digital port with two states (low and high). */
@@ -67,7 +67,6 @@ public abstract class Port {
 	protected PortType type;
 	protected PortDirCaps dirCaps;
 	protected int flags;
-	protected Object viewAdapter;
 	protected boolean hasError;
 	protected String errorMessage;
 	
@@ -81,8 +80,11 @@ public abstract class Port {
 	protected Map<String, String> extendedInfoProperties = new HashMap<String, String>(); 
 	protected Map<String, String> extendedStateProperties = new HashMap<String, String>();
 
-	protected boolean refreshing; 
+	protected boolean refreshing;
 
+	protected Port(Port other) {
+		transferPropertiesFrom(other);
+	}
 	/** Only to be used by subclasses
 	 * 
 	 * @param protocol
@@ -91,13 +93,30 @@ public abstract class Port {
 	 * @param type
 	 */
 	protected Port(IBasicProtocol protocol, String id, String name, PortType type, PortDirCaps dirCaps) {
-		super();
 		this.protocol = protocol;
 		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.dirCaps = dirCaps;
-	}	
+	}
+
+	protected void transferPropertiesFrom(Port other) {
+		this.protocol = other.protocol;
+		this.id = other.id;
+		this.name = other.name;
+		this.type = other.type;
+		this.dirCaps = other.dirCaps;
+		this.flags = other.flags;
+		this.hasError = other.hasError;
+		this.errorMessage = other.errorMessage;
+		this.unit = other.unit;
+		this.unitFormat = other.unitFormat;
+		this.colorScheme = other.colorScheme;
+		this.group = other.group;
+		this.extendedInfoProperties = other.extendedInfoProperties;
+		this.extendedStateProperties = other.extendedStateProperties;
+		this.refreshing = other.refreshing;
+	}
 
 	public synchronized boolean hasError() {
 		return hasError;
@@ -213,22 +232,6 @@ public abstract class Port {
 	@Override
 	public String toString() {
 		return "Port id=" + getID() + "; name='" + getName() + "'; type=" + getType() + "; dir_caps=" + getDirCaps();
-	}
-
-	/** Stores an arbitrary view object.
-	 * 
-	 * @param viewAdapter
-	 */
-	public void setViewAdapter(Object viewAdapter) {
-		this.viewAdapter = viewAdapter;
-	}
-
-	/** Returns a stored view object.
-	 * 
-	 * @return
-	 */
-	public Object getViewAdapter() {
-		return viewAdapter;
 	}
 
 	/** Fetches the state of the port from the device.

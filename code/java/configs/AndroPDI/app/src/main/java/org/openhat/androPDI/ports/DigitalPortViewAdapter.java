@@ -64,23 +64,22 @@ class DigitalPortViewAdapter implements IPortViewAdapter {
 	}
 
 	public View getView(View convertView) {
-		View cachedView;
+		View view;
 		if (convertView == null) {
-			
 			LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			// get layout property from UnitFormat definition
 			String layoutName = dPort.getUnitFormat().getProperty("layout", "digital_port_row");
 			// get layout identifier
 			int layoutID = context.getResources().getIdentifier(layoutName, "layout", context.getPackageName());
 			// inflate the identified layout
-			cachedView = vi.inflate(layoutID, null);
+			view = vi.inflate(layoutID, null);
 		} else
-			cachedView = convertView;
+			view = convertView;
 		
-        tvToptext = (TextView) cachedView.findViewById(R.id.toptext);
-        tvBottomtext = (TextView) cachedView.findViewById(R.id.bottomtext);
-        ivPortIcon = (ImageView) cachedView.findViewById(R.id.port_icon);
-        ivStateIcon = (ImageView) cachedView.findViewById(R.id.state_icon);
+        tvToptext = (TextView) view.findViewById(R.id.toptext);
+        tvBottomtext = (TextView) view.findViewById(R.id.bottomtext);
+        ivPortIcon = (ImageView) view.findViewById(R.id.port_icon);
+        ivStateIcon = (ImageView) view.findViewById(R.id.state_icon);
 
         if (tvToptext != null) tvToptext.setText(dPort.getName());
 
@@ -99,7 +98,7 @@ class DigitalPortViewAdapter implements IPortViewAdapter {
 			}
 		});
         
-        return cachedView;
+        return view;
 	}
 	
 	void openMenu(int menu) {
@@ -169,8 +168,8 @@ class DigitalPortViewAdapter implements IPortViewAdapter {
 		if (stateError) {
 			if (ivPortIcon != null) ivPortIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.digital_port_error));
 			if (ivPortIcon != null) ivPortIcon.setOnClickListener(null);
-			if (ivPortIcon != null) ivStateIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.led_yellow));
-			if (ivPortIcon != null) ivStateIcon.setOnClickListener(null);
+			if (ivStateIcon != null) ivStateIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.led_yellow));
+			if (ivStateIcon != null) ivStateIcon.setOnClickListener(null);
 			if (tvBottomtext != null) tvBottomtext.setText(dPort.getErrorMessage());
     		return;
 		}
@@ -226,6 +225,7 @@ class DigitalPortViewAdapter implements IPortViewAdapter {
         	case UNKNOWN:
         		// TODO icon for UNKNOWN
         		stateIcon = context.getResources().getDrawable(R.drawable.switch_off);
+        		break;
         	case LOW: 
         		stateIcon = context.getResources().getDrawable(R.drawable.switch_off);
         		if (ivStateIcon != null)

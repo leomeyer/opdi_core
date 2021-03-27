@@ -10,12 +10,9 @@
 
 package org.openhat.androPDI;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.HashSet;
@@ -30,10 +27,12 @@ import org.openhat.androPDI.bluetooth.BluetoothDevice;
 import org.openhat.androPDI.bluetooth.EditBluetoothDevice;
 import org.openhat.androPDI.gui.LoggingActivity;
 import org.openhat.androPDI.ports.ShowDevicePorts;
+import org.openhat.androPDI.ports.ikea.TradfriColoredLamp;
 import org.openhat.androPDI.tcpip.AddTCPIPDevice;
 import org.openhat.androPDI.tcpip.EditTCPIPDevice;
 import org.openhat.androPDI.tcpip.TCPIPDevice;
 import org.openhat.androPDI.utils.ResourceFactory;
+import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
 
@@ -49,7 +48,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -57,9 +55,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -91,6 +86,16 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 			add(Charset.forName("ISO-8859-11"));
 			add(Charset.forName("UTF8"));		
 		}
+	};
+
+	private static String IKEA_COLOREDLAMP_GUID = "294404cd-79ee-44b0-9d53-4dbd1e03aeda";
+
+	IBasicProtocol.CustomPortResolver customPortResolver = port -> {
+		String typeGUID = port.getExtendedInfo("typeGUID", "");
+		if (typeGUID.equals(IKEA_COLOREDLAMP_GUID)) {
+			return new TradfriColoredLamp(port);
+		}
+		return port;
 	};
 
     public static final int ADD_BLUETOOTH_DEVICE = 1;
@@ -166,43 +171,37 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
         lvDevices = (ListView)findViewById(R.id.lvDevices);
         lvDevices.setAdapter(deviceAdapter);
         // set device click listener
-        lvDevices.setOnItemClickListener(new OnItemClickListener() {
-        	@Override
-        	public void onItemClick(AdapterView<?> av, View view, int position, long id) {
-        		// wrong device index
-        		if (position >= deviceManager.getDevices().size()) return;
-        		// special management list item?
-        		if (deviceManager.getDevices().get(position) == null)
-        			// open device management menu
-        			openDeviceManagement();
-        		else {
-        			// device has been selected
-    				final AndroPDIDevice selDevice = deviceManager.getDevices().get(position);
-        			if (selDevice.isConnected())
-        				// show capabilities for connected device
-        				showDevicePorts(selDevice);
-        			else if (selDevice.getStatus() != DeviceStatus.CONNECTING) {
-        				// not connected
-        				connectToDevice(selDevice, false);
-        			}
-        		}
-        	}
+        lvDevices.setOnItemClickListener((av, view, position, id) -> {
+			// wrong device index
+			if (position >= deviceManager.getDevices().size()) return;
+			// special management list item?
+			if (deviceManager.getDevices().get(position) == null)
+				// open device management menu
+				openDeviceManagement();
+			else {
+				// device has been selected
+				final AndroPDIDevice selDevice = deviceManager.getDevices().get(position);
+				if (selDevice.isConnected())
+					// show capabilities for connected device
+					showDevicePorts(selDevice);
+				else if (selDevice.getStatus() != DeviceStatus.CONNECTING) {
+					// not connected
+					connectToDevice(selDevice, false);
+				}
+			}
 		});
         // set device long click listener
-        lvDevices.setOnItemLongClickListener(new OnItemLongClickListener() {
-        	@Override
-        	public boolean onItemLongClick(AdapterView<?> av, View view, int position, long id) {
-        		// wrong device index
-        		if (position >= deviceManager.getDevices().size()) return false;
-        		// special management list item?
-        		if (deviceManager.getDevices().get(position) == null)
-        			// no menu for this item
-        			return false;
-        		else
-        			// device has been selected
-        			openDeviceMenu(deviceManager.getDevices().get(position));
-        		return true;
-        	}
+        lvDevices.setOnItemLongClickListener((av, view, position, id) -> {
+			// wrong device index
+			if (position >= deviceManager.getDevices().size()) return false;
+			// special management list item?
+			if (deviceManager.getDevices().get(position) == null)
+				// no menu for this item
+				return false;
+			else
+				// device has been selected
+				openDeviceMenu(deviceManager.getDevices().get(position));
+			return true;
 		});
         
         // started from shortcut?
@@ -245,12 +244,7 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 	        .setIcon(android.R.drawable.ic_dialog_alert)
 	        .setTitle(R.string.connect_device)
 	        .setMessage(message)
-	        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-	            @Override
-	            public void onClick(DialogInterface dialog, int which) {
-	            	AndroPDI.this.connectSelectedDevice();
-	            }
-	        })
+	        .setPositiveButton(R.string.yes, (dialog, which) -> AndroPDI.this.connectSelectedDevice())
 	        .setNegativeButton(R.string.no, null)
 	        .show();
 		}
@@ -495,7 +489,7 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 	}
 
 	private synchronized void connectAllDevices() {
-		deviceManager.connectAllDevices(this, null);
+		deviceManager.connectAllDevices(this, customPortResolver);
 	}
 
 	private void abortConnectSelectedDevice() {
@@ -569,7 +563,7 @@ public class AndroPDI extends LoggingActivity implements DeviceManager.IDeviceSt
 		if (!selectedDevice.prepare())
 			return;
 		
-		deviceManager.connect(selectedDevice, this, null);
+		deviceManager.connect(selectedDevice, this, customPortResolver);
 	}
 	
 	private void editSelectedDevice() {

@@ -10,6 +10,7 @@
 
 package org.openhat.androPDI.ports;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -21,21 +22,26 @@ import org.openhat.androPDI.DeviceManager;
 import org.openhat.androPDI.R;
 import org.openhat.androPDI.gui.LoggingActivity;
 import org.openhat.androPDI.portdetails.ShowPortDetails;
+import org.openhat.androPDI.units.Units;
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IDeviceCapabilities;
 import org.openhat.opdi.interfaces.IDeviceListener;
 import org.openhat.opdi.interfaces.IProtocol;
+import org.openhat.opdi.ports.AnalogPort;
+import org.openhat.opdi.ports.CustomPort;
+import org.openhat.opdi.ports.DialPort;
+import org.openhat.opdi.ports.DigitalPort;
 import org.openhat.opdi.ports.Port;
 import org.openhat.opdi.ports.Port.PortType;
 import org.openhat.opdi.ports.PortGroup;
+import org.openhat.opdi.ports.SelectPort;
 import org.openhat.opdi.ports.StreamingPort;
 import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.ProtocolException;
 
-import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -46,6 +52,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -64,12 +71,118 @@ public class ShowDevicePorts extends LoggingActivity implements IDeviceListener 
 
 	private static final int COLOR_DEFAULT = Color.BLUE;
 	private static final int COLOR_ERROR = Color.RED;
+
+	class PortListAdapter extends ArrayAdapter<Port> {
+
+		private List<Port> items;
+
+		public PortListAdapter(int textViewResourceId, List<Port> items) {
+			super(ShowDevicePorts.this, textViewResourceId, items);
+			this.items = items;
+		}
+
+		// ListView optimization support
+		// Note: Dealing with proper view types (i. e. one view type per port type) yields strange problems.
+		// Dial ports won't update their labels on converted views even though the updateState method should run.
+		// This method disables the ListView optimization and uses one view per port. However, this should
+		// not be a problem because we're not dealing with hundreds or thousands of ports, anyway.
+
+		@Override
+		public int getViewTypeCount() {
+			// return PortType.values().length;
+			return items.size();
+		}
+
+		@Override
+		public int getItemViewType(int position) {
+			// return items.get(position).getType().ordinal();
+			return position;
+		}
+
+		// end of ListView optimization support
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+
+			View result = null;		// do not reuse convert views because their types probably don't match!
+
+			IPortViewAdapter adapter = null;
+			if (result == null) {
+				Port port = items.get(position);
+
+				// does the port have a view adapter assigned?
+				if (portAdapters.containsKey(port.getID())) {
+					// assume it is already configured
+					return portAdapters.get(port.getID()).getView(convertView);
+				} else {
+
+					// to display the port correctly, set its default unit
+					// this will also influence the layout to use for the port
+					port.setUnitFormat(Units.getDefaultFormat(ShowDevicePorts.this, port.getUnit()));
+				}
+
+				if (port instanceof DigitalPort) {
+					adapter = new DigitalPortViewAdapter(ShowDevicePorts.this);
+				}
+				else if (port instanceof AnalogPort) {
+					adapter = new AnalogPortViewAdapter(ShowDevicePorts.this);
+				}
+				else if (port instanceof SelectPort) {
+					adapter = new SelectPortViewAdapter(ShowDevicePorts.this);
+				}
+				else if (port instanceof DialPort) {
+					adapter = new DialPortViewAdapter(ShowDevicePorts.this);
+				}
+				else if (port instanceof StreamingPort) {
+					adapter = new StreamingPortViewAdapter(ShowDevicePorts.this);
+				}
+				else if (port instanceof CustomViewPort) {
+					adapter = ((CustomViewPort)port).getViewAdapter(ShowDevicePorts.this);
+				}
+				else if (port instanceof CustomPort) {
+					adapter = new CustomPortViewAdapter(ShowDevicePorts.this);
+				}
+
+				if (adapter != null) {
+					// configure the port adapter
+					adapter.configure(port, ShowDevicePorts.this);
+
+					// get the adapter view
+					if (result == null) {
+						result = adapter.getView(convertView);
+					}
+				}
+				else {
+					// no matching adapter found - create a simple default view
+					if (result == null) {
+						LayoutInflater vi = (LayoutInflater)ShowDevicePorts.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+						result = vi.inflate(R.layout.default_port_row, null);
+					}
+
+					TextView tt = result.findViewById(R.id.toptext);
+					TextView bt = result.findViewById(R.id.bottomtext);
+					if (tt != null) {
+						tt.setText(port.getName());
+					}
+					if (bt != null){
+						bt.setText(port.getType() + " " + port.getDirCaps());
+					}
+				}
+				// remember port adapter
+				portAdapters.put(port.getID(), adapter);
+			}
+
+			result.setBackgroundColor(Color.TRANSPARENT);
+			return result;
+		}
+	}
 	
 	private ShowDevicePorts instance;
 	private ProgressBar mProgress;
     private AndroPDIDevice device;
     ListView ports_listview;
     private List<Port> portList;
+    public HashMap<String, IPortViewAdapter> portAdapters = new HashMap<>();
     private PortListAdapter portListAdapter;
     PortAndAdapter portAndAdapter;
 
@@ -144,19 +257,15 @@ public class ShowDevicePorts extends LoggingActivity implements IDeviceListener 
 		@Override
 		void perform() throws TimeoutException, ProtocolException, DeviceException, InterruptedException, DisconnectedException {
             IProtocol protocol = device.getProtocol();
-            final IDeviceCapabilities dc;
-            
-        	// query device capabilities
-			dc = protocol.getDeviceCapabilities();
-				
-	        // get the state of all ports
-            // this avoids too much flickering of the GUI
-	        for (Port port: dc.getPorts()) {
-				// clear previous view adapter
-				port.setViewAdapter(null);
-	        }
 
+			// clear previous view adapters
+			// this avoids too much flickering of the GUI
+			portAdapters.clear();
+
+			final IDeviceCapabilities dc = protocol.getDeviceCapabilities();
+			// get the state of all ports
 			try {
+				// query device capabilities
 				dc.getPortStates();
 			} catch (PortAccessDeniedException e) {
 			}
@@ -210,7 +319,7 @@ public class ShowDevicePorts extends LoggingActivity implements IDeviceListener 
 			    	});
 
 			    	portList = dc.getPorts(currentGroup);
-			        portListAdapter = new PortListAdapter(ShowDevicePorts.this, ShowDevicePorts.this, android.R.layout.simple_list_item_1, portList);
+			        portListAdapter = new PortListAdapter(android.R.layout.simple_list_item_1, portList);
 			        ports_listview.setAdapter(portListAdapter);
 				}
             });
@@ -353,8 +462,8 @@ public class ShowDevicePorts extends LoggingActivity implements IDeviceListener 
         		else {
         			Port p = portList.get(position);
     				// show select port menu
-        			if (p.getViewAdapter() instanceof IPortViewAdapter)
-        				((IPortViewAdapter)p.getViewAdapter()).handleClick();
+					if (portAdapters.containsKey(p.getID()))
+        				portAdapters.get(p.getID()).handleClick();
         		}
 			}
 		});
@@ -538,11 +647,8 @@ public class ShowDevicePorts extends LoggingActivity implements IDeviceListener 
 		if (portIDs == null || portIDs.length == 0) {
 			// refresh all ports
 			try {
-				for (Port port: device.getProtocol().getDeviceCapabilities().getPorts()) {						
-					if (port.getViewAdapter() != null) {
-						IPortViewAdapter adapter = (IPortViewAdapter)port.getViewAdapter();
-						adapter.refresh();
-					}
+				for (IPortViewAdapter adapter: portAdapters.values()) {
+					adapter.refresh();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -552,10 +658,8 @@ public class ShowDevicePorts extends LoggingActivity implements IDeviceListener 
 			// refresh all specified ports
 			for (String portID: portIDs) {
 				try {
-					Port port = device.getProtocol().getDeviceCapabilities().findPortByID(portID);
-					if (port.getViewAdapter() != null) {
-						IPortViewAdapter adapter = (IPortViewAdapter)port.getViewAdapter();
-						adapter.refresh();
+					if (portAdapters.containsKey(portID)) {
+						portAdapters.get(portID).refresh();
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

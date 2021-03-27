@@ -22,7 +22,7 @@ import android.view.ContextMenu.ContextMenuInfo;
  * @author Leo
  *
  */
-interface IPortViewAdapter {
+public interface IPortViewAdapter {
 
 	/** Returns the view associated with the port.
 	 * @param convertView 

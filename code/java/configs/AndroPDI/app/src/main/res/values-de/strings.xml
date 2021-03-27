@@ -167,5 +167,7 @@
         <item>In einem Tag</item>
     </string-array>        
     <string name="install_device_shortcut">Shortcut installieren</string>
-	
-    </resources>
+    <string name="coloredlamp_toggle">Ein/Aus</string>
+    <string name="coloredlamp_selectcolor">Farbe wählen</string>
+
+</resources>
