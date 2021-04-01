@@ -14,6 +14,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -22,10 +23,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.rarepebble.colorpicker.ColorPickerView;
 
+import org.openhat.androPDI.AndroPDI;
 import org.openhat.androPDI.R;
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.ports.CustomPort;
@@ -55,17 +58,21 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 	Context context;
 
 	int menutype;
-	private Button btnColor;
-	private TextView tvBottomtext;
 	private ImageView ivPortIcon;
+	private Button btnColor;
 	private ImageView ivStateIcon;
+	private SeekBar sbSeek;
+	private TextView tvBottomtext;
+	boolean isSeekbarTracking;
+	boolean ignoreNextSet;
 
 	protected T port;
 
 	// view state values
 	protected boolean stateError;
-	protected LampState state;
-	protected int color;
+	protected LampState state = LampState.UNKNOWN;
+	protected int color = -1;
+	protected int brightness = -1;
 
 	public ColoredLampViewAdapter(T port, ShowDevicePorts showDevicePorts) {
 		this.port = port;
@@ -82,6 +89,7 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 			view = convertView;
 		
         btnColor = view.findViewById(R.id.btn_color);
+		sbSeek = view.findViewById(R.id.seekBar);
         tvBottomtext = (TextView) view.findViewById(R.id.bottomtext);
         ivPortIcon = (ImageView) view.findViewById(R.id.port_icon);
         ivStateIcon = (ImageView) view.findViewById(R.id.state_icon);
@@ -194,6 +202,8 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 			btnColor.setBackgroundColor(Color.TRANSPARENT);
 			btnColor.setTextColor(Color.BLACK);
 			btnColor.setEnabled(false);
+			sbSeek.setEnabled(false);
+			sbSeek.setOnSeekBarChangeListener(null);
     		return;
 		}
 
@@ -280,11 +290,70 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 
 		// context menu when clicking
 		ivPortIcon.setOnClickListener(v -> handleClick());
+
+		//sbSeek.setOnSeekBarChangeListener(null);
+//		sbSeek.setMin(0);
+		sbSeek.setMax(255);
+		if (!isSeekbarTracking || ignoreNextSet) {
+			Log.d("androPDI", "Setting brightness to: " + brightness);
+			sbSeek.setProgress(brightness);
+		}
+		sbSeek.setEnabled(!port.isReadonly());
+
+		sbSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+			private void setValue(final int val) {
+				showDevicePorts.addPortAction(new PortAction(ColoredLampViewAdapter.this) {
+					@Override
+					void perform() {
+						try {
+							setBrightness(val);
+						} catch (PortAccessDeniedException e) {
+						}
+					}
+				});
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				try {
+					ignoreNextSet = true;
+					isSeekbarTracking = false;
+					setValue(seekBar.getProgress());
+				} catch (Exception e) {
+					showDevicePorts.showError(e.toString());
+				}
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				isSeekbarTracking = true;
+			}
+
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress,
+										  boolean fromUser) {
+				if (fromUser)
+					return;
+				if (ignoreNextSet) {
+					ignoreNextSet = false;
+					return;
+				}
+				try {
+					ignoreNextSet = true;
+					setValue(seekBar.getProgress());
+				} catch (Exception e) {
+					showDevicePorts.showError(e.toString());
+				}
+			}
+		});
 	}
 
 	protected abstract void switchOn() throws PortAccessDeniedException;
 
 	protected abstract void switchOff() throws PortAccessDeniedException;
+
+	protected abstract void setBrightness(int brightness) throws PortAccessDeniedException;
 
 	@Override
 	public void configure(Port port, Context context) {
@@ -329,7 +398,7 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 				});
 
 				item = menu.findItem(R.id.menuitem_coloredlamp_select_color);
-				item.setEnabled(canChange);
+				item.setEnabled(canChange && state == LampState.ON);
 				item.setOnMenuItemClickListener(item12 -> {
 					ColoredLampViewAdapter.this.pickColor();
 					return true;

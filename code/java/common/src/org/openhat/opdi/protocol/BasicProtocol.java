@@ -621,13 +621,13 @@ public class BasicProtocol extends AbstractProtocol implements IBasicProtocol {
 		expectDialPortPosition(port, channel);
 	}
 
-	protected void expectCustomPortValue(CustomPort port, int channel) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException {
+	protected void expectCustomPortValue(CustomPort port, int channel, boolean ignore) throws TimeoutException, InterruptedException, DisconnectedException, DeviceException, ProtocolException, PortAccessDeniedException, PortErrorException {
 		Message m = expect(channel, DEFAULT_TIMEOUT);
 
-		parseCustomPortValue(port, m);
+		parseCustomPortValue(port, m, ignore);
 	}
 
-	protected void parseCustomPortValue(CustomPort port, Message m)
+	protected void parseCustomPortValue(CustomPort port, Message m, boolean ignore)
 			throws ProtocolException {
 		final int PREFIX = 0;
 		final int ID = 1;
@@ -642,7 +642,8 @@ public class BasicProtocol extends AbstractProtocol implements IBasicProtocol {
 		if (!parts[ID].equals(port.getID()))
 			throw new ProtocolException("wrong port ID");
 
-		port.setPortValue(this, parts[VALUE]);
+		if (!ignore)
+			port.setPortValue(this, parts[VALUE]);
 	}
 
 	@Override
@@ -653,7 +654,7 @@ public class BasicProtocol extends AbstractProtocol implements IBasicProtocol {
 		int channel = getSynchronousChannel(port.isRefreshing());
 		send(new Message(channel, Strings.join(SEPARATOR, GET_CUSTOM_PORT_STATE, port.getID())));
 
-		expectCustomPortValue(port, channel);
+		expectCustomPortValue(port, channel, false);
 
 		return channel;
 	}
@@ -666,7 +667,7 @@ public class BasicProtocol extends AbstractProtocol implements IBasicProtocol {
 		int channel = getSynchronousChannel(false);
 		send(new Message(channel, Strings.join(SEPARATOR, SET_CUSTOM_PORT_STATE, port.getID(), value)));
 
-		expectCustomPortValue(port, channel);
+		expectCustomPortValue(port, channel, false);
 	}
 
 	@Override
