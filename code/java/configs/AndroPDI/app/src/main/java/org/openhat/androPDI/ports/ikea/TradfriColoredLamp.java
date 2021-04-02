@@ -34,7 +34,7 @@ public class TradfriColoredLamp extends ColoredLampPort  {
             float x = valX; // the given x value
             float y = valY; // the given y value
             float z = 1.0f - x - y;
-            float Y = (brightness / 254); // The given brightness value
+            float Y = 0.5f; //(brightness / 254); // The given brightness value
             float X = (Y / y) * x;
             float Z = (Y / y) * z;
             float red = X * 1.656492f - Y * 0.354851f - Z * 0.255038f;

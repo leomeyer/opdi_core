@@ -294,7 +294,7 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 		//sbSeek.setOnSeekBarChangeListener(null);
 //		sbSeek.setMin(0);
 		sbSeek.setMax(255);
-		if (!isSeekbarTracking || ignoreNextSet) {
+		if (!isSeekbarTracking && !ignoreNextSet) {
 			Log.d("androPDI", "Setting brightness to: " + brightness);
 			sbSeek.setProgress(brightness);
 		}
@@ -307,6 +307,7 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 					@Override
 					void perform() {
 						try {
+							ignoreNextSet = true;
 							setBrightness(val);
 						} catch (PortAccessDeniedException e) {
 						}
