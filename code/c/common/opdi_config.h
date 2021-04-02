@@ -209,7 +209,7 @@ extern uint8_t opdi_set_dial_port_position(opdi_Port *port, int64_t position);
 *   This function is typically provided by a configuration.
 *   Must return OPDI_STATUS_OK if everything is ok.
 */
-extern uint8_t opdi_get_custom_port_value(opdi_Port *port, char *value);
+extern uint8_t opdi_get_custom_port_value(opdi_Port *port, char *value, int maxlen);
 
 /** Sets the value of a custom port. 
 *   This function is typically provided by a configuration.
