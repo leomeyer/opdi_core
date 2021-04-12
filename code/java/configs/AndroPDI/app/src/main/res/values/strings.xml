@@ -178,7 +178,7 @@
     <string name="electricPower_10mW_in_W">layout=dial_port_row_noslider;icon=powermeter;label=Electric Power (W);formatString=%.2f W;denominator=100</string>
     
     <string name="electricEnergy_Wh">electricEnergy_Wh_in_kWh=0</string>
-    <string name="electricEnergy_Wh_in_kWh">layout=dial_port_row_noslider;icon=energymeter;formatString=%.3f Wh;denominator=10000000</string>
+    <string name="electricEnergy_Wh_in_kWh">layout=dial_port_row_noslider;icon=energymeter;formatString=%.3f kWh;denominator=1000</string>
 
     <string name="electricEnergy_100nWh">electricEnergy_100nWh_in_kWh=0</string>
     <string name="electricEnergy_100nWh_in_kWh">layout=dial_port_row_noslider;icon=energymeter;formatString=%.3f kWh;denominator=10000000</string>
