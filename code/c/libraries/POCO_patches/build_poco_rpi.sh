@@ -1,6 +1,6 @@
 
 # configure
-./configure --config=RaspberryPi --no-samples --no-tests --minimal
+./configure --config=RaspberryPi --static --no-samples --no-tests --minimal
 
 # build
 make -s
