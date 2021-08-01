@@ -10,12 +10,12 @@
 
 package org.openhat.opdi.ports;
 
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.ProtocolException;
+
+import java.util.concurrent.TimeoutException;
 
 
 /** This class serves as a factory for basic port objects.

@@ -10,10 +10,6 @@
 
 package org.openhat.opdi.ports;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.protocol.DisconnectedException;
@@ -21,6 +17,10 @@ import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.PortErrorException;
 import org.openhat.opdi.protocol.ProtocolException;
 import org.openhat.opdi.utils.Strings;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 
 /** Represents a select port on a device.

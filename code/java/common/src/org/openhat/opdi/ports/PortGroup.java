@@ -10,10 +10,10 @@
 
 package org.openhat.opdi.ports;
 
+import org.openhat.opdi.utils.Strings;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.openhat.opdi.utils.Strings;
 
 public class PortGroup {
 

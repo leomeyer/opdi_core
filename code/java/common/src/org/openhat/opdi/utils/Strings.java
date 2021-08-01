@@ -10,10 +10,10 @@
 
 package org.openhat.opdi.utils;
 
+import org.openhat.opdi.protocol.ProtocolException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import org.openhat.opdi.protocol.ProtocolException;
 
 
 public class Strings {

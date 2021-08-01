@@ -10,6 +10,17 @@
 
 package org.openhat.androPDI.tcpip;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.util.Log;
+import android.widget.Toast;
+
+import org.openhat.androPDI.AndroPDI;
+import org.openhat.androPDI.AndroPDIDevice;
+import org.openhat.androPDI.R;
+import org.openhat.androPDI.utils.ResourceFactory;
+import org.openhat.opdi.utils.Strings;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,17 +30,6 @@ import java.net.SocketAddress;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.Set;
-
-import org.openhat.androPDI.AndroPDI;
-import org.openhat.androPDI.AndroPDIDevice;
-import org.openhat.androPDI.utils.ResourceFactory;
-import org.openhat.opdi.utils.Strings;
-import org.openhat.androPDI.R;
-
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.util.Log;
-import android.widget.Toast;
 
 /** Implements IDevice for a TCP/IP device.
  * 

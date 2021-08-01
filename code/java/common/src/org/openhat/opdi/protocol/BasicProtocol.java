@@ -10,14 +10,6 @@
 
 package org.openhat.opdi.protocol;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.interfaces.IDevice;
@@ -33,6 +25,14 @@ import org.openhat.opdi.ports.PortFactory;
 import org.openhat.opdi.ports.SelectPort;
 import org.openhat.opdi.ports.StreamingPort;
 import org.openhat.opdi.utils.Strings;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.TimeoutException;
 
 /** This class implements the basic protocol for data exchange with a slave device.
  * The protocol is setup when a device is connected. It ends when the device becomes

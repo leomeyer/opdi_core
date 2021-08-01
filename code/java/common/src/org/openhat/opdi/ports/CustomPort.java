@@ -10,7 +10,6 @@
 
 package org.openhat.opdi.ports;
 
-import org.openhat.androPDI.ports.ColoredLampPort;
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.protocol.BasicProtocol;

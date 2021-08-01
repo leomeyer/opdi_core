@@ -10,14 +10,14 @@
 
 package org.openhat.androPDI.gui;
 
-import org.openhat.androPDI.DeviceManager;
-import org.openhat.androPDI.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import org.openhat.androPDI.DeviceManager;
+import org.openhat.androPDI.R;
 
 /** An activity that implements basic logging functionality.
  * Expects that onCreate methods load a view that contains a ScrollView svLog and a TextView svLog.

@@ -10,9 +10,9 @@
 
 package org.openhat.opdi.drivers;
 
-import java.util.Date;
-
 import org.openhat.opdi.interfaces.IDriver;
+
+import java.util.Date;
 
 /** Implements generic functions for drivers.
  * 

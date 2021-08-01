@@ -10,15 +10,6 @@
 
 package org.openhat.androPDI.portdetails;
 
-import org.openhat.androPDI.DeviceManager;
-import org.openhat.androPDI.AndroPDI;
-import org.openhat.opdi.interfaces.IBasicProtocol;
-import org.openhat.opdi.interfaces.IDeviceListener;
-import org.openhat.opdi.interfaces.IDevice;
-import org.openhat.opdi.ports.Port;
-import org.openhat.opdi.ports.StreamingPort;
-import org.openhat.androPDI.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +25,15 @@ import android.view.ViewStub;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.openhat.androPDI.AndroPDI;
+import org.openhat.androPDI.DeviceManager;
+import org.openhat.androPDI.R;
+import org.openhat.opdi.interfaces.IBasicProtocol;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDeviceListener;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.ports.StreamingPort;
 
 /** This class implements an activity to show a port's detail view.
 */

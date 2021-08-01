@@ -10,11 +10,6 @@
 
 package org.openhat.androPDI.bluetooth;
 
-import java.util.Locale;
-
-import org.openhat.androPDI.R;
-import org.openhat.androPDI.AndroPDI;
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -24,6 +19,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.openhat.androPDI.AndroPDI;
+import org.openhat.androPDI.R;
+
+import java.util.Locale;
 
 /** This class implements an activity to edit a Bluetooth device's settings. 
  * */

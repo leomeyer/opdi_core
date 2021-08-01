@@ -10,9 +10,6 @@
 
 package org.openhat.opdi.interfaces;
 
-import java.util.List;
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.ports.AnalogPort;
 import org.openhat.opdi.ports.CustomPort;
@@ -25,6 +22,9 @@ import org.openhat.opdi.protocol.Message;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.PortErrorException;
 import org.openhat.opdi.protocol.ProtocolException;
+
+import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 
 /** This interface specifies the basic protocol that must be supported by all devices.

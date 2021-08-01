@@ -10,13 +10,6 @@
 
 package org.openhat.androPDI.portdetails;
 
-import org.openhat.androPDI.AndroPDI;
-import org.openhat.androPDI.gui.Panel;
-import org.openhat.opdi.drivers.BMP085_Driver;
-import org.openhat.opdi.interfaces.IDriver;
-import org.openhat.opdi.ports.StreamingPort;
-import org.openhat.androPDI.R;
-
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -31,6 +24,13 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.TextView;
+
+import org.openhat.androPDI.AndroPDI;
+import org.openhat.androPDI.R;
+import org.openhat.androPDI.gui.Panel;
+import org.openhat.opdi.drivers.BMP085_Driver;
+import org.openhat.opdi.interfaces.IDriver;
+import org.openhat.opdi.ports.StreamingPort;
 
 /** View controller for the BMP085 pressure sensor view
  * 

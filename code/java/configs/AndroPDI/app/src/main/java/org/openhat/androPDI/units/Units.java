@@ -10,17 +10,17 @@
 
 package org.openhat.androPDI.units;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import android.content.Context;
 
 import org.openhat.androPDI.utils.ResourceFactory;
 import org.openhat.opdi.units.UnitFormat;
 import org.openhat.opdi.utils.Strings;
 
-import android.content.Context;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Units {
 	

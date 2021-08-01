@@ -10,10 +10,9 @@
 
 package org.openhat.androPDI;
 
-import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Context;
+import android.os.Environment;
+import android.widget.Toast;
 
 import org.openhat.androPDI.model.Settings;
 import org.openhat.androPDI.utils.ResourceFactory;
@@ -21,12 +20,11 @@ import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
 import org.openhat.opdi.interfaces.IDeviceListener;
-import org.openhat.androPDI.R;
 
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.os.Environment;
-import android.widget.Toast;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /** This class manages a list of devices.
  * A device listener can be associated with each device which gets notified about device status changes.

@@ -10,17 +10,6 @@
 
 package org.openhat.opdi.devices;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.charset.Charset;
-import java.nio.charset.UnsupportedCharsetException;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IDeviceListener;
@@ -34,6 +23,17 @@ import org.openhat.opdi.protocol.ProtocolException;
 import org.openhat.opdi.protocol.ProtocolFactory;
 import org.openhat.opdi.utils.ResourceFactory;
 import org.openhat.opdi.utils.Strings;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.UnsupportedCharsetException;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeoutException;
 
 
 /** Defines a queued device that communicates via input and output streams.

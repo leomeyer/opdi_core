@@ -10,13 +10,13 @@
 
 package org.openhat.androPDI.portdetails;
 
-import org.openhat.opdi.ports.StreamingPort;
-
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewStub;
+
+import org.openhat.opdi.ports.StreamingPort;
 
 /** Specifies the functions of a view controller that forms the link between a driver and a GUI.
  * 

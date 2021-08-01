@@ -10,12 +10,6 @@
 
 package org.openhat.androPDI;
 
-import java.util.List;
-
-import org.openhat.opdi.interfaces.IDevice;
-import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
-import org.openhat.androPDI.R;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -25,6 +19,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
+
+import java.util.List;
 
 /** Adapts a list of devices for display in a ListView.
 	 * 

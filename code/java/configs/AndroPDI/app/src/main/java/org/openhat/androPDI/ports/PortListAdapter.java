@@ -10,26 +10,6 @@
 
 package org.openhat.androPDI.ports;
 
-import java.util.List;
-
-import org.openhat.androPDI.R;
-import org.openhat.androPDI.units.Units;
-import org.openhat.opdi.ports.AnalogPort;
-import org.openhat.opdi.ports.CustomPort;
-import org.openhat.opdi.ports.DialPort;
-import org.openhat.opdi.ports.DigitalPort;
-import org.openhat.opdi.ports.Port;
-import org.openhat.opdi.ports.SelectPort;
-import org.openhat.opdi.ports.StreamingPort;
-
-import android.content.Context;
-import android.graphics.Color;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
-
 /** Adapts a list of devices for display in a ListView.
  * 
  * @author Leo

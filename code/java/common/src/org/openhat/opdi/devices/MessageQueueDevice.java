@@ -10,6 +10,14 @@
 
 package org.openhat.opdi.devices;
 
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDeviceListener;
+import org.openhat.opdi.interfaces.IProtocol;
+import org.openhat.opdi.protocol.AbstractProtocol.IAbortable;
+import org.openhat.opdi.protocol.Message;
+import org.openhat.opdi.protocol.MessageException;
+import org.openhat.opdi.utils.ResourceFactory;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
@@ -27,14 +35,6 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.openhat.opdi.interfaces.IDevice;
-import org.openhat.opdi.interfaces.IDeviceListener;
-import org.openhat.opdi.interfaces.IProtocol;
-import org.openhat.opdi.protocol.AbstractProtocol.IAbortable;
-import org.openhat.opdi.protocol.Message;
-import org.openhat.opdi.protocol.MessageException;
-import org.openhat.opdi.utils.ResourceFactory;
 
 /** This class defines the functions of a device that communicates via messages that are put into
  * input and output queues. It provides an IBasicProtocol object that is connected to these queues.

@@ -10,13 +10,11 @@
 
 package org.openhat.androPDI.bluetooth;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.charset.Charset;
-import java.text.MessageFormat;
-import java.util.Set;
-import java.util.UUID;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.openhat.androPDI.AndroPDI;
 import org.openhat.androPDI.AndroPDIDevice;
@@ -24,11 +22,13 @@ import org.openhat.androPDI.R;
 import org.openhat.androPDI.utils.ResourceFactory;
 import org.openhat.opdi.utils.Strings;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothSocket;
-import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
+import java.text.MessageFormat;
+import java.util.Set;
+import java.util.UUID;
 
 /** Implements IDevice for a Bluetooth device.
  * 

@@ -10,12 +10,12 @@
 
 package org.openhat.opdi.protocol;
 
-import java.lang.reflect.Constructor;
-import java.util.HashMap;
-
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IProtocol;
+
+import java.lang.reflect.Constructor;
+import java.util.HashMap;
 
 /** This class is a protocol factory that selects the proper protocol for a device.
  * It supports registering protocols that are not implemented in the library itself.

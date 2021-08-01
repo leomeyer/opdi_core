@@ -10,8 +10,6 @@
 
 package org.openhat.opdi.ports;
 
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.protocol.DisconnectedException;
@@ -19,6 +17,8 @@ import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.PortErrorException;
 import org.openhat.opdi.protocol.ProtocolException;
 import org.openhat.opdi.utils.Strings;
+
+import java.util.concurrent.TimeoutException;
 
 
 /** Represents a digital port on a device. This class also serves as a proxy that communicates 

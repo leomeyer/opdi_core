@@ -10,12 +10,12 @@
 
 package org.openhat.androPDI.ports;
 
-import org.openhat.opdi.ports.Port;
-
 import android.content.Context;
 import android.view.ContextMenu;
-import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View;
+
+import org.openhat.opdi.ports.Port;
 
 /** Defines the common functions for an object that connects ports and their views.
  * 
@@ -34,21 +34,18 @@ public interface IPortViewAdapter {
 	/** Called to configure the port view.
 	 * 
 	 * @param context
-	 * @param view
 	 */
 	public void configure(Port port, Context context);
 
 	/** Called when the context menu should be created.
-	 * 
-	 * @param port
+	 *
 	 * @param menu
 	 * @param menuInfo
 	 */
 	void createContextMenu(ContextMenu menu, ContextMenuInfo menuInfo);
 
 	/** Called when the port row has been clicked.
-	 * 
-	 * @param port
+	 *
 	 */
 	public void handleClick();
 	

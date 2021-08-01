@@ -10,32 +10,6 @@
 
 package org.openhat.androPDI;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.charset.Charset;
-import java.text.MessageFormat;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import jim.h.common.android.zxinglib.integrator.IntentIntegrator;
-import jim.h.common.android.zxinglib.integrator.IntentResult;
-
-import org.openhat.androPDI.bluetooth.AddBluetoothDevice;
-import org.openhat.androPDI.bluetooth.BluetoothDevice;
-import org.openhat.androPDI.bluetooth.EditBluetoothDevice;
-import org.openhat.androPDI.gui.LoggingActivity;
-import org.openhat.androPDI.ports.ShowDevicePorts;
-import org.openhat.androPDI.ports.ikea.TradfriColoredLamp;
-import org.openhat.androPDI.tcpip.AddTCPIPDevice;
-import org.openhat.androPDI.tcpip.EditTCPIPDevice;
-import org.openhat.androPDI.tcpip.TCPIPDevice;
-import org.openhat.androPDI.utils.ResourceFactory;
-import org.openhat.opdi.interfaces.IBasicProtocol;
-import org.openhat.opdi.interfaces.IDevice;
-import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -62,6 +36,32 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.openhat.androPDI.bluetooth.AddBluetoothDevice;
+import org.openhat.androPDI.bluetooth.BluetoothDevice;
+import org.openhat.androPDI.bluetooth.EditBluetoothDevice;
+import org.openhat.androPDI.gui.LoggingActivity;
+import org.openhat.androPDI.ports.ShowDevicePorts;
+import org.openhat.androPDI.ports.ikea.TradfriColoredLamp;
+import org.openhat.androPDI.tcpip.AddTCPIPDevice;
+import org.openhat.androPDI.tcpip.EditTCPIPDevice;
+import org.openhat.androPDI.tcpip.TCPIPDevice;
+import org.openhat.androPDI.utils.ResourceFactory;
+import org.openhat.opdi.interfaces.IBasicProtocol;
+import org.openhat.opdi.interfaces.IDevice;
+import org.openhat.opdi.interfaces.IDevice.DeviceStatus;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
+import java.text.MessageFormat;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import jim.h.common.android.zxinglib.integrator.IntentIntegrator;
+import jim.h.common.android.zxinglib.integrator.IntentResult;
 
 /** This is the main activity for the AndroPDI client.
  * 

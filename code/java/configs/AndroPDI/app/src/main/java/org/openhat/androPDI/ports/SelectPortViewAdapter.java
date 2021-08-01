@@ -10,16 +10,6 @@
 
 package org.openhat.androPDI.ports;
 
-import java.util.concurrent.TimeoutException;
-
-import org.openhat.opdi.devices.DeviceException;
-import org.openhat.opdi.ports.Port;
-import org.openhat.opdi.ports.SelectPort;
-import org.openhat.opdi.protocol.DisconnectedException;
-import org.openhat.opdi.protocol.PortAccessDeniedException;
-import org.openhat.opdi.protocol.ProtocolException;
-import org.openhat.androPDI.R;
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ContextMenu;
@@ -30,6 +20,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.openhat.androPDI.R;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.ports.SelectPort;
+import org.openhat.opdi.protocol.DisconnectedException;
+import org.openhat.opdi.protocol.PortAccessDeniedException;
+import org.openhat.opdi.protocol.ProtocolException;
+
+import java.util.concurrent.TimeoutException;
 
 /** A port view adapter for select ports.
  * 

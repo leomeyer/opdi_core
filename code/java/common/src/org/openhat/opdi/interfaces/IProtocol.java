@@ -10,16 +10,16 @@
 
 package org.openhat.opdi.interfaces;
 
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.protocol.AbstractProtocol.IAbortable;
 import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.Message;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.PortErrorException;
 import org.openhat.opdi.protocol.ProtocolException;
-import org.openhat.opdi.protocol.AbstractProtocol.IAbortable;
+
+import java.util.concurrent.TimeoutException;
 
 public interface IProtocol {
 
