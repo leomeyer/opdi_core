@@ -353,7 +353,7 @@ class DialPortViewAdapter implements IPortViewAdapter {
 						        FragmentManager fm = showDevicePorts.getFragmentManager();
 						        DialPortDateTimeEditor dialog;
 								try {
-									dialog = new DialPortDateTimeEditor(dPort.getUnitFormat().convertToLocalDate(dPort.getPosition()),
+									dialog = new DialPortDateTimeEditor().init(dPort.getUnitFormat().convertToLocalDate(dPort.getPosition()),
 										// callback when new value has been confirmed
 										new DialPortDateTimeEditor.DismissedListener() {
 											@Override

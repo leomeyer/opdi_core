@@ -40,15 +40,18 @@ public class DialPortDateTimeEditor extends DialogFragment {
 		void dismissed(LocalDateTime dateTime);
 	}
 
-	class TimePickerDialogFragment extends DialogFragment implements OnTimeSetListener {
-		
+	public static class TimePickerDialogFragment extends DialogFragment implements OnTimeSetListener {
+
+		LocalDateTime currentDate;
 		LocalDateTime time;
 		TextView textView;
 		
-	    public TimePickerDialogFragment(LocalDateTime time, TextView textView) {
-			super();
-			this.time = time;
+	    public TimePickerDialogFragment() {}
+
+		public TimePickerDialogFragment init(LocalDateTime time, TextView textView) {
+			this.currentDate = this.time = time;
 			this.textView = textView;
+			return this;
 		}
 
 		@Override
@@ -69,22 +72,25 @@ public class DialPortDateTimeEditor extends DialogFragment {
 	    }
 	}
 	
-	class DatePickerDialogFragment extends DialogFragment implements OnDateSetListener {
-		
+	public static class DatePickerDialogFragment extends DialogFragment implements OnDateSetListener {
+
+		LocalDateTime currentDate;
 		LocalDateTime date;
 		TextView textView;
+
+		public DatePickerDialogFragment() {}
 		
-	    public DatePickerDialogFragment(LocalDateTime date, TextView textView) {
-			super();
-			this.date = date;
+	    public DatePickerDialogFragment init(LocalDateTime date, TextView textView) {
+			this.currentDate = this.date = date;
 			this.textView = textView;
+			return this;
 		}
 
 		@Override
 	    public Dialog onCreateDialog(Bundle savedInstanceState) {
 	        // Use the current time as the default values for the picker
 	        int year = date.getYear();
-	        int month = date.getMonthOfYear();
+	        int month = date.getMonthOfYear() - 1;
 	        int day = date.getDayOfMonth();
 
 	        // Create a new instance of TimePickerDialog and return it
@@ -93,7 +99,7 @@ public class DialPortDateTimeEditor extends DialogFragment {
 
 		@Override
 		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-			date = new LocalDateTime(year, monthOfYear, dayOfMonth, currentDate.getHourOfDay(), currentDate.getMinuteOfHour(), currentDate.getSecondOfMinute());
+			date = new LocalDateTime(year, monthOfYear + 1, dayOfMonth, currentDate.getHourOfDay(), currentDate.getMinuteOfHour(), currentDate.getSecondOfMinute());
 			textView.setText(DateTimeFormat.mediumDate().print(date));
 			currentDate = date;
 		}
@@ -111,15 +117,16 @@ public class DialPortDateTimeEditor extends DialogFragment {
 	Button btnCancel;
 	TimePickerDialogFragment timePicker;
 	DatePickerDialogFragment datePicker;
-	
-	public DialPortDateTimeEditor(LocalDateTime date, DismissedListener dismissedListener) {
-		super();
+
+	public DialPortDateTimeEditor() {}
+
+	public DialPortDateTimeEditor init(LocalDateTime date, DismissedListener dismissedListener) {
 		this.currentDate = date;
 		this.dismissedListener = dismissedListener;
+		return this;
 	}
 	
 	protected void setEventTime(int selectedPosition) {
-
 		LocalDateTime dateTime = null;
 		
 		switch (selectedPosition) {
@@ -180,7 +187,7 @@ public class DialPortDateTimeEditor extends DialogFragment {
         btnTime.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				timePicker = new TimePickerDialogFragment(currentDate, tvTime);
+				timePicker = new TimePickerDialogFragment().init(currentDate, tvTime);
 			    timePicker.show(getFragmentManager(), "timePicker");
 			}
 		});
@@ -188,9 +195,8 @@ public class DialPortDateTimeEditor extends DialogFragment {
         btnDate.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				datePicker = new DatePickerDialogFragment(currentDate, tvDate);
+				datePicker = new DatePickerDialogFragment().init(currentDate, tvDate);
 			    datePicker.show(getFragmentManager(), "datePicker");
-			    
 			}
 		});
         
