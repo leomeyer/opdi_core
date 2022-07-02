@@ -185,13 +185,22 @@
     
     <string name="temperature_degreesCelsius" translatable="false">temperature_DegC_in_DegC=0</string>
     <string name="temperature_DegC_in_DegC" translatable="false">layout=dial_port_row_noslider;icon=thermometer_celsius;label=Temperature (°C);formatString=%d °C</string>
-    
+
+    <string name="temperature_deciDegreesCelsius" translatable="false">temperature_dDegC_in_DegC=0</string>
+    <string name="temperature_dDegC_in_DegC" translatable="false">layout=dial_port_row_noslider;icon=thermometer_celsius;label=Temperature (°C);formatString=%.1f °C;denominator=10</string>
+
     <string name="temperature_centiDegreesCelsius" translatable="false">temperature_cDegC_in_DegC=0</string>
-    <string name="temperature_cDegC_in_DegC" translatable="false">layout=dial_port_row_noslider;icon=thermometer_celsius;label=Temperature (°C);formatString=%.1f °C;denominator=10</string>
-    
+    <string name="temperature_cDegC_in_DegC" translatable="false">layout=dial_port_row_noslider;icon=thermometer_celsius;label=Temperature (°C);formatString=%.2f °C;denominator=100</string>
+
+    <string name="temperature_centiDegreesCelsiusSettable" translatable="false">temperature_cDegC_in_DegCSettable=0</string>
+    <string name="temperature_cDegC_in_DegCSettable" translatable="false">layout=dial_port_row_slider_value;icon=thermometer_celsius;label=Temperature (°C);formatString=%.2f °C;denominator=100</string>
+
     <string name="humidity_percent" translatable="false">humidity_percent_in_percent=0</string>
     <string name="humidity_percent_in_percent" formatted="false" translatable="false">layout=dial_port_row_noslider;icon=humidity_percent;label=Humidity (%);formatString=%d %%;</string>
-    
+
+    <string name="humidity_centiPercent" translatable="false">humidity_cPercent_in_percent=0</string>
+    <string name="humidity_cPercent_in_percent" formatted="false" translatable="false">layout=dial_port_row_noslider;icon=humidity_percent;label=Humidity (%);formatString=%.2f %%;denominator=100</string>
+
     <string name="pressure_mbar" translatable="false">pressure_mbar_in_mbar=0</string>
     <string name="pressure_mbar_in_mbar" translatable="false">layout=dial_port_row_noslider;icon=barometer;label=Pressure (mbar);formatString=%.0f mbar</string>
 
