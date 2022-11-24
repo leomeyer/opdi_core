@@ -10,8 +10,6 @@
 
 package org.openhat.opdi.ports;
 
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.protocol.DisconnectedException;
@@ -19,6 +17,8 @@ import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.PortErrorException;
 import org.openhat.opdi.protocol.ProtocolException;
 import org.openhat.opdi.utils.Strings;
+
+import java.util.concurrent.TimeoutException;
 
 
 /** Represents a digital port on a device. This class also serves as a proxy that communicates 
@@ -34,28 +34,28 @@ public class AnalogPort extends Port {
 	
 	/** The mode an analog port may be in. */
 	public enum PortMode {
-		UNKNOWN,
 		/** The port is in input mode. */
 		INPUT,
 		/** The port is in output mode. */
-		OUTPUT
-	}	
+		OUTPUT,
+		UNKNOWN
+	}
 		
 	/** Defines the resolution of an analog port. */
 	public enum Resolution {
-		UNKNOWN,
 		BITS_8,
 		BITS_9,
 		BITS_10,
 		BITS_11,
-		BITS_12
+		BITS_12,
+		UNKNOWN
 	}
 	
 	/** Defines the reference voltage source of an analog port. */
 	public enum Reference {
-		UNKNOWN,
 		INTERNAL,
-		EXTERNAL
+		EXTERNAL,
+		UNKNOWN
 	}
 	
 	static final String MAGIC = "AP";

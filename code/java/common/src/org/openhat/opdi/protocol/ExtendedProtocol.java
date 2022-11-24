@@ -10,13 +10,6 @@
 
 package org.openhat.opdi.protocol;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.devices.DeviceInfo;
 import org.openhat.opdi.interfaces.IDevice;
@@ -31,6 +24,13 @@ import org.openhat.opdi.ports.Port;
 import org.openhat.opdi.ports.PortGroup;
 import org.openhat.opdi.ports.SelectPort;
 import org.openhat.opdi.utils.Strings;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 public class ExtendedProtocol extends BasicProtocol {
 

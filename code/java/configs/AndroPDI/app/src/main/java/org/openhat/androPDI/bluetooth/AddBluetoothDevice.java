@@ -10,9 +10,6 @@
 
 package org.openhat.androPDI.bluetooth;
 
-import org.openhat.androPDI.AndroPDI;
-import org.openhat.androPDI.R;
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -22,6 +19,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.openhat.androPDI.AndroPDI;
+import org.openhat.androPDI.R;
 
 /** This class implements an activity to add a Bluetooth device. 
  * Partly adapted from the Android BluetoothChat sample.

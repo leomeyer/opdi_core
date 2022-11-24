@@ -10,12 +10,6 @@
 
 package org.openhat.opdi.ports;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IDeviceCapabilities;
 import org.openhat.opdi.protocol.BasicProtocol;
@@ -23,6 +17,12 @@ import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.ProtocolException;
 import org.openhat.opdi.utils.Strings;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeoutException;
 
 
 /** This class describes the capabilities of an OPDI device. It contains convenience methods to access ports.

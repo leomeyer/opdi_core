@@ -10,12 +10,6 @@
 
 package org.openhat.androPDI.portdetails;
 
-import org.openhat.androPDI.AndroPDI;
-import org.openhat.opdi.drivers.NMEAGen_Driver;
-import org.openhat.opdi.interfaces.IDriver;
-import org.openhat.opdi.ports.StreamingPort;
-import org.openhat.androPDI.R;
-
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
@@ -24,6 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.TextView;
+
+import org.openhat.androPDI.AndroPDI;
+import org.openhat.androPDI.R;
+import org.openhat.opdi.drivers.NMEAGen_Driver;
+import org.openhat.opdi.interfaces.IDriver;
+import org.openhat.opdi.ports.StreamingPort;
 
 /** View controller for an NMEA GPS
  * 

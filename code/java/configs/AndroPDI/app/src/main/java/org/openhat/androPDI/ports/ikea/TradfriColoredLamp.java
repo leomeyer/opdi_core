@@ -1,6 +1,7 @@
 package org.openhat.androPDI.ports.ikea;
 
-import android.annotation.SuppressLint;
+import static java.lang.Math.pow;
+
 import android.graphics.Color;
 
 import org.openhat.androPDI.ports.ColoredLampPort;
@@ -17,11 +18,9 @@ import java.util.concurrent.TimeoutException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.lang.Math.pow;
-
 public class TradfriColoredLamp extends ColoredLampPort  {
 
-    class MyViewAdapter extends ColoredLampViewAdapter<TradfriColoredLamp> {
+    class MyViewAdapter extends ColoredLampViewAdapter {
 
         Pattern brightnessPattern = Pattern.compile("\"brightness\":([0-9]+)");
         Pattern colorPattern = Pattern.compile("\"color\":\\{\"x\":([0-9\\.]+),\"y\":([0-9\\.]+)\\}");

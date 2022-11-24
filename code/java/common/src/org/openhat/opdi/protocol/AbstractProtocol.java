@@ -10,14 +10,14 @@
 
 package org.openhat.opdi.protocol;
 
-import java.util.Queue;
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IDevice;
 import org.openhat.opdi.interfaces.IProtocol;
 import org.openhat.opdi.utils.ResourceFactory;
 import org.openhat.opdi.utils.Strings;
+
+import java.util.Queue;
+import java.util.concurrent.TimeoutException;
 
 
 /** This class implements generic functions of OPDI communication protocols.

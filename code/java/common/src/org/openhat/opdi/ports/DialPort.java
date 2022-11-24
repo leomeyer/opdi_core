@@ -10,8 +10,6 @@
 
 package org.openhat.opdi.ports;
 
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.interfaces.IBasicProtocol;
 import org.openhat.opdi.protocol.BasicProtocol;
@@ -20,6 +18,8 @@ import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.PortErrorException;
 import org.openhat.opdi.protocol.ProtocolException;
 import org.openhat.opdi.utils.Strings;
+
+import java.util.concurrent.TimeoutException;
 
 /** This class represents an analog dial for things like volume controls.
  * It may be represented by knobs or sliders.

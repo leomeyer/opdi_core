@@ -614,14 +614,14 @@ static uint8_t set_dial_port_position(channel_t channel, opdi_Port *port, const 
 #ifdef OPDI_USE_CUSTOM_PORTS
 static uint8_t get_custom_port_value(opdi_Port *port) {
 	uint8_t result;
-	#define MAXLEN 256
-	char value[MAXLEN];
+	#define OPDI_CUSTOM_PORT_VALUE_MAXLEN 256
+	char value[OPDI_CUSTOM_PORT_VALUE_MAXLEN];
 
 	if (strcmp(port->type, OPDI_PORTTYPE_CUSTOM)) {
 		return OPDI_WRONG_PORT_TYPE;
 	}
 
-	result = opdi_get_custom_port_value(port, value, MAXLEN);
+	result = opdi_get_custom_port_value(port, value, OPDI_CUSTOM_PORT_VALUE_MAXLEN);
 	if (result != OPDI_STATUS_OK)
 		return result;
 

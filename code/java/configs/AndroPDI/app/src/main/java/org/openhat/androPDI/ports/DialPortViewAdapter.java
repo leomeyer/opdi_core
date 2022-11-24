@@ -10,20 +10,6 @@
 
 package org.openhat.androPDI.ports;
 
-import java.util.concurrent.TimeoutException;
-
-import org.joda.time.LocalDateTime;
-import org.openhat.androPDI.R;
-import org.openhat.androPDI.ports.editors.DialPortDateTimeEditor;
-import org.openhat.opdi.devices.DeviceException;
-import org.openhat.opdi.ports.DialPort;
-import org.openhat.opdi.ports.DigitalPort;
-import org.openhat.opdi.ports.Port;
-import org.openhat.opdi.protocol.DisconnectedException;
-import org.openhat.opdi.protocol.PortAccessDeniedException;
-import org.openhat.opdi.protocol.ProtocolException;
-import org.openhat.opdi.units.DisplayHint;
-
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -40,6 +26,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import org.joda.time.LocalDateTime;
+import org.openhat.androPDI.R;
+import org.openhat.androPDI.ports.editors.DialPortDateTimeEditor;
+import org.openhat.opdi.devices.DeviceException;
+import org.openhat.opdi.ports.DialPort;
+import org.openhat.opdi.ports.Port;
+import org.openhat.opdi.protocol.DisconnectedException;
+import org.openhat.opdi.protocol.PortAccessDeniedException;
+import org.openhat.opdi.protocol.ProtocolException;
+import org.openhat.opdi.units.DisplayHint;
+
+import java.util.concurrent.TimeoutException;
 
 /** A port view adapter for dial ports.
  * 
@@ -354,7 +353,7 @@ class DialPortViewAdapter implements IPortViewAdapter {
 						        FragmentManager fm = showDevicePorts.getFragmentManager();
 						        DialPortDateTimeEditor dialog;
 								try {
-									dialog = new DialPortDateTimeEditor(dPort.getUnitFormat().convertToLocalDate(dPort.getPosition()),
+									dialog = new DialPortDateTimeEditor().init(dPort.getUnitFormat().convertToLocalDate(dPort.getPosition()),
 										// callback when new value has been confirmed
 										new DialPortDateTimeEditor.DismissedListener() {
 											@Override

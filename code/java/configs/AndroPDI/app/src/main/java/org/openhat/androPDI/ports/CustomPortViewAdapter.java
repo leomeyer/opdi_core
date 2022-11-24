@@ -10,34 +10,22 @@
 
 package org.openhat.androPDI.ports;
 
-import android.app.Dialog;
-import android.app.FragmentManager;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
-import org.joda.time.LocalDateTime;
 import org.openhat.androPDI.R;
-import org.openhat.androPDI.ports.editors.DialPortDateTimeEditor;
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.ports.CustomPort;
-import org.openhat.opdi.ports.DialPort;
 import org.openhat.opdi.ports.Port;
 import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.ProtocolException;
-import org.openhat.opdi.units.DisplayHint;
 
 import java.util.concurrent.TimeoutException;
 

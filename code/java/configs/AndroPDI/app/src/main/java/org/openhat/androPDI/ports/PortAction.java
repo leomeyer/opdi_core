@@ -10,13 +10,13 @@
 
 package org.openhat.androPDI.ports;
 
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.ports.Port;
 import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.ProtocolException;
+
+import java.util.concurrent.TimeoutException;
 
 abstract class PortAction {
 

@@ -10,10 +10,10 @@
 
 package org.openhat.opdi.interfaces;
 
-import java.util.Queue;
-
 import org.openhat.opdi.devices.DeviceInfo;
 import org.openhat.opdi.protocol.Message;
+
+import java.util.Queue;
 
 /** This interface describes a remote device.
  * 

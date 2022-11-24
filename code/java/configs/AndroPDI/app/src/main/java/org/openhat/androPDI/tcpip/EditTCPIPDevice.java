@@ -10,15 +10,15 @@
 
 package org.openhat.androPDI.tcpip;
 
-import org.openhat.androPDI.R;
-import org.openhat.androPDI.AndroPDI;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import org.openhat.androPDI.AndroPDI;
+import org.openhat.androPDI.R;
 
 /** This class implements an activity to edit a Bluetooth device's settings. 
  * */

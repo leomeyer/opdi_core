@@ -24,3 +24,4 @@
 *.sym
 *.tar.gz*
 code/c/libraries/POCO/*
+/code/java/configs/AndroPDI/.idea/deploymentTargetDropDown.xml

@@ -10,14 +10,14 @@
 
 package org.openhat.opdi.ports;
 
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.protocol.BasicProtocol;
 import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.ExtendedProtocol;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.ProtocolException;
+
+import java.util.concurrent.TimeoutException;
 
 /** DeviceCapabilities for a device that supports the Extended Protocol.
  * 

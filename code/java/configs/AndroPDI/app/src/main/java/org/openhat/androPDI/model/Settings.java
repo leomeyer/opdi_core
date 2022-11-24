@@ -10,6 +10,15 @@
 
 package org.openhat.androPDI.model;
 
+import android.util.Log;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import org.openhat.androPDI.AndroPDI;
+import org.openhat.androPDI.AndroPDIDevice;
+import org.openhat.opdi.interfaces.IDevice;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,15 +26,6 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.openhat.androPDI.AndroPDI;
-import org.openhat.androPDI.AndroPDIDevice;
-import org.openhat.opdi.interfaces.IDevice;
-
-import android.util.Log;
-
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
 
 
 public class Settings {
@@ -44,7 +44,7 @@ public class Settings {
 				throw e;
 			// the file is not there - don't read the settings
 			return new Settings();
-		} catch (IOException e) {
+		} catch (Throwable e) {
 			// error opening the file
 			if (!ignoreErrors)
 				throw e;

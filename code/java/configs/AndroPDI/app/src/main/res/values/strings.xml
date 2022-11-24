@@ -170,66 +170,75 @@
     
     <!--  Unit specifications -->
     
-    <string name="electricPower_mW">electricPower_mW_in_W=0;electricPower_mW_in_mW=1</string>
-    <string name="electricPower_mW_in_W">layout=dial_port_row_noslider;icon=powermeter;label=Electric Power (W);formatString=%.1f W;denominator=1000</string>
-    <string name="electricPower_mW_in_mW">layout=dial_port_row_noslider;icon=powermeter;label=Electric Power (mW);formatString=%.0f mW</string>
+    <string name="electricPower_mW" translatable="false">electricPower_mW_in_W=0;electricPower_mW_in_mW=1</string>
+    <string name="electricPower_mW_in_W" translatable="false">layout=dial_port_row_noslider;icon=powermeter;label=Electric Power (W);formatString=%.1f W;denominator=1000</string>
+    <string name="electricPower_mW_in_mW" translatable="false">layout=dial_port_row_noslider;icon=powermeter;label=Electric Power (mW);formatString=%.0f mW</string>
 
-    <string name="electricPower_10mW">electricPower_10mW_in_W=0</string>
-    <string name="electricPower_10mW_in_W">layout=dial_port_row_noslider;icon=powermeter;label=Electric Power (W);formatString=%.2f W;denominator=100</string>
+    <string name="electricPower_10mW" translatable="false">electricPower_10mW_in_W=0</string>
+    <string name="electricPower_10mW_in_W" translatable="false">layout=dial_port_row_noslider;icon=powermeter;label=Electric Power (W);formatString=%.2f W;denominator=100</string>
     
-    <string name="electricEnergy_Wh">electricEnergy_Wh_in_kWh=0</string>
-    <string name="electricEnergy_Wh_in_kWh">layout=dial_port_row_noslider;icon=energymeter;formatString=%.3f Wh;denominator=10000000</string>
+    <string name="electricEnergy_Wh" translatable="false">electricEnergy_Wh_in_kWh=0</string>
+    <string name="electricEnergy_Wh_in_kWh" translatable="false">layout=dial_port_row_noslider;icon=energymeter;formatString=%.3f kWh;denominator=1000</string>
 
-    <string name="electricEnergy_100nWh">electricEnergy_100nWh_in_kWh=0</string>
-    <string name="electricEnergy_100nWh_in_kWh">layout=dial_port_row_noslider;icon=energymeter;formatString=%.3f kWh;denominator=10000000</string>
+    <string name="electricEnergy_100nWh" translatable="false">electricEnergy_100nWh_in_kWh=0</string>
+    <string name="electricEnergy_100nWh_in_kWh" translatable="false">layout=dial_port_row_noslider;icon=energymeter;formatString=%.3f kWh;denominator=10000000</string>
     
-    <string name="temperature_degreesCelsius">temperature_DegC_in_DegC=0</string>
-    <string name="temperature_DegC_in_DegC">layout=dial_port_row_noslider;icon=thermometer_celsius;label=Temperature (°C);formatString=%d °C</string>
-    
-    <string name="temperature_centiDegreesCelsius">temperature_cDegC_in_DegC=0</string>
-    <string name="temperature_cDegC_in_DegC">layout=dial_port_row_noslider;icon=thermometer_celsius;label=Temperature (°C);formatString=%.1f °C;denominator=10</string>
-    
-    <string name="humidity_percent">humidity_percent_in_percent=0</string>
-    <string name="humidity_percent_in_percent" formatted="false">layout=dial_port_row_noslider;icon=humidity_percent;label=Humidity (%);formatString=%d %%;</string>
-    
-    <string name="pressure_mbar">pressure_mbar_in_mbar=0</string>
-    <string name="pressure_mbar_in_mbar">layout=dial_port_row_noslider;icon=barometer;label=Pressure (mbar);formatString=%.0f mbar</string>
+    <string name="temperature_degreesCelsius" translatable="false">temperature_DegC_in_DegC=0</string>
+    <string name="temperature_DegC_in_DegC" translatable="false">layout=dial_port_row_noslider;icon=thermometer_celsius;label=Temperature (°C);formatString=%d °C</string>
 
-    <string name="pressure_microbar">pressure_microbar_in_mbar=0</string>
-    <string name="pressure_microbar_in_mbar">layout=dial_port_row_noslider;icon=barometer;label=Pressure (mbar);formatString=%.1f mbar;denominator=1000</string>
-    
-    <string name="windspeed_cmPerSecond">windspeed_in_mPerSecond=0</string>
-    <string name="windspeed_in_mPerSecond">layout=dial_port_row_noslider;icon=windspeed;label=Wind (m/s);formatString=%.1f m/s;denominator=100</string>
-    
-    <string name="rainrate_mmPerHour">rainrate_in_mmPerHour=0</string>
-    <string name="rainrate_in_mmPerHour">layout=dial_port_row_noslider;icon=rainfall;label=Rain Rate (mm/h);formatString=%.0f mm/h</string>
-    
-    <string name="rainrate_micromPerHour">rainrate_micromPerHour_in_mmPerHour=0</string>
-    <string name="rainrate_micromPerHour_in_mmPerHour">layout=dial_port_row_noslider;icon=rainfall;label=Rain Rate (mm/h);formatString=%.1f mm/h;denominator=1000</string>
-    
-    <string name="keypadCode">keypadCode_display=0</string>
-    <string name="keypadCode_display">layout=dial_port_row_noslider;icon=keypad;formatString=%d</string>
-    
-    <string name="unixTime">clocktime_unixseconds=0</string>
-    <string name="clocktime_unixseconds">layout=dial_port_row_noslider_two_rows;conversion=unixSecondsLocal;icon=clock;formatString=yyyy-MM-dd\\nHH:mm:ss;editor=DateTimeEditor</string>
-    
-    <string name="unixTimeUTC">clocktime_unixsecondsUTC=0</string>
-    <string name="clocktime_unixsecondsUTC">layout=dial_port_row_noslider_two_rows;conversion=unixSeconds;icon=clock;formatString=yyyy-MM-dd\\nHH:mm:ss;editor=DateTimeEditor</string>
-    
-    <string name="percent">percent_integer=0</string>
-    <string name="percent_integer">layout=dial_port_row_slider_only;</string>
+    <string name="temperature_deciDegreesCelsius" translatable="false">temperature_dDegC_in_DegC=0</string>
+    <string name="temperature_dDegC_in_DegC" translatable="false">layout=dial_port_row_noslider;icon=thermometer_celsius;label=Temperature (°C);formatString=%.1f °C;denominator=10</string>
 
-    <string name="gas_l">gas_l_in_m3=0</string>
-    <string name="gas_l_in_m3">layout=dial_port_row_noslider;icon=energymeter;label=Gas total;formatString=%.3f m³;denominator=1000</string>
+    <string name="temperature_centiDegreesCelsius" translatable="false">temperature_cDegC_in_DegC=0</string>
+    <string name="temperature_cDegC_in_DegC" translatable="false">layout=dial_port_row_noslider;icon=thermometer_celsius;label=Temperature (°C);formatString=%.2f °C;denominator=100</string>
 
-    <string name="gas_lPerTime">gas_l_in_m3_per_time=0</string>
-    <string name="gas_l_in_m3_per_time">layout=dial_port_row_noslider;icon=powermeter;label=Gas rate;formatString=%.3f m³;denominator=1000</string>
+    <string name="temperature_centiDegreesCelsiusSettable" translatable="false">temperature_cDegC_in_DegCSettable=0</string>
+    <string name="temperature_cDegC_in_DegCSettable" translatable="false">layout=dial_port_row_slider_value;icon=thermometer_celsius;label=Temperature (°C);formatString=%.2f °C;denominator=100</string>
+
+    <string name="humidity_percent" translatable="false">humidity_percent_in_percent=0</string>
+    <string name="humidity_percent_in_percent" formatted="false" translatable="false">layout=dial_port_row_noslider;icon=humidity_percent;label=Humidity (%);formatString=%d %%;</string>
+
+    <string name="humidity_centiPercent" translatable="false">humidity_cPercent_in_percent=0</string>
+    <string name="humidity_cPercent_in_percent" formatted="false" translatable="false">layout=dial_port_row_noslider;icon=humidity_percent;label=Humidity (%);formatString=%.2f %%;denominator=100</string>
+
+    <string name="pressure_mbar" translatable="false">pressure_mbar_in_mbar=0</string>
+    <string name="pressure_mbar_in_mbar" translatable="false">layout=dial_port_row_noslider;icon=barometer;label=Pressure (mbar);formatString=%.0f mbar</string>
+
+    <string name="pressure_microbar" translatable="false">pressure_microbar_in_mbar=0</string>
+    <string name="pressure_microbar_in_mbar" translatable="false">layout=dial_port_row_noslider;icon=barometer;label=Pressure (mbar);formatString=%.1f mbar;denominator=1000</string>
     
-    <string name="energy_100nWhPerTime">energy_100nWh_in_kWh_per_time=0</string>
-    <string name="energy_100nWh_in_kWh_per_time">layout=dial_port_row_noslider;icon=powermeter;label=Electric energy rate;formatString=%.3f kWh;denominator=10000000</string>
+    <string name="windspeed_cmPerSecond" translatable="false">windspeed_in_mPerSecond=0</string>
+    <string name="windspeed_in_mPerSecond" translatable="false">layout=dial_port_row_noslider;icon=windspeed;label=Wind (m/s);formatString=%.1f m/s;denominator=100</string>
     
-    <string name="energy_WhPerTime">energy_Wh_in_kWh_per_time=0</string>
-    <string name="energy_Wh_in_kWh_per_time">layout=dial_port_row_noslider;icon=powermeter;label=Electric energy rate;formatString=%.3f kWh;denominator=1000</string>
+    <string name="rainrate_mmPerHour" translatable="false">rainrate_in_mmPerHour=0</string>
+    <string name="rainrate_in_mmPerHour" translatable="false">layout=dial_port_row_noslider;icon=rainfall;label=Rain Rate (mm/h);formatString=%.0f mm/h</string>
+    
+    <string name="rainrate_micromPerHour" translatable="false">rainrate_micromPerHour_in_mmPerHour=0</string>
+    <string name="rainrate_micromPerHour_in_mmPerHour" translatable="false">layout=dial_port_row_noslider;icon=rainfall;label=Rain Rate (mm/h);formatString=%.1f mm/h;denominator=1000</string>
+    
+    <string name="keypadCode" translatable="false">keypadCode_display=0</string>
+    <string name="keypadCode_display" translatable="false">layout=dial_port_row_noslider;icon=keypad;formatString=%d</string>
+    
+    <string name="unixTime" translatable="false">clocktime_unixseconds=0</string>
+    <string name="clocktime_unixseconds" translatable="false">layout=dial_port_row_noslider_two_rows;conversion=unixSecondsLocal;icon=clock;formatString=yyyy-MM-dd\\nHH:mm:ss;editor=DateTimeEditor</string>
+    
+    <string name="unixTimeUTC" translatable="false">clocktime_unixsecondsUTC=0</string>
+    <string name="clocktime_unixsecondsUTC" translatable="false">layout=dial_port_row_noslider_two_rows;conversion=unixSeconds;icon=clock;formatString=yyyy-MM-dd\\nHH:mm:ss;editor=DateTimeEditor</string>
+    
+    <string name="percent" translatable="false">percent_integer=0</string>
+    <string name="percent_integer" translatable="false">layout=dial_port_row_slider_only;</string>
+
+    <string name="gas_l" translatable="false">gas_l_in_m3=0</string>
+    <string name="gas_l_in_m3" translatable="false">layout=dial_port_row_noslider;icon=energymeter;label=Gas total;formatString=%.3f m³;denominator=1000</string>
+
+    <string name="gas_lPerTime" translatable="false">gas_l_in_m3_per_time=0</string>
+    <string name="gas_l_in_m3_per_time" translatable="false">layout=dial_port_row_noslider;icon=powermeter;label=Gas rate;formatString=%.3f m³;denominator=1000</string>
+    
+    <string name="energy_100nWhPerTime" translatable="false">energy_100nWh_in_kWh_per_time=0</string>
+    <string name="energy_100nWh_in_kWh_per_time" translatable="false">layout=dial_port_row_noslider;icon=powermeter;label=Electric energy rate;formatString=%.3f kWh;denominator=10000000</string>
+    
+    <string name="energy_WhPerTime" translatable="false">energy_Wh_in_kWh_per_time=0</string>
+    <string name="energy_Wh_in_kWh_per_time" translatable="false">layout=dial_port_row_noslider;icon=powermeter;label=Electric energy rate;formatString=%.3f kWh;denominator=1000</string>
     <string name="coloredlamp_toggle">Toggle</string>
     <string name="coloredlamp_selectcolor">Select color</string>
 

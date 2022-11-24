@@ -16,10 +16,6 @@ package org.openhat.androPDI.bluetooth;
  * limitations under the License.
  */
 
-import java.util.Set;
-
-import org.openhat.androPDI.R;
-
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -38,6 +34,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.openhat.androPDI.R;
+
+import java.util.Set;
 
 /**
  * This Activity appears as a dialog. It lists any paired devices and

@@ -10,9 +10,9 @@
 
 package org.openhat.opdi.devices;
 
-import java.util.HashMap;
-
 import org.openhat.opdi.utils.Strings;
+
+import java.util.HashMap;
 
 public class DeviceInfo {
 	

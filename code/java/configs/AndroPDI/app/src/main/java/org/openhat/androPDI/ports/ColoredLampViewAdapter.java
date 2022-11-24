@@ -28,7 +28,6 @@ import android.widget.TextView;
 
 import com.rarepebble.colorpicker.ColorPickerView;
 
-import org.openhat.androPDI.AndroPDI;
 import org.openhat.androPDI.R;
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.ports.CustomPort;
@@ -44,7 +43,7 @@ import java.util.concurrent.TimeoutException;
  * @author Leo
  *
  */
-public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IPortViewAdapter {
+public abstract class ColoredLampViewAdapter implements IPortViewAdapter {
 
 	protected enum LampState {
 		UNKNOWN,
@@ -66,7 +65,7 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 	boolean isSeekbarTracking;
 	boolean ignoreNextSet;
 
-	protected T port;
+	protected CustomPort port;
 
 	// view state values
 	protected boolean stateError;
@@ -74,7 +73,7 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 	protected int color = -1;
 	protected int brightness = -1;
 
-	public ColoredLampViewAdapter(T port, ShowDevicePorts showDevicePorts) {
+	public ColoredLampViewAdapter(CustomPort port, ShowDevicePorts showDevicePorts) {
 		this.port = port;
 		this.showDevicePorts = showDevicePorts;
 	}
@@ -358,7 +357,10 @@ public abstract class ColoredLampViewAdapter<T extends CustomPort> implements IP
 
 	@Override
 	public void configure(Port port, Context context) {
-		this.port = (T)port;
+		if (port instanceof CustomPort)
+			this.port = (CustomPort)port;
+		else
+			throw new IllegalArgumentException("port must be of type CustomPort");
 		this.context = context;
 	}
 	

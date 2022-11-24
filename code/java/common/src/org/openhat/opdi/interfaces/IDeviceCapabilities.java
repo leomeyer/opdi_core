@@ -10,15 +10,15 @@
 
 package org.openhat.opdi.interfaces;
 
-import java.util.List;
-import java.util.concurrent.TimeoutException;
-
 import org.openhat.opdi.devices.DeviceException;
 import org.openhat.opdi.ports.Port;
 import org.openhat.opdi.ports.PortGroup;
 import org.openhat.opdi.protocol.DisconnectedException;
 import org.openhat.opdi.protocol.PortAccessDeniedException;
 import org.openhat.opdi.protocol.ProtocolException;
+
+import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 public interface IDeviceCapabilities {
 
