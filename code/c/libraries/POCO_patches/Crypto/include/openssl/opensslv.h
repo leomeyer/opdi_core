@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2016 The OpenSSL Project Authors. All Rights Reserved.
+ * Copyright 1999-2019 The OpenSSL Project Authors. All Rights Reserved.
  *
  * Licensed under the OpenSSL license (the "License").  You may not use
  * this file except in compliance with the License.  You can obtain a copy
@@ -39,12 +39,8 @@ extern "C" {
  * (Prior to 0.9.5a beta1, a different scheme was used: MMNNFFRBB for
  *  major minor fix final patch/beta)
  */
-# define OPENSSL_VERSION_NUMBER  0x1010000fL
-# ifdef OPENSSL_FIPS
-#  define OPENSSL_VERSION_TEXT    "OpenSSL 1.1.0-fips  25 Aug 2016"
-# else
-#  define OPENSSL_VERSION_TEXT    "OpenSSL 1.1.0  25 Aug 2016"
-# endif
+# define OPENSSL_VERSION_NUMBER  0x1010104fL
+# define OPENSSL_VERSION_TEXT    "OpenSSL 1.1.1d  10 Sep 2019"
 
 /*-
  * The macros below are to be used for shared library (.so, .dll, ...)
@@ -103,16 +99,3 @@ extern "C" {
 }
 #endif
 #endif                          /* HEADER_OPENSSLV_H */
-
-/* begin POCO OpenSSL script generated, do not edit manually */
-
-#ifndef POCO_OPENSSLV_H_INCLUDED
-
-  #define POCO_OPENSSLV_H_INCLUDED
-
-  #define POCO_INTERNAL_OPENSSL_MSVC_VER 120
-
-#endif // POCO_OPENSSLV_H_INCLUDED
-
-/* end POCO OpenSSL script generated */
-
