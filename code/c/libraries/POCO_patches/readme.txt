@@ -59,6 +59,8 @@ The Linux configs should link the POCO libraries dynamically. This avoids proble
 If you want to cross-compile for the Raspberry Pi, follow these steps:
 
 Install a cross-compiler toolchain on your compile system and make sure that it works. For example: https://github.com/raspberrypi/tools
+> sudo apt-get install gcc-arm-linux-gnueabihf
+> sudo apt-get install g++-arm-linux-gnueabihf
 Note: Currently it is not recommended to use the popular crosstools-ng for this because of problems downloading library dependencies (eglibc.org SVN server is unreliable).
 
 Invoke
