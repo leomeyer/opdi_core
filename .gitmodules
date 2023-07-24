@@ -1,6 +1,7 @@
 [submodule "code/c/libraries/POCO"]
 	path = code/c/libraries/POCO
 	url = https://github.com/pocoproject/poco.git
+	branch = poco-1.12.5
 	ignore = dirty
 [submodule "code/java/configs/AndroPDI/assets/opdi_assets"]
 	path = code/java/configs/AndroPDI/assets/opdi_assets

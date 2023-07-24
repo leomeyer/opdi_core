@@ -5,24 +5,33 @@ The POCO libraries will automatically be cloned as a Git submodule into the POCO
 Alternatively, download the POCO C++ libraries from pocoproject.org and extract them into this folder, omitting the versioned top folder.
 
 Copy the contents of this folder over to the POCO folder.
-Build POCO to make the library files available to the configs.
+
+Clone the POCO crypto support into the POCO folder:
+> git clone https://github.com/pocoproject/openssl
+
+Build POCO to create the libraries as described below.
 
 See the README file for advanced instructions.
 
 ------------------------------------------------------------------------------------------------------
 
-On Windows (extract from README):
+On Windows:
 
-To build from the command line, start the
-Visual Studio .NET 2003 (or 2005/2008/2010/2012/2013/2015) Command Prompt and cd to the directory 
-where you have extracted the POCO C++ Libraries sources. Then, simply start the buildwin.cmd 
-script and pass as argument the version of visual studio (71, 80, 90, 100, 110, 120 or 140).
+To build from the command line, start a regular command prompt (not the "x86 Native Tools Command Prompt for Visual Studio 2019") and cd to the POCO directory.
 
-The following command (for Visual Studio 2015) speeds up the compilation:
-> buildwin 140 build all both Win32 nosamples notests
+Execute the following command (for Visual Studio 2019):
+> buildwin 160 build static_mt debug Win32 nosamples notests
+
+This command compiles for debug mode only (Windows is normally used for testing, not deployment).
+Note that building shared libraries does not currently work due to an unresolved problem with libcryptod.lib.
 
 The Windows configs should link the POCO libraries statically. This avoids the need to deploy the DLLs as well.
 If you want to use the DLLs remove the POCO_STATIC compiler directive from the project settings and copy the DLLs to the resulting exe's folder.
+
+In case you receive the following error:
+"The windows SDK version 10.0.19041.0 was not found"
+run the following command before calling buildwin:
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86 10.0.19041.0
 
 ------------------------------------------------------------------------------------------------------
 
