@@ -12,7 +12,7 @@
 LINKMODE          ?= STATIC
 POCO_TARGET_OSNAME = Linux
 POCO_TARGET_OSARCH = ARM
-TOOL               = arm-linux-gnueabihf
+TOOL               = /opt/cross-pi-gcc/bin/arm-linux-gnueabihf
 
 #
 # Define Tools
