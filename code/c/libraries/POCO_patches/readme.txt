@@ -20,10 +20,10 @@ On Windows:
 To build from the command line, start a regular command prompt (not the "x86 Native Tools Command Prompt for Visual Studio 2019") and cd to the POCO directory.
 
 Execute the following command (for Visual Studio 2019):
-> buildwin 160 build static_mt debug Win32 nosamples notests
+> buildwin 160 build all debug Win32 nosamples notests
 
 This command compiles for debug mode only (Windows is normally used for testing, not deployment).
-Note that building shared libraries does not currently work due to an unresolved problem with libcryptod.lib.
+Note that building shared libraries may produce an error due to an unresolved problem with libcryptod.lib.
 
 The Windows configs should link the POCO libraries statically. This avoids the need to deploy the DLLs as well.
 If you want to use the DLLs remove the POCO_STATIC compiler directive from the project settings and copy the DLLs to the resulting exe's folder.
