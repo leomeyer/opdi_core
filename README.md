@@ -2,7 +2,7 @@
 
 ## Open Protocol for Device Interaction core implementations ##
 
-*Please note: Code in this repository is under active development*
+*Please note: This repository has been moved to: [https://codeberg.org/leomeyer/opdi_core](https://codeberg.org/leomeyer/opdi_core)*
 
 ### Introduction ###
 
